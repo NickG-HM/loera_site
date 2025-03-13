@@ -24,7 +24,13 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
   ];
 
-  const [emblaRef] = useEmblaCarousel({
+  const [mainCarouselRef] = useEmblaCarousel({
+    loop: true,
+    align: 'center',
+    dragFree: true,
+  });
+
+  const [thumbCarouselRef] = useEmblaCarousel({
     loop: true,
     align: 'center',
     dragFree: true,
@@ -32,24 +38,37 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
 
   return (
     <div className="space-y-4">
-      <div className="relative aspect-square">
-        <img
-          src={currentImage}
-          alt={productName}
-          className="w-full h-full object-cover rounded-lg"
-        />
-        <Button
-          size="icon"
-          variant="outline"
-          className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm"
-          onClick={() => setIsEnlarged(true)}
-        >
-          <ZoomIn className="h-4 w-4" />
-        </Button>
+      {/* Main Product Image Carousel */}
+      <div className="relative overflow-hidden" ref={mainCarouselRef}>
+        <div className="flex">
+          {galleryImages.map((img, i) => (
+            <div 
+              key={i}
+              className="flex-[0_0_100%] min-w-0 relative aspect-square"
+            >
+              <img
+                src={img}
+                alt={`${productName} view ${i + 1}`}
+                className="w-full h-full object-cover rounded-lg"
+              />
+              <Button
+                size="icon"
+                variant="outline"
+                className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm"
+                onClick={() => {
+                  setCurrentImage(img);
+                  setIsEnlarged(true);
+                }}
+              >
+                <ZoomIn className="h-4 w-4" />
+              </Button>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Embla Carousel */}
-      <div className="overflow-hidden" ref={emblaRef}>
+      {/* Thumbnail Carousel */}
+      <div className="overflow-hidden h-24" ref={thumbCarouselRef}>
         <div className="flex gap-2">
           {galleryImages.map((img, i) => (
             <div 
