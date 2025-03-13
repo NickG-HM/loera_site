@@ -52,6 +52,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 src={img}
                 alt={`${productName} view ${i + 1}`}
                 className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
               />
               <Button
                 size="icon"
@@ -84,6 +85,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
                   currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
                 }`}
+                loading="lazy"
               />
             </div>
           ))}
