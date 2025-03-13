@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@shared/schema";
 import { Link } from "wouter";
 import { useCart } from "@/lib/cart";
+import { useCurrency } from "@/lib/currency";
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +11,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
+  const { formatPrice } = useCurrency();
 
   return (
     <Card className="overflow-hidden">
@@ -31,7 +33,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="text-muted-foreground line-clamp-2 text-sm mt-2">
           {product.description}
         </p>
-        <p className="text-lg font-bold mt-2">${product.price}</p>
+        <p className="text-lg font-bold mt-2">{formatPrice(product.price)}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button
