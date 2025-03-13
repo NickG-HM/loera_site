@@ -22,6 +22,8 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
     "https://images.unsplash.com/photo-1596460107916-430662021049",
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+    "https://images.unsplash.com/photo-1615615228002-890bb61cac6e",
+    "https://images.unsplash.com/photo-1616423641454-caa695af6a0f",
   ];
 
   const [mainCarouselRef] = useEmblaCarousel({
@@ -68,7 +70,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
       </div>
 
       {/* Thumbnail Carousel */}
-      <div className="overflow-hidden h-24" ref={thumbCarouselRef}>
+      <div className="overflow-hidden h-32" ref={thumbCarouselRef}>
         <div className="flex gap-2">
           {galleryImages.map((img, i) => (
             <div 
