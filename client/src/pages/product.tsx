@@ -18,9 +18,9 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
   const [currentImage, setCurrentImage] = useState(mainImage);
   const galleryImages = [
     mainImage,
-    mainImage + "?v=2",
-    mainImage + "?v=3",
-    mainImage + "?v=4",
+    "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+    "https://images.unsplash.com/photo-1596460107916-430662021049",
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
   ];
 
   return (
