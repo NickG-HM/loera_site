@@ -22,8 +22,6 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
     "https://images.unsplash.com/photo-1596460107916-430662021049",
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-    "https://images.unsplash.com/photo-1615615228002-890bb61cac6e",
-    "https://images.unsplash.com/photo-1616423641454-caa695af6a0f",
   ];
 
   const [mainCarouselRef] = useEmblaCarousel({
@@ -52,7 +50,6 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 src={img}
                 alt={`${productName} view ${i + 1}`}
                 className="w-full h-full object-cover rounded-lg"
-                loading="lazy"
               />
               <Button
                 size="icon"
@@ -71,7 +68,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
       </div>
 
       {/* Thumbnail Carousel */}
-      <div className="overflow-hidden h-32" ref={thumbCarouselRef}>
+      <div className="overflow-hidden h-24" ref={thumbCarouselRef}>
         <div className="flex gap-2">
           {galleryImages.map((img, i) => (
             <div 
@@ -85,7 +82,6 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
                   currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
                 }`}
-                loading="lazy"
               />
             </div>
           ))}
