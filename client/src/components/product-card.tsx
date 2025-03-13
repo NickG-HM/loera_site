@@ -14,19 +14,19 @@ export function ProductCard({ product }: ProductCardProps) {
   const { formatPrice } = useCurrency();
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden transform transition-all duration-500 ease-in-out hover:shadow-lg">
       <Link href={`/product/${product.id}`}>
         <div className="aspect-square relative cursor-pointer">
           <img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-full hover:scale-105 transition-transform"
+            className="object-cover w-full h-full transform transition-transform duration-500 ease-in-out hover:scale-105"
           />
         </div>
       </Link>
       <CardContent className="p-4">
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-semibold text-lg hover:text-primary cursor-pointer">
+          <h3 className="font-semibold text-lg hover:text-primary transition-colors duration-500 ease-in-out cursor-pointer">
             {product.name}
           </h3>
         </Link>
@@ -37,7 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button
-          className="w-full"
+          className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]"
           onClick={() => addToCart(product, 1)}
         >
           Add to Cart

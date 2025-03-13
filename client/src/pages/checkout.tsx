@@ -47,13 +47,13 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
       <Navigation />
       <div className="container mx-auto px-4 pt-20">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
         <div className="max-w-2xl mx-auto space-y-6">
-          <Card>
+          <Card className="transform transition-all duration-500 ease-in-out hover:shadow-lg">
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
             </CardHeader>
@@ -83,7 +83,10 @@ export default function CheckoutPage() {
 
           <div className="space-y-4">
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <Button className="w-full" size="lg">
+              <Button 
+                className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]" 
+                size="lg"
+              >
                 Proceed to Checkout via WhatsApp
               </Button>
             </a>
@@ -100,7 +103,11 @@ export default function CheckoutPage() {
             </div>
 
             <a href={instagramLink} target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" className="w-full" size="lg">
+              <Button 
+                variant="outline" 
+                className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]" 
+                size="lg"
+              >
                 <Instagram className="mr-2 h-4 w-4" />
                 Contact Us on Instagram
               </Button>

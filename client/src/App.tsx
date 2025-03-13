@@ -12,15 +12,17 @@ import CheckoutPage from "@/pages/checkout";
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/product/:id" component={ProductPage} />
-      <Route path="/cart" component={CartPage} />
-      <Route path="/checkout" component={CheckoutPage} />
-      <Route path="/category/:category" component={Home} />
-      <Route path="/search/:query" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <div className="min-h-screen transition-opacity duration-500 ease-in-out">
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/product/:id" component={ProductPage} />
+        <Route path="/cart" component={CartPage} />
+        <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/category/:category" component={Home} />
+        <Route path="/search/:query" component={Home} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
   );
 }
 
