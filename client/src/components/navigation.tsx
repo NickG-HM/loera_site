@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { total } = useCart();
   const { currency, setCurrency } = useCurrency();
@@ -25,7 +26,6 @@ export function Navigation() {
             <Menu className="h-6 w-6" />
           </Button>
 
-          {/* Center logo on mobile, left-aligned on desktop */}
           <div className="flex-1 flex justify-center md:justify-start">
             <Link href="/">
               <img 
@@ -53,10 +53,15 @@ export function Navigation() {
           </div>
 
           <Link href="/cart">
-            <Button variant="ghost" size="icon" className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="relative transform transition-transform duration-300 hover:scale-110 active:scale-95"
+              onClick={() => setIsCartOpen(true)}
+            >
               <ShoppingCart className="h-6 w-6" />
               {total > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
                   {total}
                 </span>
               )}
