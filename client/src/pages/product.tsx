@@ -16,14 +16,11 @@ interface ImageGalleryProps {
 function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
   const [isEnlarged, setIsEnlarged] = useState(false);
   const [currentImage, setCurrentImage] = useState(mainImage);
-  // Generate diverse gallery images using different angles of similar products
   const galleryImages = [
     mainImage,
-    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?angle=45",
-    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?closeup=true",
-    "https://images.unsplash.com/photo-1596460107916-430662021049?side=left",
-    "https://images.unsplash.com/photo-1616423641454-caa695af6a0f?side=right",
-    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?detail=true",
+    mainImage + "?v=2",
+    mainImage + "?v=3",
+    mainImage + "?v=4",
   ];
 
   return (
@@ -44,30 +41,26 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         </Button>
       </div>
 
-      {/* Scrollable Thumbnail Gallery */}
-      <div className="relative">
-        <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex space-x-2 pb-2">
-            {galleryImages.map((img, i) => (
-              <div 
-                key={i} 
-                className="flex-none w-20 aspect-square"
-                onClick={() => setCurrentImage(img)}
-              >
-                <img
-                  src={img}
-                  alt={`${productName} view ${i + 1}`}
-                  className={`w-full h-full object-cover rounded cursor-pointer transition-opacity duration-200 ${
-                    currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
-                  }`}
-                />
-              </div>
-            ))}
+      {/* Image Gallery Grid */}
+      <div className="grid grid-cols-4 gap-2">
+        {galleryImages.map((img, i) => (
+          <div 
+            key={i} 
+            className="aspect-square cursor-pointer"
+            onClick={() => setCurrentImage(img)}
+          >
+            <img
+              src={img}
+              alt={`${productName} view ${i + 1}`}
+              className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
+                currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
+              }`}
+            />
           </div>
-        </div>
+        ))}
       </div>
 
-      {/* Enlarged Image Modal with smooth transitions */}
+      {/* Enlarged Image Modal */}
       {isEnlarged && (
         <div 
           className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-500"
