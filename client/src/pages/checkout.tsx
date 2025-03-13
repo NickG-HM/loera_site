@@ -1,27 +1,18 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Product, CartItem } from "@shared/schema";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CartItem, Product } from "@shared/schema";
 import { useCart } from "@/lib/cart";
-import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "wouter";
+import { useCurrency } from "@/lib/currency";
+import { Instagram } from "lucide-react";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 
 export default function CheckoutPage() {
-  const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
-  const [, setLocation] = useLocation();
-  const { clearCart } = useCart();
-
   const { data: products } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
@@ -40,33 +31,18 @@ export default function CheckoutPage() {
     0
   );
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      // Simulate order processing
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      await clearCart();
-      toast({
-        title: "Order placed successfully!",
-        description: "Thank you for your purchase.",
-      });
-      setLocation("/");
-    } catch (error) {
-      toast({
-        title: "Error placing order",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
+  const formatCartDetails = () => {
+    if (!items) return "";
+    const itemDetails = items.map(item => 
+      `${item.product.name} (${item.quantity}x)`
+    ).join(", ");
+    return `Hi! How can I purchase ${itemDetails}?`;
   };
 
+  const whatsappLink = `https://api.whatsapp.com/send/?phone=375255059703&text=${encodeURIComponent(formatCartDetails())}&type=phone_number&app_absent=0`;
+  const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
+
   if (!items || items.length === 0) {
-    setLocation("/cart");
     return null;
   }
 
@@ -76,146 +52,59 @@ export default function CheckoutPage() {
       <div className="container mx-auto px-4 pt-20">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Shipping Information</CardTitle>
-                <CardDescription>
-                  Enter your shipping details below
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name</Label>
-                    <Input
-                      id="firstName"
-                      required
-                      placeholder="John"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name</Label>
-                    <Input
-                      id="lastName"
-                      required
-                      placeholder="Doe"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    placeholder="john@example.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="address">Address</Label>
-                  <Input
-                    id="address"
-                    required
-                    placeholder="123 Main St"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="city">City</Label>
-                    <Input
-                      id="city"
-                      required
-                      placeholder="New York"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="postalCode">Postal Code</Label>
-                    <Input
-                      id="postalCode"
-                      required
-                      placeholder="10001"
-                    />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Payment Information</CardTitle>
-                <CardDescription>
-                  Enter your payment details below
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="cardNumber">Card Number</Label>
-                  <Input
-                    id="cardNumber"
-                    required
-                    placeholder="4111 1111 1111 1111"
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="expiryDate">Expiry Date</Label>
-                    <Input
-                      id="expiryDate"
-                      required
-                      placeholder="MM/YY"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="cvv">CVV</Label>
-                    <Input
-                      id="cvv"
-                      required
-                      placeholder="123"
-                    />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={loading}
-            >
-              {loading ? "Processing..." : `Pay $${total?.toFixed(2)}`}
-            </Button>
-          </form>
-
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex justify-between py-2 border-b last:border-0"
-                  >
-                    <div>
-                      <p className="font-medium">{item.product.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        Quantity: {item.quantity}
-                      </p>
-                    </div>
-                    <p className="font-medium">
-                      ${(Number(item.product.price) * item.quantity).toFixed(2)}
+        <div className="max-w-2xl mx-auto space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {items.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex justify-between py-2 border-b last:border-0"
+                >
+                  <div>
+                    <p className="font-medium">{item.product.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      Quantity: {item.quantity}
                     </p>
                   </div>
-                ))}
-                <div className="flex justify-between pt-4 font-bold">
-                  <p>Total</p>
-                  <p>${total?.toFixed(2)}</p>
+                  <p className="font-medium">
+                    ${(Number(item.product.price) * item.quantity).toFixed(2)}
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+              <div className="flex justify-between pt-4 font-bold">
+                <p>Total</p>
+                <p>${total?.toFixed(2)}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="space-y-4">
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <Button className="w-full" size="lg">
+                Proceed to Checkout via WhatsApp
+              </Button>
+            </a>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-gray-50 px-2 text-muted-foreground">
+                  Or
+                </span>
+              </div>
+            </div>
+
+            <a href={instagramLink} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="w-full" size="lg">
+                <Instagram className="mr-2 h-4 w-4" />
+                Contact Us on Instagram
+              </Button>
+            </a>
           </div>
         </div>
       </div>
