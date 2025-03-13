@@ -62,18 +62,18 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex gap-4 border-b py-4"
+                  className="flex gap-4 border-b py-4 transition-all duration-300 ease-in-out hover:bg-accent/5"
                 >
                   <Link href={`/product/${item.product.id}`}>
                     <img
                       src={item.product.image}
                       alt={item.product.name}
-                      className="w-24 h-24 object-cover rounded"
+                      className="w-24 h-24 object-cover rounded transform transition-transform duration-300 hover:scale-105"
                     />
                   </Link>
                   <div className="flex-1">
                     <Link href={`/product/${item.product.id}`}>
-                      <h3 className="font-medium hover:text-primary">
+                      <h3 className="font-medium hover:text-primary transition-colors">
                         {item.product.name}
                       </h3>
                     </Link>
@@ -85,6 +85,7 @@ export default function CartPage() {
                         variant="outline"
                         size="icon"
                         onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
+                        className="transition-transform active:scale-95"
                       >
                         <Minus className="h-4 w-4" />
                       </Button>
@@ -93,13 +94,14 @@ export default function CartPage() {
                         variant="outline"
                         size="icon"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="transition-transform active:scale-95"
                       >
                         <Plus className="h-4 w-4" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="ml-auto text-destructive"
+                        className="ml-auto text-destructive hover:bg-destructive/10 transition-colors"
                         onClick={() => removeFromCart(item.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -126,7 +128,11 @@ export default function CartPage() {
                 </div>
               </div>
               <Link href="/checkout">
-                <Button className="w-full">Proceed to Checkout</Button>
+                <Button 
+                  className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Proceed to Checkout
+                </Button>
               </Link>
             </div>
           </div>

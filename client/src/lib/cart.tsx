@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, ReactNode } from "react";
 import { Product, CartItem } from "@shared/schema";
-import { apiRequest } from "./queryClient";
+import { apiRequest, queryClient } from "./queryClient";
 
 interface CartState {
   items: (CartItem & { product: Product })[];
@@ -30,7 +30,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         ...state,
         items: action.payload.map(item => ({
           ...item,
-          product: {} as Product // Will be populated when used
+          product: {} as Product
         })),
         total: calculateTotal(action.payload)
       };
@@ -80,6 +80,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
     const item = await response.json();
     dispatch({ type: "ADD_ITEM", payload: item });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const updateQuantity = async (itemId: number, quantity: number) => {
@@ -88,16 +89,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
     const item = await response.json();
     dispatch({ type: "UPDATE_ITEM", payload: item });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const removeFromCart = async (itemId: number) => {
     await apiRequest("DELETE", `/api/cart/${itemId}`);
     dispatch({ type: "REMOVE_ITEM", payload: itemId });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const clearCart = async () => {
     await apiRequest("DELETE", "/api/cart");
     dispatch({ type: "CLEAR_CART" });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   return (
