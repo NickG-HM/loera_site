@@ -15,6 +15,7 @@ interface ImageGalleryProps {
 
 function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
   const [isEnlarged, setIsEnlarged] = useState(false);
+  const [currentImage, setCurrentImage] = useState(mainImage);
   // Generate diverse gallery images using different angles of similar products
   const galleryImages = [
     mainImage,
@@ -29,7 +30,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     <div className="space-y-4">
       <div className="relative aspect-square">
         <img
-          src={mainImage}
+          src={currentImage}
           alt={productName}
           className="w-full h-full object-cover rounded-lg"
         />
@@ -48,11 +49,17 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         <div className="overflow-x-auto scrollbar-hide">
           <div className="flex space-x-2 pb-2">
             {galleryImages.map((img, i) => (
-              <div key={i} className="flex-none w-20 aspect-square">
+              <div 
+                key={i} 
+                className="flex-none w-20 aspect-square"
+                onClick={() => setCurrentImage(img)}
+              >
                 <img
                   src={img}
                   alt={`${productName} view ${i + 1}`}
-                  className="w-full h-full object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
+                  className={`w-full h-full object-cover rounded cursor-pointer transition-opacity duration-200 ${
+                    currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
+                  }`}
                 />
               </div>
             ))}
@@ -63,19 +70,19 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
       {/* Enlarged Image Modal with smooth transitions */}
       {isEnlarged && (
         <div 
-          className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-300"
+          className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-500"
           onClick={() => setIsEnlarged(false)}
         >
           <div className="absolute inset-0 flex items-center justify-center p-4">
             <div 
-              className="relative max-w-4xl w-full transform transition-transform duration-300 ease-out scale-100"
+              className="relative max-w-4xl w-full transform transition-transform duration-500 ease-in-out"
               style={{ 
                 transform: isEnlarged ? 'scale(1)' : 'scale(0.9)',
                 opacity: isEnlarged ? 1 : 0 
               }}
             >
               <img
-                src={mainImage}
+                src={currentImage}
                 alt={productName}
                 className="w-full h-full object-contain rounded-lg"
               />
@@ -139,38 +146,40 @@ export default function ProductPage() {
     <div className="min-h-screen">
       <Navigation />
       <div className="container mx-auto px-4 pt-20">
-        <div className="grid md:grid-cols-2 gap-8">
-          <ImageGallery mainImage={product.image} productName={product.name} />
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            <ImageGallery mainImage={product.image} productName={product.name} />
 
-          <div className="flex flex-col">
-            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-            <p className="text-xl font-bold mb-4">{formatPrice(product.price)}</p>
-            <p className="text-muted-foreground mb-6">{product.description}</p>
+            <div className="flex flex-col">
+              <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+              <p className="text-xl font-bold mb-4">{formatPrice(product.price)}</p>
+              <p className="text-muted-foreground mb-6">{product.description}</p>
 
-            <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-6">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                >
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <span className="text-lg font-medium">{quantity}</span>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setQuantity(quantity + 1)}
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
+
               <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                size="lg"
+                onClick={() => addToCart(product, quantity)}
               >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="text-lg font-medium">{quantity}</span>
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setQuantity(quantity + 1)}
-              >
-                <Plus className="h-4 w-4" />
+                Add to Cart
               </Button>
             </div>
-
-            <Button
-              size="lg"
-              onClick={() => addToCart(product, quantity)}
-            >
-              Add to Cart
-            </Button>
           </div>
         </div>
       </div>
