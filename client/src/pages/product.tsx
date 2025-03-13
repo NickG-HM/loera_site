@@ -15,8 +15,15 @@ interface ImageGalleryProps {
 
 function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
   const [isEnlarged, setIsEnlarged] = useState(false);
-  // Generate dummy gallery images by adding query params to the main image
-  const galleryImages = Array(4).fill(mainImage).map((img, i) => `${img}?v=${i}`);
+  // Generate diverse gallery images using different angles of similar products
+  const galleryImages = [
+    mainImage,
+    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?angle=45",
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?closeup=true",
+    "https://images.unsplash.com/photo-1596460107916-430662021049?side=left",
+    "https://images.unsplash.com/photo-1616423641454-caa695af6a0f?side=right",
+    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?detail=true",
+  ];
 
   return (
     <div className="space-y-4">
@@ -36,27 +43,37 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         </Button>
       </div>
 
-      {/* Thumbnail Gallery */}
-      <div className="grid grid-cols-4 gap-2">
-        {galleryImages.map((img, i) => (
-          <div key={i} className="aspect-square">
-            <img
-              src={img}
-              alt={`${productName} view ${i + 1}`}
-              className="w-full h-full object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
-            />
+      {/* Scrollable Thumbnail Gallery */}
+      <div className="relative">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex space-x-2 pb-2">
+            {galleryImages.map((img, i) => (
+              <div key={i} className="flex-none w-20 aspect-square">
+                <img
+                  src={img}
+                  alt={`${productName} view ${i + 1}`}
+                  className="w-full h-full object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
-      {/* Enlarged Image Modal */}
+      {/* Enlarged Image Modal with smooth transitions */}
       {isEnlarged && (
         <div 
-          className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-300"
           onClick={() => setIsEnlarged(false)}
         >
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="relative max-w-4xl w-full">
+            <div 
+              className="relative max-w-4xl w-full transform transition-transform duration-300 ease-out scale-100"
+              style={{ 
+                transform: isEnlarged ? 'scale(1)' : 'scale(0.9)',
+                opacity: isEnlarged ? 1 : 0 
+              }}
+            >
               <img
                 src={mainImage}
                 alt={productName}
@@ -66,7 +83,10 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 size="icon"
                 variant="outline"
                 className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm"
-                onClick={() => setIsEnlarged(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsEnlarged(false);
+                }}
               >
                 <ZoomOut className="h-4 w-4" />
               </Button>
