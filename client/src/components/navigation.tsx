@@ -1,4 +1,3 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, ShoppingCart, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -29,7 +28,11 @@ export function Navigation() {
           {/* Center logo on mobile, left-aligned on desktop */}
           <div className="flex-1 flex justify-center md:justify-start">
             <Link href="/">
-              <h1 className="text-xl font-bold">ShopApp</h1>
+              <img 
+                src="/attached_assets/Logo_LOERA_final.png" 
+                alt="LOERA"
+                className="h-8"
+              />
             </Link>
           </div>
 
@@ -62,27 +65,27 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* Overlay Menu */}
+      {/* Compact Overlay Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm">
-          <div className="fixed inset-0 z-50">
-            <div className="flex flex-col h-full bg-background p-6">
-              <div className="flex items-center justify-between mb-8">
+        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)}>
+          <div className="fixed top-0 right-0 z-50 w-64" onClick={e => e.stopPropagation()}>
+            <div className="bg-background shadow-lg h-auto rounded-bl-lg p-4">
+              <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold">Menu</h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <X className="h-6 w-6" />
+                  <X className="h-4 w-4" />
                 </Button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <Link href="/">
                   <Button
                     variant="ghost"
-                    className="w-full justify-start"
+                    className="w-full justify-start text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Home
@@ -91,7 +94,7 @@ export function Navigation() {
                 <Link href="/category/electronics">
                   <Button
                     variant="ghost"
-                    className="w-full justify-start"
+                    className="w-full justify-start text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Electronics
@@ -100,7 +103,7 @@ export function Navigation() {
                 <Link href="/category/accessories">
                   <Button
                     variant="ghost"
-                    className="w-full justify-start"
+                    className="w-full justify-start text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Accessories
@@ -109,19 +112,20 @@ export function Navigation() {
                 <Link href="/category/jewelry">
                   <Button
                     variant="ghost"
-                    className="w-full justify-start"
+                    className="w-full justify-start text-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Jewelry
                   </Button>
                 </Link>
 
-                <div className="pt-4 border-t">
-                  <h3 className="text-sm font-medium mb-2">Currency</h3>
-                  <div className="grid grid-cols-3 gap-2">
+                <div className="pt-2 border-t mt-2">
+                  <h3 className="text-xs font-medium mb-2">Currency</h3>
+                  <div className="grid grid-cols-3 gap-1">
                     {["USD", "BYN", "RUB"].map((curr) => (
                       <Button
                         key={curr}
+                        size="sm"
                         variant={currency === curr ? "default" : "outline"}
                         onClick={() => {
                           setCurrency(curr as "USD" | "BYN" | "RUB");
