@@ -34,9 +34,9 @@ export default function CheckoutPage() {
   const formatCartDetails = () => {
     if (!items) return "";
     const itemDetails = items.map(item => 
-      `${item.product.name} (${item.quantity}x)`
+      `${item.product.name} (x ${item.quantity})`
     ).join(", ");
-    return `Hi! How can I purchase ${itemDetails}?`;
+    return `Здравствуйте! Как я могу купить ${itemDetails}?`;
   };
 
   const whatsappLink = `https://api.whatsapp.com/send/?phone=375255059703&text=${encodeURIComponent(formatCartDetails())}&type=phone_number&app_absent=0`;
