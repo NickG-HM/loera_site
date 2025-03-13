@@ -7,6 +7,7 @@ import { useCart } from "@/lib/cart";
 import { Minus, Plus, ZoomIn, ZoomOut } from "lucide-react";
 import { useState } from "react";
 import { useCurrency } from "@/lib/currency";
+import useEmblaCarousel from 'embla-carousel-react';
 
 interface ImageGalleryProps {
   mainImage: string;
@@ -22,6 +23,12 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     "https://images.unsplash.com/photo-1596460107916-430662021049",
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
   ];
+
+  const [emblaRef] = useEmblaCarousel({
+    loop: true,
+    align: 'center',
+    dragFree: true,
+  });
 
   return (
     <div className="space-y-4">
@@ -41,23 +48,25 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         </Button>
       </div>
 
-      {/* Image Gallery Grid */}
-      <div className="grid grid-cols-4 gap-2">
-        {galleryImages.map((img, i) => (
-          <div 
-            key={i} 
-            className="aspect-square cursor-pointer"
-            onClick={() => setCurrentImage(img)}
-          >
-            <img
-              src={img}
-              alt={`${productName} view ${i + 1}`}
-              className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
-                currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
-              }`}
-            />
-          </div>
-        ))}
+      {/* Embla Carousel */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-2">
+          {galleryImages.map((img, i) => (
+            <div 
+              key={i} 
+              className="flex-[0_0_25%] min-w-0 relative aspect-square cursor-pointer"
+              onClick={() => setCurrentImage(img)}
+            >
+              <img
+                src={img}
+                alt={`${productName} view ${i + 1}`}
+                className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
+                  currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
+                }`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Enlarged Image Modal */}
