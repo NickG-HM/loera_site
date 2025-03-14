@@ -40,7 +40,7 @@ export default function CheckoutPage() {
   };
 
   const whatsappLink = `https://api.whatsapp.com/send/?phone=375255059703&text=${encodeURIComponent(formatCartDetails())}&type=phone_number&app_absent=0`;
-  const instagramLink = `https://www.instagram.com/direct/t/loera.brand?text=${encodeURIComponent(formatCartDetails())}`;
+  const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
 
   if (!items || items.length === 0) {
     return null;
