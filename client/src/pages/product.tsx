@@ -67,9 +67,9 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
   }, [mainEmblaApi, thumbEmblaApi, onSelect]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 overflow-hidden">
       {/* Main Product Image Carousel */}
-      <div className="relative overflow-hidden rounded-lg" ref={mainCarouselRef}>
+      <div className="relative overflow-hidden rounded-lg will-change-transform" ref={mainCarouselRef}>
         <div className="flex aspect-[4/3] md:aspect-[16/9]">
           {galleryImages.map((img, i) => (
             <div 
@@ -102,7 +102,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -ml-4 hover:bg-white"
+            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -ml-4 hover:bg-white transform transition-transform hover:scale-105"
             onClick={scrollPrev}
             disabled={!canScrollPrev}
           >
@@ -113,7 +113,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -mr-4 hover:bg-white"
+            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -mr-4 hover:bg-white transform transition-transform hover:scale-105"
             onClick={scrollNext}
             disabled={!canScrollNext}
           >
@@ -122,13 +122,13 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         </div>
       </div>
 
-      {/* Thumbnail Carousel - Updated spacing and padding */}
-      <div className="overflow-visible h-28 py-2" ref={thumbCarouselRef}>
-        <div className="flex gap-4">
+      {/* Thumbnail Carousel */}
+      <div className="h-24 px-2 will-change-transform" ref={thumbCarouselRef}>
+        <div className="flex gap-2">
           {galleryImages.map((img, i) => (
             <div 
               key={i} 
-              className="flex-[0_0_25%] min-w-0 relative aspect-square cursor-pointer p-1"
+              className="flex-[0_0_20%] min-w-0 relative aspect-square cursor-pointer"
               onClick={() => {
                 if (mainEmblaApi) mainEmblaApi.scrollTo(i);
                 setCurrentImage(img);
@@ -137,10 +137,10 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
               <img
                 src={img}
                 alt={`${productName} view ${i + 1}`}
-                className={`w-full h-full object-cover rounded transition-all duration-300 ${
+                className={`w-full h-full object-cover rounded-sm transition-all duration-300 transform ${
                   selectedIndex === i 
-                    ? 'ring-2 ring-primary ring-offset-2' 
-                    : 'opacity-60 hover:opacity-100'
+                    ? 'ring-2 ring-primary scale-95' 
+                    : 'opacity-60 hover:opacity-100 hover:scale-95'
                 }`}
                 loading="lazy"
               />
