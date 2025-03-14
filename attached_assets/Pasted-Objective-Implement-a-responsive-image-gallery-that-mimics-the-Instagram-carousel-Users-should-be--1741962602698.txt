@@ -1,0 +1,52 @@
+Objective:
+Implement a responsive image gallery that mimics the Instagram carousel. Users should be able to swipe (on touch devices) or click navigation arrows (on desktops) to browse through multiple product images. The carousel should support smooth slide transitions, lazy-loading of images for performance, and optional pagination dots for indicating the current slide.
+
+Requirements:
+
+Responsive Design:
+
+The carousel must adapt to various screen sizes (mobile, tablet, desktop).
+On mobile, display one full-width image with a slight preview of adjacent images if possible (to encourage swiping).
+On desktop, allow navigation arrows and support keyboard interactions (left/right arrow keys).
+Swipe & Touch Support:
+
+Implement smooth touch gestures so users can swipe through images.
+Use libraries like Swiper.js, Slick, or Owl Carousel if needed (or create a custom solution with vanilla JavaScript).
+Smooth Transitions:
+
+Transitions between images should be smooth (e.g., using CSS transitions or JavaScript animations).
+Consider easing functions to enhance the user experience.
+Navigation Features:
+
+Include navigation arrows (left/right) for desktop users.
+Optionally, include pagination dots that update as the user swipes or clicks through the images.
+Performance & Accessibility:
+
+Implement lazy-loading for images to improve performance.
+Ensure that the carousel is accessible (ARIA labels for navigation controls, keyboard navigation, etc.).
+The code should be modular and maintainable.
+Customization:
+
+Allow easy customization of transition speed, slide spacing, and autoplay (if desired).
+Implementation Guidelines:
+
+HTML/CSS/JS Approach:
+
+Set up the HTML structure with a container element that holds individual slide elements.
+Use CSS Flexbox or Grid to layout the slides, ensuring the active slide is centered.
+Write JavaScript to handle swipe gestures (or integrate a carousel library that handles them) and update the slide positions.
+Using a Library (Optional):
+
+If using Swiper.js:
+Initialize the Swiper instance with options for looped slides, autoplay, and touch support.
+Configure breakpoints for responsive behavior.
+Ensure to include any necessary polyfills for older browsers.
+Testing:
+
+Test on multiple devices (mobile, tablet, desktop) to verify responsive behavior and swipe functionality.
+Check performance and load times with multiple high-resolution product images.
+Deliverables:
+
+A working HTML page demonstrating the carousel functionality.
+Clean, commented code (HTML, CSS, JavaScript) that can be easily integrated into an existing online shop.
+Instructions for any additional dependencies or libraries used.

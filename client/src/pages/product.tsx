@@ -4,8 +4,8 @@ import { useParams } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
 import { useCart } from "@/lib/cart";
-import { Minus, Plus, ZoomIn, ZoomOut } from "lucide-react";
-import { useState } from "react";
+import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
 import { useCurrency } from "@/lib/currency";
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -24,32 +24,63 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
   ];
 
-  const [mainCarouselRef] = useEmblaCarousel({
+  const [mainCarouselRef, mainEmblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     dragFree: true,
   });
 
-  const [thumbCarouselRef] = useEmblaCarousel({
+  const [thumbCarouselRef, thumbEmblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     dragFree: true,
   });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const scrollPrev = useCallback(() => {
+    if (mainEmblaApi) mainEmblaApi.scrollPrev();
+  }, [mainEmblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (mainEmblaApi) mainEmblaApi.scrollNext();
+  }, [mainEmblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!mainEmblaApi || !thumbEmblaApi) return;
+
+    setSelectedIndex(mainEmblaApi.selectedScrollSnap());
+    thumbEmblaApi.scrollTo(mainEmblaApi.selectedScrollSnap());
+
+    setCanScrollPrev(mainEmblaApi.canScrollPrev());
+    setCanScrollNext(mainEmblaApi.canScrollNext());
+  }, [mainEmblaApi, thumbEmblaApi]);
+
+  useEffect(() => {
+    if (!mainEmblaApi || !thumbEmblaApi) return;
+
+    onSelect();
+    mainEmblaApi.on('select', onSelect);
+    thumbEmblaApi.on('select', onSelect);
+  }, [mainEmblaApi, thumbEmblaApi, onSelect]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Main Product Image Carousel */}
-      <div className="relative overflow-hidden" ref={mainCarouselRef}>
-        <div className="flex">
+      <div className="relative overflow-hidden rounded-lg" ref={mainCarouselRef}>
+        <div className="flex aspect-[4/3] md:aspect-[16/9]">
           {galleryImages.map((img, i) => (
             <div 
               key={i}
-              className="flex-[0_0_100%] min-w-0 relative aspect-square"
+              className="flex-[0_0_100%] min-w-0 relative"
             >
               <img
                 src={img}
                 alt={`${productName} view ${i + 1}`}
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover"
+                loading={i === 0 ? "eager" : "lazy"}
               />
               <Button
                 size="icon"
@@ -65,6 +96,30 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
             </div>
           ))}
         </div>
+
+        {/* Navigation Arrows */}
+        <div className="absolute inset-y-0 left-0 hidden md:flex items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -ml-4 hover:bg-white"
+            onClick={scrollPrev}
+            disabled={!canScrollPrev}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+        </div>
+        <div className="absolute inset-y-0 right-0 hidden md:flex items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm -mr-4 hover:bg-white"
+            onClick={scrollNext}
+            disabled={!canScrollNext}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
 
       {/* Thumbnail Carousel */}
@@ -74,14 +129,20 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
             <div 
               key={i} 
               className="flex-[0_0_25%] min-w-0 relative aspect-square cursor-pointer"
-              onClick={() => setCurrentImage(img)}
+              onClick={() => {
+                if (mainEmblaApi) mainEmblaApi.scrollTo(i);
+                setCurrentImage(img);
+              }}
             >
               <img
                 src={img}
                 alt={`${productName} view ${i + 1}`}
-                className={`w-full h-full object-cover rounded transition-opacity duration-200 ${
-                  currentImage === img ? 'ring-2 ring-primary' : 'hover:opacity-80'
+                className={`w-full h-full object-cover rounded transition-all duration-300 ${
+                  selectedIndex === i 
+                    ? 'ring-2 ring-primary' 
+                    : 'opacity-60 hover:opacity-100'
                 }`}
+                loading="lazy"
               />
             </div>
           ))}
