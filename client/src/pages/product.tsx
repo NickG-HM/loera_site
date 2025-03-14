@@ -122,13 +122,13 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
         </div>
       </div>
 
-      {/* Thumbnail Carousel */}
-      <div className="overflow-hidden h-24" ref={thumbCarouselRef}>
-        <div className="flex gap-2">
+      {/* Thumbnail Carousel - Updated spacing and padding */}
+      <div className="overflow-visible h-28 py-2" ref={thumbCarouselRef}>
+        <div className="flex gap-4">
           {galleryImages.map((img, i) => (
             <div 
               key={i} 
-              className="flex-[0_0_25%] min-w-0 relative aspect-square cursor-pointer"
+              className="flex-[0_0_25%] min-w-0 relative aspect-square cursor-pointer p-1"
               onClick={() => {
                 if (mainEmblaApi) mainEmblaApi.scrollTo(i);
                 setCurrentImage(img);
@@ -139,7 +139,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
                 alt={`${productName} view ${i + 1}`}
                 className={`w-full h-full object-cover rounded transition-all duration-300 ${
                   selectedIndex === i 
-                    ? 'ring-2 ring-primary' 
+                    ? 'ring-2 ring-primary ring-offset-2' 
                     : 'opacity-60 hover:opacity-100'
                 }`}
                 loading="lazy"
