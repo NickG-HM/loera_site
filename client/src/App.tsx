@@ -7,6 +7,7 @@ import { CurrencyProvider } from "./lib/currency";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import ProductPage from "@/pages/product";
+import ProductsPage from "@/pages/products";
 import CartPage from "@/pages/cart";
 import CheckoutPage from "@/pages/checkout";
 
@@ -15,11 +16,12 @@ function Router() {
     <div className="min-h-screen transition-opacity duration-500 ease-in-out">
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/products" component={ProductsPage} />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart" component={CartPage} />
         <Route path="/checkout" component={CheckoutPage} />
-        <Route path="/category/:category" component={Home} />
-        <Route path="/search/:query" component={Home} />
+        <Route path="/category/:category" component={ProductsPage} />
+        <Route path="/search/:query" component={ProductsPage} />
         <Route component={NotFound} />
       </Switch>
     </div>
