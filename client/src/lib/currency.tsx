@@ -21,7 +21,8 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
 
   const formatPrice = (priceUSD: string) => {
     const value = parseFloat(priceUSD) * EXCHANGE_RATES[currency];
-    return `${currency} ${value.toFixed(2)}`;
+    // Remove decimal places by rounding to nearest integer
+    return `${currency} ${Math.round(value)}`;
   };
 
   return (
