@@ -13,7 +13,7 @@ export default function ProductsPage() {
       <Navigation logoClassName="h-12 transform scale-130" />
       <div className="container mx-auto px-4 pt-36 max-w-4xl">
         <h1 className="text-2xl tracking-wider text-center mb-4 font-light">COLLECTION</h1>
-        <p className="text-sm text-center mb-24 text-muted-foreground font-light">
+        <p className="text-sm text-center mb-10 text-muted-foreground font-light">
           ({products?.length || 0} items)
         </p>
 
