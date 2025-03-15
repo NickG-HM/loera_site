@@ -26,7 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
       <CardContent className="p-4">
         <Link href={`/product/${product.id}`}>
-          <h3 className="font-semibold text-lg hover:text-primary transition-colors duration-500 ease-in-out cursor-pointer">
+          <h3 className="font-semibold text-lg hover:text-primary transition-colors">
             {product.name}
           </h3>
         </Link>
@@ -34,7 +34,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button
-          className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]"
+          className="w-full transform transition-transform duration-300 hover:scale-110 active:scale-95"
           onClick={() => addToCart(product, 1)}
         >
           Add to Cart
