@@ -13,21 +13,21 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="overflow-hidden border-none shadow-none">
       <Link href={`/product/${product.id}`}>
-        <div className="aspect-square relative cursor-pointer">
+        <div className="aspect-[3/4] relative cursor-pointer">
           <img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-full transform transition-transform duration-300 hover:scale-105"
+            className="object-cover w-full h-full"
           />
         </div>
       </Link>
-      <div className="pt-3">
+      <div className="mt-3 space-y-1">
         <Link href={`/product/${product.id}`}>
-          <h3 className="text-base text-foreground/90 hover:text-primary transition-colors">
+          <h3 className="text-sm text-foreground/90 hover:text-primary/90 transition-colors line-clamp-1">
             {product.name}
           </h3>
         </Link>
-        <p className="text-base text-foreground/90 mt-1">{formatPrice(product.price)}</p>
+        <p className="text-sm text-foreground/90">{formatPrice(product.price)}</p>
       </div>
     </Card>
   );
