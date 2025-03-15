@@ -6,7 +6,11 @@ import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
 import { useState } from "react";
 
-export function Navigation() {
+interface NavigationProps {
+  logoClassName?: string;
+}
+
+export function Navigation({ logoClassName }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [location, setLocation] = useLocation();
@@ -26,12 +30,12 @@ export function Navigation() {
             <Menu className="h-6 w-6" />
           </Button>
 
-          <div className="flex-1 flex justify-center md:justify-start">
+          <div className="flex-1 flex justify-center">
             <Link href="/">
               <img 
                 src="/Logo_LOERA_final.png" 
                 alt="LOERA"
-                className="h-8"
+                className={logoClassName || "h-8"}
               />
             </Link>
           </div>
