@@ -13,7 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="overflow-hidden border-none shadow-none rounded-none">
       <Link href={`/product/${product.id}`}>
-        <div className="aspect-[3/4] relative cursor-pointer">
+        <div className="aspect-[3/4.8] relative cursor-pointer">
           <img
             src={product.image}
             alt={product.name}

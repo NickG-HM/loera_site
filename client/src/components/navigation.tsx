@@ -19,7 +19,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background">
         <div className="container mx-auto px-4 h-24 flex items-center">
           <Button
             variant="ghost"
@@ -72,6 +72,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
             </Button>
           </Link>
         </div>
+        <div className="h-4 border-b"></div>
       </nav>
 
       <div className="container mx-auto px-4 py-4 text-center">
