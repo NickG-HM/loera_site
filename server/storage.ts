@@ -47,6 +47,34 @@ export class MemStorage implements IStorage {
           "/images/crossbody-4.png",
           "/images/crossbody-5.png"
         ]
+      },
+      {
+        name: "Fluffy Hug Forest Green",
+        description: "Дутая сумка со съемными  ленточками. Внутри сумки есть удобный карман на замке. Материал: плащевая ткань с водоотталкивающей пропиткой, синтепон. Размеры: 38x50x15, длина ручки на выбор 84, 90 см.",
+        price: "80",
+        image: "/images/fluffy-hug-forest-green.png",
+        category: "accessories"
+      },
+      {
+        name: "Fluffy Hug Leo",
+        description: "Дутая сумка со съемными  ленточками. Внутри сумки есть удобный карман на замке. Материал: плащевая ткань с водоотталкивающей пропиткой, синтепон. Размеры: 38x50x15, длина ручки на выбор 84, 90 см.",
+        price: "80",
+        image: "/images/fluffy-hug-leo.png",
+        category: "accessories"
+      },
+      {
+        name: "Fluffy Hug Candy Pink",
+        description: "Дутая сумка со съемными  ленточками. Внутри сумки есть удобный карман на замке. Материал: плащевая ткань с водоотталкивающей пропиткой, синтепон. Размеры: 38x50x15, длина ручки на выбор 84, 90 см.",
+        price: "80",
+        image: "/images/fluffy-hug-candy-pink.png",
+        category: "accessories"
+      },
+      {
+        name: "Fluffy Hug Elegant Black",
+        description: "Дутая сумка со съемными  ленточками. Внутри сумки есть удобный карман на замке. Материал: плащевая ткань с водоотталкивающей пропиткой, синтепон. Размеры: 38x50x15, длина ручки на выбор 84, 90 см.",
+        price: "80",
+        image: "/images/fluffy-hug-elegant-black.png",
+        category: "accessories"
       }
     ];
 
