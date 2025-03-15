@@ -9,9 +9,8 @@ export default function ProductsPage() {
   });
 
   return (
-    <div className="min-h-screen pb-8">
+    <div className="min-h-screen">
       <Navigation />
-
       <div className="container mx-auto px-4 pt-20 max-w-4xl">
         <h1 className="text-lg mb-6">Our Products</h1>
 
@@ -19,9 +18,9 @@ export default function ProductsPage() {
           <div className="grid grid-cols-2 gap-x-4 gap-y-8">
             {[...Array(8)].map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-muted aspect-[3/4] mb-3" />
-                <div className="bg-muted h-4 w-3/4 mb-2" />
-                <div className="bg-muted h-4 w-1/2" />
+                <div className="bg-muted aspect-[3/4] mb-3 rounded-none" />
+                <div className="bg-muted h-4 w-3/4 mb-2 rounded-none" />
+                <div className="bg-muted h-4 w-1/2 rounded-none" />
               </div>
             ))}
           </div>

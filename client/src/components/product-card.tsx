@@ -11,13 +11,13 @@ export function ProductCard({ product }: ProductCardProps) {
   const { formatPrice } = useCurrency();
 
   return (
-    <Card className="overflow-hidden border-none shadow-none">
+    <Card className="overflow-hidden border-none shadow-none rounded-none">
       <Link href={`/product/${product.id}`}>
         <div className="aspect-[3/4] relative cursor-pointer">
           <img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full rounded-none"
           />
         </div>
       </Link>
