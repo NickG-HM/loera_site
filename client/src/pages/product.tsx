@@ -10,19 +10,17 @@ import { useCurrency } from "@/lib/currency";
 import useEmblaCarousel from 'embla-carousel-react';
 
 interface ImageGalleryProps {
-  mainImage: string;
-  productName: string;
+  product: Product;
 }
 
-function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
+function ImageGallery({ product }: ImageGalleryProps) {
   const [isEnlarged, setIsEnlarged] = useState(false);
-  const [currentImage, setCurrentImage] = useState(mainImage);
-  const galleryImages = [
-    mainImage,
-    "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-    "https://images.unsplash.com/photo-1596460107916-430662021049",
-    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-  ];
+  const [currentImage, setCurrentImage] = useState(product.image);
+
+  // Use product gallery if available, otherwise just use the main image
+  const galleryImages = product.gallery?.length 
+    ? [product.image, ...product.gallery]
+    : [product.image];
 
   const [mainCarouselRef, mainEmblaApi] = useEmblaCarousel({
     loop: true,
@@ -78,7 +76,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
             >
               <img
                 src={img}
-                alt={`${productName} view ${i + 1}`}
+                alt={`${product.name} view ${i + 1}`}
                 className="w-full h-full object-cover"
                 loading={i === 0 ? "eager" : "lazy"}
               />
@@ -136,7 +134,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
             >
               <img
                 src={img}
-                alt={`${productName} view ${i + 1}`}
+                alt={`${product.name} view ${i + 1}`}
                 className={`w-full h-full object-cover rounded-sm transition-all duration-300 transform ${
                   selectedIndex === i 
                     ? 'ring-2 ring-primary scale-95' 
@@ -165,7 +163,7 @@ function ImageGallery({ mainImage, productName }: ImageGalleryProps) {
             >
               <img
                 src={currentImage}
-                alt={productName}
+                alt={product.name}
                 className="w-full h-full object-contain rounded-lg"
               />
               <Button
@@ -230,7 +228,7 @@ export default function ProductPage() {
       <div className="container mx-auto px-4 pt-20">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
-            <ImageGallery mainImage={product.image} productName={product.name} />
+            <ImageGallery product={product} />
 
             <div className="flex flex-col">
               <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
