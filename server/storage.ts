@@ -29,13 +29,6 @@ export class MemStorage implements IStorage {
   private initializeProducts() {
     const products: InsertProduct[] = [
       {
-        name: "Premium Watch",
-        description: "Elegant timepiece for any occasion",
-        price: "199.99",
-        image: "/images/product-1.png",
-        category: "accessories"
-      },
-      {
         name: "Crossbody Black",
         description: "Elegant stylish bag",
         price: "79",
