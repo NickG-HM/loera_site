@@ -32,71 +32,57 @@ export class MemStorage implements IStorage {
         name: "Premium Watch",
         description: "Elegant timepiece for any occasion",
         price: "199.99",
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+        image: "/images/image 1 — копия.png",
         category: "accessories"
       },
       {
         name: "Wireless Headphones",
         description: "High-quality sound with noise cancellation",
         price: "159.99",
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+        image: "/images/image 1 — копия 2.png",
         category: "electronics"
       },
       {
         name: "Smart Watch",
         description: "Stay connected with style",
         price: "299.99",
-        image: "https://images.unsplash.com/photo-1596460107916-430662021049",
+        image: "/images/image 1 — копия 3.png",
         category: "electronics"
       },
       {
         name: "Camera Lens",
         description: "Professional grade photography lens",
         price: "499.99",
-        image: "https://images.unsplash.com/photo-1615615228002-890bb61cac6e",
+        image: "/images/image 1 — копия 4.png",
         category: "electronics"
       },
       {
         name: "Vintage Camera",
         description: "Classic photography equipment",
         price: "399.99",
-        image: "https://images.unsplash.com/photo-1616423641454-caa695af6a0f",
+        image: "/images/image 1 — копия 5.png",
         category: "electronics"
       },
       {
         name: "Polaroid Camera",
         description: "Instant memories at your fingertips",
         price: "89.99",
-        image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+        image: "/images/image 1 — копия 6.png",
         category: "electronics"
       },
       {
         name: "Sunglasses",
         description: "Stylish protection for your eyes",
         price: "129.99",
-        image: "https://images.unsplash.com/photo-1529634885322-b17ffaf423ac",
+        image: "/images/image 1 — копия 7.png",
         category: "accessories"
       },
       {
         name: "Designer Watch",
         description: "Luxury timepiece for special occasions",
         price: "599.99",
-        image: "https://images.unsplash.com/photo-1509695507497-903c140c43b0",
+        image: "/images/image 1 — копия 8.png",
         category: "accessories"
-      },
-      {
-        name: "Gold Ring",
-        description: "Elegant jewelry piece",
-        price: "899.99",
-        image: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d",
-        category: "jewelry"
-      },
-      {
-        name: "Silver Bracelet",
-        description: "Handcrafted silver accessory",
-        price: "199.99",
-        image: "https://images.unsplash.com/photo-1532667449560-72a95c8d381b",
-        category: "jewelry"
       }
     ];
 
