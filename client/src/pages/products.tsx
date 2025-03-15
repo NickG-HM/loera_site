@@ -11,8 +11,8 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       <Navigation logoClassName="h-12 transform scale-150" />
-      <div className="container mx-auto px-4 pt-24 max-w-4xl">
-        <h1 className="text-xl tracking-wider text-center mb-24">COLLECTION</h1>
+      <div className="container mx-auto px-4 pt-36 max-w-4xl">
+        <h1 className="text-2xl tracking-wider text-center mb-24 font-light">COLLECTION</h1>
 
         {isLoading ? (
           <div className="grid grid-cols-2 gap-x-6 gap-y-12">

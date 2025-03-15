@@ -20,7 +20,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b">
-        <div className="container mx-auto px-4 h-16 flex items-center">
+        <div className="container mx-auto px-4 h-24 flex items-center">
           <Button
             variant="ghost"
             size="icon"
@@ -74,6 +74,11 @@ export function Navigation({ logoClassName }: NavigationProps) {
         </div>
       </nav>
 
+      <div className="container mx-auto px-4 py-4 text-center">
+        <h2 className="text-3xl font-light">COLLECTION</h2>
+      </div>
+
+
       {/* Animated Overlay Menu */}
       <div 
         className={`fixed inset-0 z-50 transition-opacity duration-500 ${
@@ -104,7 +109,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <Link href="/">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Home
@@ -113,7 +118,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <Link href="/category/electronics">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Electronics
@@ -122,7 +127,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <Link href="/category/accessories">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Accessories
@@ -131,7 +136,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <Link href="/category/jewelry">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm"
+                  className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Jewelry
