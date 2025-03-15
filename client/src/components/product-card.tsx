@@ -30,9 +30,6 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
         </Link>
-        <p className="text-muted-foreground line-clamp-2 text-sm mt-2">
-          {product.description}
-        </p>
         <p className="text-lg font-bold mt-2">{formatPrice(product.price)}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
