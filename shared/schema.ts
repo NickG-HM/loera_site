@@ -9,6 +9,7 @@ export const products = pgTable("products", {
   price: numeric("price").notNull(),
   image: text("image").notNull(),
   category: text("category").notNull(),
+  gallery: text("gallery").array().default([]),
 });
 
 export const cartItems = pgTable("cart_items", {
@@ -23,6 +24,7 @@ export const insertProductSchema = createInsertSchema(products).pick({
   price: true,
   image: true,
   category: true,
+  gallery: true,
 });
 
 export const insertCartItemSchema = createInsertSchema(cartItems).pick({

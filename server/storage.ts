@@ -36,53 +36,17 @@ export class MemStorage implements IStorage {
         category: "accessories"
       },
       {
-        name: "Wireless Headphones",
-        description: "High-quality sound with noise cancellation",
-        price: "159.99",
-        image: "/images/product-2.png",
-        category: "electronics"
-      },
-      {
-        name: "Smart Watch",
-        description: "Stay connected with style",
-        price: "299.99",
-        image: "/images/product-3.png",
-        category: "electronics"
-      },
-      {
-        name: "Camera Lens",
-        description: "Professional grade photography lens",
-        price: "499.99",
-        image: "/images/product-4.png",
-        category: "electronics"
-      },
-      {
-        name: "Vintage Camera",
-        description: "Classic photography equipment",
-        price: "399.99",
-        image: "/images/product-5.png",
-        category: "electronics"
-      },
-      {
-        name: "Polaroid Camera",
-        description: "Instant memories at your fingertips",
-        price: "89.99",
-        image: "/images/product-6.png",
-        category: "electronics"
-      },
-      {
-        name: "Sunglasses",
-        description: "Stylish protection for your eyes",
-        price: "129.99",
-        image: "/images/product-7.png",
-        category: "accessories"
-      },
-      {
-        name: "Designer Watch",
-        description: "Luxury timepiece for special occasions",
-        price: "599.99",
-        image: "/images/product-8.png",
-        category: "accessories"
+        name: "Crossbody Black",
+        description: "Elegant stylish bag",
+        price: "79",
+        image: "/images/crossbody-main.png",
+        category: "accessories",
+        gallery: [
+          "/images/crossbody-2.png",
+          "/images/crossbody-3.png",
+          "/images/crossbody-4.png",
+          "/images/crossbody-5.png"
+        ]
       }
     ];
 
