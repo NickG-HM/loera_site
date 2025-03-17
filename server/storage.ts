@@ -34,7 +34,7 @@ export class MemStorage implements IStorage {
         price: "80",
         image: "/images/fluffy-hug-candy-pink.png",
         category: "accessories",
-        gallery: ["/images/gallery/fluffy-hug-candy-pink-1.png", "/images/gallery/fluffy-hug-candy-pink-2.png", "/images/gallery/fluffy-hug-candy-pink-3.png"]
+        gallery: ["/images/fluffy-hug-candy-pink.png", "/images/product-2.png", "/images/product-3.png"]
       },
       {
         name: "Fluffy Hug Leo",
@@ -42,7 +42,7 @@ export class MemStorage implements IStorage {
         price: "80",
         image: "/images/fluffy-hug-leo.png",
         category: "accessories",
-        gallery: ["/images/gallery/fluffy-hug-leo-1.png", "/images/gallery/fluffy-hug-leo-2.png", "/images/gallery/fluffy-hug-leo-3.png"]
+        gallery: ["/images/fluffy-hug-leo.png", "/images/product-4.png", "/images/product-5.png"]
       },
       {
         name: "Fluffy Hug Black",
@@ -50,7 +50,7 @@ export class MemStorage implements IStorage {
         price: "80",
         image: "/images/fluffy-hug-black.png",
         category: "accessories",
-        gallery: ["/images/gallery/fluffy-hug-black-1.png", "/images/gallery/fluffy-hug-black-2.png", "/images/gallery/fluffy-hug-black-3.png"]
+        gallery: ["/images/fluffy-hug-black.png", "/images/product-6.png", "/images/product-7.png"]
       },
       {
         name: "Fluffy Hug Forest Green",
@@ -58,7 +58,7 @@ export class MemStorage implements IStorage {
         price: "80",
         image: "/images/fluffy-hug-forest-green.png",
         category: "accessories",
-        gallery: ["/images/gallery/fluffy-hug-forest-green-1.png", "/images/gallery/fluffy-hug-forest-green-2.png", "/images/gallery/fluffy-hug-forest-green-3.png"]
+        gallery: ["/images/fluffy-hug-forest-green.png", "/images/product-8.png", "/images/product-9.png"]
       },
       {
         name: "Косметичка Polka dot «small»",
@@ -66,7 +66,7 @@ export class MemStorage implements IStorage {
         price: "35",
         image: "/images/product-2.png",
         category: "accessories",
-        gallery: ["/images/gallery/cosmetic-small-1.png", "/images/gallery/cosmetic-small-2.png", "/images/gallery/cosmetic-small-3.png"]
+        gallery: ["/images/product-2.png", "/images/product-3.png", "/images/product-4.png"]
       },
       {
         name: "Косметичка Polka dot «big»",
@@ -74,7 +74,7 @@ export class MemStorage implements IStorage {
         price: "45",
         image: "/images/product-3.png",
         category: "accessories",
-        gallery: ["/images/gallery/cosmetic-big-1.png", "/images/gallery/cosmetic-big-2.png", "/images/gallery/cosmetic-big-3.png"]
+        gallery: ["/images/product-3.png", "/images/product-4.png", "/images/product-5.png"]
       },
       {
         name: "Shopper Polka dot",
@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
         price: "65",
         image: "/images/product-4.png",
         category: "accessories",
-        gallery: ["/images/gallery/shopper-polka-1.png", "/images/gallery/shopper-polka-2.png", "/images/gallery/shopper-polka-3.png"]
+        gallery: ["/images/product-4.png", "/images/product-5.png", "/images/product-6.png"]
       },
       {
         name: "Crossbody Milk",
@@ -90,7 +90,7 @@ export class MemStorage implements IStorage {
         price: "75",
         image: "/images/product-5.png",
         category: "accessories",
-        gallery: ["/images/gallery/crossbody-milk-1.png", "/images/gallery/crossbody-milk-2.png", "/images/gallery/crossbody-milk-3.png"]
+        gallery: ["/images/product-5.png", "/images/product-6.png", "/images/product-7.png"]
       },
       {
         name: "Crossbody Leo",
@@ -98,7 +98,7 @@ export class MemStorage implements IStorage {
         price: "75",
         image: "/images/product-6.png",
         category: "accessories",
-        gallery: ["/images/gallery/crossbody-leo-1.png", "/images/gallery/crossbody-leo-2.png", "/images/gallery/crossbody-leo-3.png"]
+        gallery: ["/images/product-6.png", "/images/product-7.png", "/images/product-8.png"]
       },
       {
         name: "Shopper village",
@@ -106,7 +106,7 @@ export class MemStorage implements IStorage {
         price: "65",
         image: "/images/product-7.png",
         category: "accessories",
-        gallery: ["/images/gallery/shopper-village-1.png", "/images/gallery/shopper-village-2.png", "/images/gallery/shopper-village-3.png"]
+        gallery: ["/images/product-7.png", "/images/product-8.png", "/images/product-9.png"]
       },
       {
         name: "Bag Carnival Stripes",
@@ -114,7 +114,7 @@ export class MemStorage implements IStorage {
         price: "70",
         image: "/images/product-8.png",
         category: "accessories",
-        gallery: ["/images/gallery/carnival-stripes-1.png", "/images/gallery/carnival-stripes-2.png", "/images/gallery/carnival-stripes-3.png"]
+        gallery: ["/images/product-8.png", "/images/product-9.png", "/images/crossbody-main.png"]
       },
       {
         name: "Crossbody Black",
@@ -122,7 +122,7 @@ export class MemStorage implements IStorage {
         price: "75",
         image: "/images/crossbody-main.png",
         category: "accessories",
-        gallery: ["/images/gallery/crossbody-black-1.png", "/images/gallery/crossbody-black-2.png", "/images/gallery/crossbody-black-3.png"]
+        gallery: ["/images/crossbody-main.png", "/images/product-2.png", "/images/product-3.png"]
       },
       {
         name: "Striped shopper",
@@ -130,7 +130,7 @@ export class MemStorage implements IStorage {
         price: "65",
         image: "/images/product-9.png",
         category: "accessories",
-        gallery: ["/images/gallery/striped-shopper-1.png", "/images/gallery/striped-shopper-2.png", "/images/gallery/striped-shopper-3.png"]
+        gallery: ["/images/product-9.png", "/images/product-2.png", "/images/product-3.png"]
       }
     ];
 
