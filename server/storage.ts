@@ -33,91 +33,104 @@ export class MemStorage implements IStorage {
         description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
         price: "80",
         image: "/images/fluffy-hug-candy-pink.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/fluffy-hug-candy-pink-1.png", "/images/gallery/fluffy-hug-candy-pink-2.png", "/images/gallery/fluffy-hug-candy-pink-3.png"]
       },
       {
         name: "Fluffy Hug Leo",
         description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
         price: "80",
         image: "/images/fluffy-hug-leo.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/fluffy-hug-leo-1.png", "/images/gallery/fluffy-hug-leo-2.png", "/images/gallery/fluffy-hug-leo-3.png"]
       },
       {
         name: "Fluffy Hug Black",
         description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
         price: "80",
-        image: "/images/fluffy-hug-elegant-black.png",
-        category: "accessories"
+        image: "/images/fluffy-hug-black.png",
+        category: "accessories",
+        gallery: ["/images/gallery/fluffy-hug-black-1.png", "/images/gallery/fluffy-hug-black-2.png", "/images/gallery/fluffy-hug-black-3.png"]
       },
       {
         name: "Fluffy Hug Forest Green",
         description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, elegant black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмеры: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
         price: "80",
         image: "/images/fluffy-hug-forest-green.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/fluffy-hug-forest-green-1.png", "/images/gallery/fluffy-hug-forest-green-2.png", "/images/gallery/fluffy-hug-forest-green-3.png"]
       },
       {
         name: "Косметичка Polka dot «small»",
         description: "Маленькая, да удаленькая!\n\nЗащитит вашу косметику от царапин и разбитых теней, благодаря мягкому синтепону.\nИдеальна для путешествий, работы и повседневности.\n\n-мягкая защита вашей косметики\n-вместительная\n-качественная фурнитура\n-элегантный дизайн\n\nМатериал: хлопок, синтепон\n\nРазмер: длина 23, высота 15, ширина 8",
         price: "35",
         image: "/images/product-2.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/cosmetic-small-1.png", "/images/gallery/cosmetic-small-2.png", "/images/gallery/cosmetic-small-3.png"]
       },
       {
         name: "Косметичка Polka dot «big»",
         description: "Идеальная спутница для тех, кто ценит порядок и заботится о каждой детали!\n\n-мягкая защита вашей косметики\n-вместительная\n-качественная фурнитура\n-лаконичный дизайн\n\nМатериал: хлопок, синтепон.\n\nРазмер: длина 31, высота 21, ширина 12",
         price: "45",
         image: "/images/product-3.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/cosmetic-big-1.png", "/images/gallery/cosmetic-big-2.png", "/images/gallery/cosmetic-big-3.png"]
       },
       {
         name: "Shopper Polka dot",
         description: "Мягкий шоппер на завязках. В самом трендовом принте.\nВместительный карман внутри.\n\nМатериал : вискоза, хлопок, синтепон\n\nРазмер: длина 50, высота 41, ширина 12, длина ручек 71см",
         price: "65",
         image: "/images/product-4.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/shopper-polka-1.png", "/images/gallery/shopper-polka-2.png", "/images/gallery/shopper-polka-3.png"]
       },
       {
         name: "Crossbody Milk",
         description: "Невероятно вместительная, но при этом компактная! Уникальная сборка на резинке позволяет сумке *автоматически подстраиваться под содержимое*\n-Загрузили много? Сумка аккуратно расширяется, сохраняя форму.\n-Носите минимум? Остается изящной и не занимает места.\n\nДлина ручки регулируется.\nТри варианта носки: носите на поясе, через плечо или с короткой ручкой на плече.\n\nВнутри сумочки есть вместительный карман на замке.\n\nМатериал: плотный атлас, пряжка алюминий.\n\nРазмер: длина 45, высота 16, ширина 23\n*могут быть погрешности, так как сумка не имеет четкой формы.\n\nColor: Black, Leo, Milk",
         price: "75",
         image: "/images/product-5.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/crossbody-milk-1.png", "/images/gallery/crossbody-milk-2.png", "/images/gallery/crossbody-milk-3.png"]
       },
       {
         name: "Crossbody Leo",
         description: "Невероятно вместительная, но при этом компактная! Уникальная сборка на резинке позволяет сумке *автоматически подстраиваться под содержимое*\n-Загрузили много? Сумка аккуратно расширяется, сохраняя форму.\n-Носите минимум? Остается изящной и не занимает места.\n\nДлина ручки регулируется.\nТри варианта носки: носите на поясе, через плечо или с короткой ручкой на плече.\n\nВнутри сумочки есть вместительный карман на замке.\n\nМатериал: плотный атлас, пряжка алюминий.\n\nРазмер: длина:45, высота 16, ширина 23\n*могут быть погрешности, так как сумка не имеет четкой формы.\n\nColor: Black, Leo, Milk",
         price: "75",
         image: "/images/product-6.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/crossbody-leo-1.png", "/images/gallery/crossbody-leo-2.png", "/images/gallery/crossbody-leo-3.png"]
       },
       {
         name: "Shopper village",
         description: "Мягкая, стеганая сумка шоппер на замке.\nВнутри есть вместительный карман для самых ценных вещей.\nДоступна под заказ ! Варианты цветов в каталоге.\n\nМатериал: хлопок, синтепон\n\nРазмер : длина 48, высота 31, ширина 12, длина ручки 86см",
         price: "65",
         image: "/images/product-7.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/shopper-village-1.png", "/images/gallery/shopper-village-2.png", "/images/gallery/shopper-village-3.png"]
       },
       {
         name: "Bag Carnival Stripes",
         description: "Маленькая, но с характером: сумка, которая умеет быть элегантной и озорной одновременно, она сделает ваш лаконичный образ игривее и интересней\n\nМатериал: плотный атлас, хлопок\n\nРазмер: длина 35, высота 21, ширина 10см, длина ручки на выбор 90, 105",
         price: "70",
         image: "/images/product-8.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/carnival-stripes-1.png", "/images/gallery/carnival-stripes-2.png", "/images/gallery/carnival-stripes-3.png"]
       },
       {
         name: "Crossbody Black",
         description: "Невероятно вместительная, но при этом компактная! Уникальная сборка на резинке позволяет сумке *автоматически подстраиваться под содержимое*\n-Загрузили много? Сумка аккуратно расширяется, сохраняя форму.\n-Носите минимум? Остается изящной и не занимает места.\n\nДлина ручки регулируется.\nТри варианта носки: носите на поясе, через плечо или с короткой ручкой на плече.\n\nВнутри сумочки есть вместительный карман на замке.\n\nМатериал: плотный атлас, пряжка алюминий.\n\nРазмер: длина:45, высота 16, ширина 23\n*могут быть погрешности, так как сумка не имеет четкой формы.\n\nColor: Black, Leo, Milk",
         price: "75",
         image: "/images/crossbody-main.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/crossbody-black-1.png", "/images/gallery/crossbody-black-2.png", "/images/gallery/crossbody-black-3.png"]
       },
       {
         name: "Striped shopper",
         description: "Этот Невесомый шоппер станет вашим любимым аксессуаром. Его легко взять с собой в поездки, без труда помещается в маленькую сумочку или даже карман куртки.\n\nМатериал: хлопок 80%, ПЭ 20% , алюминий.\n\nРазмер: ширина 48, высота 39, длина ручки 79 см",
         price: "65",
         image: "/images/product-9.png",
-        category: "accessories"
+        category: "accessories",
+        gallery: ["/images/gallery/striped-shopper-1.png", "/images/gallery/striped-shopper-2.png", "/images/gallery/striped-shopper-3.png"]
       }
     ];
 
