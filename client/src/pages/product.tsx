@@ -231,7 +231,7 @@ export default function ProductPage() {
           <Breadcrumb className="mb-8">
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/products" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
+                <BreadcrumbLink href="/" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
                   <ChevronLeft className="h-4 w-4" />
                   Назад
                 </BreadcrumbLink>
