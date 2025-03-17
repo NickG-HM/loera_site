@@ -196,6 +196,11 @@ export default function ProductPage() {
     queryKey: [`/api/products/${id}`]
   });
 
+  // Add effect to scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (isLoading) {
     return (
       <div className="min-h-screen">
