@@ -29,87 +29,59 @@ export class MemStorage implements IStorage {
   private initializeProducts() {
     const products: InsertProduct[] = [
       {
-        name: "Fluffy Hug Candy Pink",
-        description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
-        price: "80",
-        image: "/images/fluffy-hug-candy-pink.png",
-        category: "accessories"
-      },
-      {
-        name: "Fluffy Hug Leo",
-        description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
-        price: "80",
-        image: "/images/fluffy-hug-leo.png",
-        category: "accessories"
-      },
-      {
-        name: "Fluffy Hug Elegant Black",
-        description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
-        price: "80",
-        image: "/images/fluffy-hug-elegant-black.png",
-        category: "accessories"
-      },
-      {
-        name: "Fluffy Hug Forest Green",
-        description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, elegant black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмеры: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
-        price: "80",
-        image: "/images/fluffy-hug-forest-green.png",
+        name: "Striped shopper",
+        description: "Этот Невесомый шоппер станет вашим любимым аксессуаром. Его легко взять с собой в поездки, без труда помещается в маленькую сумочку или даже карман куртки.\n\nМатериал: хлопок 80%, ПЭ 20% , алюминий.\n\nРазмер: ширина 48, высота 39, длина ручки 79 см",
+        price: "65",
+        image: "/images/product-1.png",
         category: "accessories"
       },
       {
         name: "Косметичка Polka dot «small»",
         description: "Компактная косметичка",
         price: "35",
-        image: "/images/product-2.png",
+        image: "/images/crossbody-2.png",
         category: "accessories"
       },
       {
         name: "Косметичка Polka dot «big»",
         description: "Вместительная косметичка",
         price: "45",
-        image: "/images/product-3.png",
+        image: "/images/crossbody-3.png",
         category: "accessories"
       },
       {
         name: "Shopper Polka dot",
-        description: "Удобная сумка для покупок",
+        description: "Мягкий шоппер на завязках. В самом трендовом принте.\nВместительный карман внутри.\n\nМатериал : вискоза, хлопок, синтепон\n\nРазмер: длина 50, высота 41, ширина 12, длина ручек 71см",
         price: "65",
-        image: "/images/product-4.png",
+        image: "/images/crossbody-4.png",
         category: "accessories"
       },
       {
         name: "Crossbody Milk",
         description: "Элегантная сумка через плечо",
         price: "75",
-        image: "/images/product-5.png",
+        image: "/images/crossbody-5.png",
         category: "accessories"
       },
       {
         name: "Crossbody Leo",
         description: "Стильная сумка с леопардовым принтом",
         price: "75",
-        image: "/images/product-6.png",
+        image: "/images/crossbody-main.png",
         category: "accessories"
       },
       {
         name: "Shopper bag village vibes",
         description: "Вместительная сумка для покупок",
         price: "65",
-        image: "/images/product-7.png",
+        image: "/images/product-2.png",
         category: "accessories"
       },
       {
         name: "Bag Carnival Stripes",
-        description: "Яркая полосатая сумка",
+        description: "Маленькая, но с характером: сумка, которая умеет быть элегантной и озорной одновременно, она сделает ваш лаконичный образ игривее и интересней\n\nМатериал: плотный атлас, хлопок\n\nРазмер: длина 35, высота 21, ширина 10см, длина ручки на выбор 90, 105",
         price: "70",
-        image: "/images/product-8.png",
-        category: "accessories"
-      },
-      {
-        name: "Striped shopper",
-        description: "Полосатая сумка для покупок",
-        price: "65",
-        image: "/images/product-1.png",
+        image: "/images/product-3.png",
         category: "accessories"
       }
     ];
