@@ -8,6 +8,7 @@ import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-
 import { useState, useCallback, useEffect } from "react";
 import { useCurrency } from "@/lib/currency";
 import useEmblaCarousel from 'embla-carousel-react';
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 
 interface ImageGalleryProps {
   product: Product;
@@ -18,7 +19,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
   const [currentImage, setCurrentImage] = useState(product.image);
 
   // Use product gallery if available, otherwise just use the main image
-  const galleryImages = product.gallery?.length 
+  const galleryImages = product.gallery?.length
     ? [product.image, ...product.gallery]
     : [product.image];
 
@@ -70,7 +71,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
       <div className="relative overflow-hidden rounded-lg will-change-transform" ref={mainCarouselRef}>
         <div className="flex aspect-[4/3] md:aspect-[16/9]">
           {galleryImages.map((img, i) => (
-            <div 
+            <div
               key={i}
               className="flex-[0_0_100%] min-w-0 relative"
             >
@@ -124,8 +125,8 @@ function ImageGallery({ product }: ImageGalleryProps) {
       <div className="h-24 px-2 will-change-transform" ref={thumbCarouselRef}>
         <div className="flex gap-2">
           {galleryImages.map((img, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="flex-[0_0_20%] min-w-0 relative aspect-square cursor-pointer"
               onClick={() => {
                 if (mainEmblaApi) mainEmblaApi.scrollTo(i);
@@ -136,8 +137,8 @@ function ImageGallery({ product }: ImageGalleryProps) {
                 src={img}
                 alt={`${product.name} view ${i + 1}`}
                 className={`w-full h-full object-cover rounded-sm transition-all duration-300 transform ${
-                  selectedIndex === i 
-                    ? 'ring-2 ring-primary scale-95' 
+                  selectedIndex === i
+                    ? 'ring-2 ring-primary scale-95'
                     : 'opacity-60 hover:opacity-100 hover:scale-95'
                 }`}
                 loading="lazy"
@@ -149,16 +150,16 @@ function ImageGallery({ product }: ImageGalleryProps) {
 
       {/* Enlarged Image Modal */}
       {isEnlarged && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-500"
           onClick={() => setIsEnlarged(false)}
         >
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div 
+            <div
               className="relative max-w-4xl w-full transform transition-transform duration-500 ease-in-out"
-              style={{ 
+              style={{
                 transform: isEnlarged ? 'scale(1)' : 'scale(0.9)',
-                opacity: isEnlarged ? 1 : 0 
+                opacity: isEnlarged ? 1 : 0
               }}
             >
               <img
@@ -227,13 +228,23 @@ export default function ProductPage() {
       <Navigation />
       <div className="container mx-auto px-4 pt-20">
         <div className="max-w-5xl mx-auto">
+          <Breadcrumb className="mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
+                  <ChevronLeft className="h-4 w-4" />
+                  Назад
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
           <div className="grid md:grid-cols-2 gap-8">
             <ImageGallery product={product} />
 
             <div className="flex flex-col">
               <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
               <p className="text-xl font-bold mb-4">{formatPrice(product.price)}</p>
-              <p className="text-muted-foreground mb-6">{product.description}</p>
+              <p className="text-muted-foreground mb-6 whitespace-pre-line">{product.description}</p>
 
               <div className="flex items-center gap-4 mb-6">
                 <Button
