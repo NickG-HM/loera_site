@@ -43,7 +43,7 @@ export class MemStorage implements IStorage {
         category: "accessories"
       },
       {
-        name: "Fluffy Hug Elegant Black",
+        name: "Fluffy Hug Black",
         description: "Дутая сумка со съемными ленточками. Внутри сумки есть удобный карман на замке.\n\nцвета: forest green, leo, candy pink, black\n\nматериал: плащевая ткань с водоотталкивающей пропиткой, синтепон.\n\nразмер: длина 50, высота 38, ширина 15, длина ручки на выбор 84, 90 см.",
         price: "80",
         image: "/images/fluffy-hug-elegant-black.png",
@@ -92,7 +92,7 @@ export class MemStorage implements IStorage {
         category: "accessories"
       },
       {
-        name: "Shopper bag village vibes",
+        name: "Shopper village",
         description: "Мягкая, стеганая сумка шоппер на замке.\nВнутри есть вместительный карман для самых ценных вещей.\nДоступна под заказ ! Варианты цветов в каталоге.\n\nМатериал: хлопок, синтепон\n\nРазмер : длина 48, высота 31, ширина 12, длина ручки 86см",
         price: "65",
         image: "/images/product-7.png",
@@ -106,13 +106,19 @@ export class MemStorage implements IStorage {
         category: "accessories"
       },
       {
-        name: "Crossbody Elegant Black",
+        name: "Crossbody Black",
         description: "Невероятно вместительная, но при этом компактная! Уникальная сборка на резинке позволяет сумке *автоматически подстраиваться под содержимое*\n-Загрузили много? Сумка аккуратно расширяется, сохраняя форму.\n-Носите минимум? Остается изящной и не занимает места.\n\nДлина ручки регулируется.\nТри варианта носки: носите на поясе, через плечо или с короткой ручкой на плече.\n\nВнутри сумочки есть вместительный карман на замке.\n\nМатериал: плотный атлас, пряжка алюминий.\n\nРазмер: длина:45, высота 16, ширина 23\n*могут быть погрешности, так как сумка не имеет четкой формы.\n\nColor: Black, Leo, Milk",
         price: "75",
         image: "/images/crossbody-main.png",
         category: "accessories"
+      },
+      {
+        name: "Striped shopper",
+        description: "Этот Невесомый шоппер станет вашим любимым аксессуаром. Его легко взять с собой в поездки, без труда помещается в маленькую сумочку или даже карман куртки.\n\nМатериал: хлопок 80%, ПЭ 20% , алюминий.\n\nРазмер: ширина 48, высота 39, длина ручки 79 см",
+        price: "65",
+        image: "/images/product-9.png",
+        category: "accessories"
       }
-
     ];
 
     products.forEach(product => {
