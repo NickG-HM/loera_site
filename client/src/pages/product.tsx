@@ -69,7 +69,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
     <div className="space-y-4 overflow-hidden">
       {/* Main Product Image Carousel */}
       <div className="relative overflow-hidden rounded-lg will-change-transform" ref={mainCarouselRef}>
-        <div className="flex aspect-[4/3] md:aspect-[16/9]">
+        <div className="flex aspect-[5/7]"> {/* This line is changed */}
           {galleryImages.map((img, i) => (
             <div
               key={i}
