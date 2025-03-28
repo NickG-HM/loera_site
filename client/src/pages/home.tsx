@@ -32,7 +32,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6 text-center">ABOUT US</h1>
+            <h1 className="text-4xl mb-6 text-center font-ravenholm">ABOUT US</h1>
             <p className="text-lg text-muted-foreground mb-8 text-center">
               Привет! Я Лиза, а это мой бренд сумочек и аксессуаров.  
               Я всегда любила необычные и эксклюзивные аксессуары, которые задают образам стиль.  
