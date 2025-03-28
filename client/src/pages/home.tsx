@@ -22,9 +22,9 @@ export default function Home() {
               <Button 
                 size="lg"
                 variant="ghost"
-                className="bg-transparent text-white hover:bg-transparent transform transition-all duration-500 ease-in-out hover:scale-[1.05] active:scale-[0.98] text-5xl font-bold py-8 px-12"
+                className="bg-transparent text-white hover:bg-transparent transform transition-all duration-500 ease-in-out hover:scale-[1.05] active:scale-[0.98] text-5xl py-8 px-12 font-ravenholm"
               >
-                See Products
+                See Collection
               </Button>
             </Link>
           </div>
