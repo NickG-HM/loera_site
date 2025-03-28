@@ -1,6 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import { Product } from "@shared/schema";
-import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -11,6 +8,7 @@ export default function Home() {
       <Navigation />
 
       <div className="pt-20 relative">
+        {/* Hero section with image and button */}
         <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
           <img
             src="/images/main_page.png"
@@ -30,11 +28,12 @@ export default function Home() {
           </div>
         </div>
 
+        {/* About section */}
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl mb-10 text-center font-ravenholm">ABOUT US</h1>
             
-            <div className="flex flex-col gap-12 text-lg text-muted-foreground text-center">
+            <div className="space-y-6 text-lg text-muted-foreground text-center">
               <p>
                 Привет! Я Лиза, а это мой бренд сумочек и аксессуаров.<br />  
                 Я всегда любила необычные и эксклюзивные аксессуары, которые задают образам стиль.
