@@ -230,18 +230,18 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-4 pt-20">
+      <div className="container mx-auto px-4 pt-28">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-4 mt-2">
+          <div className="mb-4">
             <a 
               href="/products" 
-              className="text-base text-black font-medium hover:text-black/80 flex items-center gap-1 no-underline"
+              className="text-sm text-black font-normal hover:text-black/80 flex items-center gap-1 no-underline"
               onClick={(e) => {
                 e.preventDefault();
                 window.history.back();
               }}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4" />
               &lt; вернутся
             </a>
           </div>
