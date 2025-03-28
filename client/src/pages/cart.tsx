@@ -47,12 +47,12 @@ export default function CartPage() {
     <div className="min-h-screen">
       <Navigation />
       <div 
-        className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm transition-opacity duration-500"
+        className="fixed inset-0 z-30 bg-background/80 backdrop-blur-sm transition-opacity duration-500"
       >
         <div 
           className="absolute inset-y-0 right-0 w-full md:w-[600px] bg-background shadow-lg transform transition-transform duration-500 ease-in-out"
         >
-          <div className="container mx-auto px-4 pt-20 h-full overflow-auto">
+          <div className="container mx-auto px-4 pt-28 h-full overflow-auto">
             <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
             {(!items || items.length === 0) ? (

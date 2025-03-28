@@ -232,10 +232,10 @@ export default function ProductPage() {
       <Navigation />
       <div className="container mx-auto px-4 pt-20">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
+          <div className="mb-4 mt-2">
             <a 
               href="/products" 
-              className="text-base text-muted-foreground hover:text-foreground flex items-center gap-2 no-underline"
+              className="text-base text-black font-medium hover:text-black/80 flex items-center gap-1 no-underline"
               onClick={(e) => {
                 e.preventDefault();
                 window.history.back();
