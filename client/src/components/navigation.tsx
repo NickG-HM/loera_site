@@ -75,9 +75,11 @@ export function Navigation({ logoClassName }: NavigationProps) {
         <div className="h-4 border-b"></div>
       </nav>
 
-      <div className="container mx-auto px-4 py-4 text-center">
-        <h2 className="text-3xl font-light">COLLECTION</h2>
-      </div>
+      {location === "/products" && (
+        <div className="container mx-auto px-4 py-4 text-center">
+          <h2 className="text-3xl font-light">COLLECTION</h2>
+        </div>
+      )}
 
 
       {/* Animated Overlay Menu */}

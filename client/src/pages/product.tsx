@@ -269,12 +269,29 @@ export default function ProductPage() {
                 </Button>
               </div>
 
-              <Button
-                size="lg"
-                onClick={() => addToCart(product, quantity)}
-              >
-                Add to Cart
-              </Button>
+              <div className="flex flex-col gap-4">
+                <Button
+                  size="lg"
+                  onClick={() => addToCart(product, quantity)}
+                >
+                  Add to Cart
+                </Button>
+                
+                <a 
+                  href={`https://wa.me/79999999999?text=${encodeURIComponent(
+                    `Здравствуйте! Хочу заказать ${product.name} (${quantity} шт.)`
+                  )}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    size="lg"
+                    className="w-full bg-[#25D366] hover:bg-[#22c55e] text-white"
+                  >
+                    WhatsApp Checkout
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
         </div>

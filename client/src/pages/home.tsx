@@ -10,26 +10,33 @@ export default function Home() {
     <div className="min-h-screen pb-8">
       <Navigation />
 
-      <div className="container mx-auto px-4 pt-20">
-        <img
-          src="https://images.unsplash.com/photo-1455849318743-b2233052fcff"
-          alt="Shop Banner"
-          className="w-full h-[300px] object-cover rounded-lg mb-8"
-        />
+      <div className="pt-20 relative">
+        <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
+          <img
+            src="/images/main_page.png"
+            alt="LOERA"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <Link href="/products">
+              <Button 
+                size="lg"
+                variant="default"
+                className="bg-black text-white hover:bg-black/90 transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]"
+              >
+                See Products
+              </Button>
+            </Link>
+          </div>
+        </div>
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Welcome to LOERA</h1>
-          <p className="text-lg text-muted-foreground mb-8">
-            Discover our curated collection of premium products
-          </p>
-          <Link href="/products">
-            <Button 
-              size="lg"
-              className="transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]"
-            >
-              See Products
-            </Button>
-          </Link>
+        <div className="container mx-auto px-4 py-16">
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-4xl font-bold mb-6 text-center">ABOUT US</h1>
+            <p className="text-lg text-muted-foreground mb-8 text-center">
+              Everything started when...
+            </p>
+          </div>
         </div>
       </div>
     </div>
