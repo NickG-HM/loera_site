@@ -8,7 +8,6 @@ import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-
 import { useState, useCallback, useEffect } from "react";
 import { useCurrency } from "@/lib/currency";
 import useEmblaCarousel from 'embla-carousel-react';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 
 interface ImageGalleryProps {
   product: Product;
@@ -233,16 +232,19 @@ export default function ProductPage() {
       <Navigation />
       <div className="container mx-auto px-4 pt-20">
         <div className="max-w-5xl mx-auto">
-          <Breadcrumb className="mb-8">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/products" className="text-base text-muted-foreground hover:text-foreground flex items-center gap-2">
-                  <ChevronLeft className="h-5 w-5" />
-                  Назад
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <div className="mb-8">
+            <a 
+              href="/products" 
+              className="text-base text-muted-foreground hover:text-foreground flex items-center gap-2 no-underline"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.back();
+              }}
+            >
+              <ChevronLeft className="h-5 w-5" />
+              &lt; вернутся
+            </a>
+          </div>
           <div className="grid md:grid-cols-2 gap-8">
             <ImageGallery product={product} />
 
@@ -276,21 +278,6 @@ export default function ProductPage() {
                 >
                   Add to Cart
                 </Button>
-                
-                <a 
-                  href={`https://wa.me/79999999999?text=${encodeURIComponent(
-                    `Здравствуйте! Хочу заказать ${product.name} (${quantity} шт.)`
-                  )}`}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button
-                    size="lg"
-                    className="w-full bg-[#25D366] hover:bg-[#22c55e] text-white"
-                  >
-                    WhatsApp Checkout
-                  </Button>
-                </a>
               </div>
             </div>
           </div>

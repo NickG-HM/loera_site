@@ -112,9 +112,9 @@ export class MemStorage implements IStorage {
         name: "Bag Carnival Stripes",
         description: "Маленькая, но с характером: сумка, которая умеет быть элегантной и озорной одновременно, она сделает ваш лаконичный образ игривее и интересней\n\nМатериал: плотный атлас, хлопок\n\nРазмер: длина 35, высота 21, ширина 10см, длина ручки на выбор 90, 105",
         price: "70",
-        image: "/images/product-8.png",
+        image: "/images/Carnival-main.gif",
         category: "accessories",
-        gallery: ["/images/product-9.png", "/images/product-1.png"]
+        gallery: ["/images/carnival_1.JPEG", "/images/carnival_2.JPEG"]
       },
       {
         name: "Crossbody Black",
