@@ -61,7 +61,7 @@ export default function CartPage() {
             {(!items || items.length === 0) ? (
               <div className="text-center py-8">
                 <p className="text-muted-foreground mb-4">Your cart is empty</p>
-                <Link href="/">
+                <Link href="./">
                   <Button>Continue Shopping</Button>
                 </Link>
               </div>
@@ -73,7 +73,7 @@ export default function CartPage() {
                       key={item.id}
                       className="flex gap-4 border-b py-4 transition-all duration-300 ease-in-out hover:bg-accent/5"
                     >
-                      <Link href={`/product/${item.product.id}`}>
+                      <Link href={`./product/${item.product.id}`}>
                         <img
                           src={item.product.image}
                           alt={item.product.name}
@@ -81,7 +81,7 @@ export default function CartPage() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`/product/${item.product.id}`}>
+                        <Link href={`./product/${item.product.id}`}>
                           <h3 className="font-medium hover:text-primary transition-colors">
                             {item.product.name}
                           </h3>
@@ -134,7 +134,7 @@ export default function CartPage() {
                       <span>{currency} {total}</span>
                     </div>
                   </div>
-                  <Link href="/checkout">
+                  <Link href="./checkout">
                     <Button 
                       className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
                     >

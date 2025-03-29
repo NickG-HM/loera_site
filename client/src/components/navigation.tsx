@@ -31,9 +31,9 @@ export function Navigation({ logoClassName }: NavigationProps) {
           </Button>
 
           <div className="flex-1 flex justify-center">
-            <Link href="/">
+            <Link href="./">
               <img 
-                src="/Logo_LOERA_final.png" 
+                src="./Logo_LOERA_final.png" 
                 alt="LOERA"
                 className={logoClassName || "h-8"}
               />
@@ -49,14 +49,14 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 onChange={(e) => {
                   const query = e.target.value;
                   if (query) {
-                    setLocation(`/search/${query}`);
+                    setLocation(`./search/${query}`);
                   }
                 }}
               />
             </div>
           </div>
 
-          <Link href="/cart">
+          <Link href="./cart">
             <Button 
               variant="ghost" 
               size="icon"
@@ -119,7 +119,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                       document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
                     } else {
                       // If we're not on the home page, navigate to home and then scroll to about
-                      setLocation("/");
+                      setLocation("./");
                       // Use a timeout to ensure navigation completes before scrolling
                       setTimeout(() => {
                         document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -129,7 +129,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 >
                   About Us
                 </Button>
-              <Link href="/category/bags">
+              <Link href="./category/bags">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
@@ -138,7 +138,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   Сумки
                 </Button>
               </Link>
-              <Link href="/category/cosmetic bags">
+              <Link href="./category/cosmetic bags">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
@@ -147,7 +147,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   Косметички
                 </Button>
               </Link>
-              <Link href="/contact">
+              <Link href="./contact">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"

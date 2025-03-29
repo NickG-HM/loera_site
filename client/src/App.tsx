@@ -13,17 +13,20 @@ import CheckoutPage from "@/pages/checkout";
 import ContactPage from "@/pages/contact";
 
 function Router() {
+  // Define base path - empty for local, can be updated for deployment if needed
+  const basePath = "";
+  
   return (
     <div className="min-h-screen transition-opacity duration-500 ease-in-out">
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/products" component={ProductsPage} />
-        <Route path="/product/:id" component={ProductPage} />
-        <Route path="/cart" component={CartPage} />
-        <Route path="/checkout" component={CheckoutPage} />
-        <Route path="/contact" component={ContactPage} />
-        <Route path="/category/:category" component={ProductsPage} />
-        <Route path="/search/:query" component={ProductsPage} />
+        <Route path={`${basePath}/`} component={Home} />
+        <Route path={`${basePath}/products`} component={ProductsPage} />
+        <Route path={`${basePath}/product/:id`} component={ProductPage} />
+        <Route path={`${basePath}/cart`} component={CartPage} />
+        <Route path={`${basePath}/checkout`} component={CheckoutPage} />
+        <Route path={`${basePath}/contact`} component={ContactPage} />
+        <Route path={`${basePath}/category/:category`} component={ProductsPage} />
+        <Route path={`${basePath}/search/:query`} component={ProductsPage} />
         <Route component={NotFound} />
       </Switch>
     </div>

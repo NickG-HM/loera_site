@@ -13,12 +13,12 @@ export default function Home() {
       <div className="pt-20 relative">
         <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
           <img
-            src="/images/main_page.png"
+            src="./images/main_page.png"
             alt="LOERA"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <Link href="/products">
+            <Link href="./products">
               <Button 
                 size="lg"
                 variant="ghost"

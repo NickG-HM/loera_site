@@ -234,7 +234,7 @@ export default function ProductPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-4">
             <a 
-              href="/products" 
+              href="./products" 
               className="text-sm text-black font-light hover:text-black/70 flex items-center gap-1 no-underline"
               onClick={(e) => {
                 e.preventDefault();
