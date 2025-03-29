@@ -10,6 +10,7 @@ import ProductPage from "@/pages/product";
 import ProductsPage from "@/pages/products";
 import CartPage from "@/pages/cart";
 import CheckoutPage from "@/pages/checkout";
+import ContactPage from "@/pages/contact";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart" component={CartPage} />
         <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/contact" component={ContactPage} />
         <Route path="/category/:category" component={ProductsPage} />
         <Route path="/search/:query" component={ProductsPage} />
         <Route component={NotFound} />

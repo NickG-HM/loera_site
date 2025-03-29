@@ -109,40 +109,40 @@ export function Navigation({ logoClassName }: NavigationProps) {
             </div>
 
             <div className="space-y-2">
-              <Link href="/">
+              <Link href="/#about">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Home
+                  About Us
                 </Button>
               </Link>
-              <Link href="/category/electronics">
+              <Link href="/category/bags">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Electronics
+                  Bags
                 </Button>
               </Link>
-              <Link href="/category/accessories">
+              <Link href="/category/cosmetic bags">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Accessories
+                  Cosmetic Bags
                 </Button>
               </Link>
-              <Link href="/category/jewelry">
+              <Link href="/contact">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Jewelry
+                  Contact Us
                 </Button>
               </Link>
 

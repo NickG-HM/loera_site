@@ -242,7 +242,7 @@ export default function ProductPage() {
               }}
             >
               <ChevronLeft className="h-4 w-4" />
-              &lt; вернутся
+              назад
             </a>
           </div>
           <div className="grid md:grid-cols-2 gap-8">

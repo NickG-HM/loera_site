@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-16">
+        <div id="about" className="container mx-auto px-4 py-16 scroll-mt-24">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl mb-6 text-center font-ravenholm">ABOUT US</h1>
             <p className="text-base text-muted-foreground mb-8 text-left">
@@ -58,7 +58,7 @@ export default function Home() {
             </p>
 
             <p className="text-base text-muted-foreground mb-8 text-center">
-              Добро пожадовать в LOÉRA!
+              Добро пожаловать в LOÉRA!
             </p>
           </div>
         </div>
