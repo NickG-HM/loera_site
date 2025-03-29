@@ -121,11 +121,14 @@ export default function CartPage() {
                   ))}
                 </div>
                 <div className="bg-card p-6 rounded-lg h-fit">
-              
-                  <div className="flex ">
-                          </div>
-                  <div className="flex ">
-                   
+                  <h2 className="text-lg font-medium mb-4">Order Summary</h2>
+                  <div className="flex justify-between mb-2">
+                    <span>Subtotal</span>
+                    <span>{currency} {total}</span>
+                  </div>
+                  <div className="flex justify-between mb-4">
+                    <span>Shipping</span>
+                    <span>Free</span>
                   </div>
                   <div className="border-t pt-4 mb-6">
                     <div className="flex justify-between font-medium">
