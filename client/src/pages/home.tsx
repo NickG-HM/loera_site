@@ -32,7 +32,7 @@ export default function Home() {
 
         <div id="about" className="container mx-auto px-4 py-16 scroll-mt-24">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl mb-6 text-center font-ravenholm">ABOUT US</h1>
+            <h1 className="text-4xl mb-6 text-center font-ravenholm text-gray-700">ABOUT US</h1>
             <p className="text-base text-muted-foreground mb-8 text-left">
               Привет! Я Лиза, а это мой бренд сумочек и аксессуаров.  
               <br />

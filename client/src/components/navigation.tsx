@@ -109,20 +109,26 @@ export function Navigation({ logoClassName }: NavigationProps) {
             </div>
 
             <div className="space-y-2">
-              <a href="/#about">
-                <Button
+              <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => {
                     setIsMenuOpen(false);
+                    // If we're on the home page, scroll to the about section
                     if (location === "/") {
                       document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      // If we're not on the home page, navigate to home and then scroll to about
+                      setLocation("/");
+                      // Use a timeout to ensure navigation completes before scrolling
+                      setTimeout(() => {
+                        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                      }, 100);
                     }
                   }}
                 >
                   About Us
                 </Button>
-              </a>
               <Link href="/category/bags">
                 <Button
                   variant="ghost"
