@@ -9,17 +9,21 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-4 pt-48">
-        <div className="max-w-md mx-auto">
-          <h1 className="text-3xl font-light mb-10 text-center">Контакты</h1>
+      <div className="container mx-auto px-4 pt-36">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl font-light mb-10 text-center">Contact Us</h1>
           
-          <div className="space-y-6">
-            <div className="space-y-3 text-center">
-              <p className="text-muted-foreground">Phone: +375 25 505 97 03</p>
-              <p className="text-muted-foreground">Location: Minsk, Belarus</p>
+          <div className="space-y-8 max-w-md mx-auto">
+            <div className="space-y-4 text-center">
+              
+              
+              <div className="space-y-2 text-muted-foreground">
+                <p>Phone: +375 25 505 97 03</p>
+                <p>Location: Minsk, Belarus</p>
+              </div>
             </div>
             
-            <div className="space-y-4 pt-6">
+            <div className="flex flex-col space-y-4 pt-6">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <Button 
                   className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
@@ -34,7 +38,7 @@ export default function ContactPage() {
                   className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Instagram className="mr-2 h-4 w-4" />
-                  Instagram
+                  Follow Us on Instagram
                 </Button>
               </a>
             </div>
