@@ -9,11 +9,11 @@ import { Link } from "wouter";
 
 export default function CartPage() {
   const { data: products, isLoading: productsLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products"]
+    queryKey: ["api/products"]
   });
 
   const { data: cartItems, isLoading: cartLoading } = useQuery<CartItem[]>({
-    queryKey: ["/api/cart"]
+    queryKey: ["api/cart"]
   });
 
   const { updateQuantity, removeFromCart } = useCart();

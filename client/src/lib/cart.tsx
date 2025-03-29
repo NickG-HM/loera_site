@@ -74,34 +74,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
 
   const addToCart = async (product: Product, quantity: number) => {
-    const response = await apiRequest("POST", "/api/cart", {
+    const response = await apiRequest("POST", "api/cart", {
       productId: product.id,
       quantity
     });
     const item = await response.json();
     dispatch({ type: "ADD_ITEM", payload: item });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    queryClient.invalidateQueries({ queryKey: ["api/cart"] });
   };
 
   const updateQuantity = async (itemId: number, quantity: number) => {
-    const response = await apiRequest("PATCH", `/api/cart/${itemId}`, {
+    const response = await apiRequest("PATCH", `api/cart/${itemId}`, {
       quantity
     });
     const item = await response.json();
     dispatch({ type: "UPDATE_ITEM", payload: item });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    queryClient.invalidateQueries({ queryKey: ["api/cart"] });
   };
 
   const removeFromCart = async (itemId: number) => {
-    await apiRequest("DELETE", `/api/cart/${itemId}`);
+    await apiRequest("DELETE", `api/cart/${itemId}`);
     dispatch({ type: "REMOVE_ITEM", payload: itemId });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    queryClient.invalidateQueries({ queryKey: ["api/cart"] });
   };
 
   const clearCart = async () => {
-    await apiRequest("DELETE", "/api/cart");
+    await apiRequest("DELETE", "api/cart");
     dispatch({ type: "CLEAR_CART" });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    queryClient.invalidateQueries({ queryKey: ["api/cart"] });
   };
 
   return (

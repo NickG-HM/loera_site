@@ -4,9 +4,30 @@ import { storage } from "./storage";
 import { insertCartItemSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  app.get("/api/products", async (_req, res) => {
-    const products = await storage.getProducts();
-    res.json(products);
+  app.get("/api/products/category/:category", async (req, res) => {
+    const products = await storage.getProductsByCategory(req.params.category);
+    
+    // Transform image paths from absolute to relative
+    const transformedProducts = products.map(product => ({
+      ...product,
+      image: product.image.startsWith('/') ? product.image.substring(1) : product.image,
+      gallery: Array.isArray(product.gallery) ? product.gallery.map(img => img.startsWith('/') ? img.substring(1) : img) : []
+    }));
+    
+    res.json(transformedProducts);
+  });
+
+  app.get("/api/products/search/:query", async (req, res) => {
+    const products = await storage.searchProducts(req.params.query);
+    
+    // Transform image paths from absolute to relative
+    const transformedProducts = products.map(product => ({
+      ...product,
+      image: product.image.startsWith('/') ? product.image.substring(1) : product.image,
+      gallery: Array.isArray(product.gallery) ? product.gallery.map(img => img.startsWith('/') ? img.substring(1) : img) : []
+    }));
+    
+    res.json(transformedProducts);
   });
 
   app.get("/api/products/:id", async (req, res) => {
@@ -15,17 +36,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(404).json({ message: "Product not found" });
       return;
     }
-    res.json(product);
+    
+    // Transform image paths from absolute to relative
+    const transformedProduct = {
+      ...product,
+      image: product.image.startsWith('/') ? product.image.substring(1) : product.image,
+      gallery: Array.isArray(product.gallery) ? product.gallery.map(img => img.startsWith('/') ? img.substring(1) : img) : []
+    };
+    
+    res.json(transformedProduct);
   });
 
-  app.get("/api/products/category/:category", async (req, res) => {
-    const products = await storage.getProductsByCategory(req.params.category);
-    res.json(products);
-  });
-
-  app.get("/api/products/search/:query", async (req, res) => {
-    const products = await storage.searchProducts(req.params.query);
-    res.json(products);
+  app.get("/api/products", async (_req, res) => {
+    const products = await storage.getProducts();
+    
+    // Transform image paths from absolute to relative
+    const transformedProducts = products.map(product => ({
+      ...product,
+      image: product.image.startsWith('/') ? product.image.substring(1) : product.image,
+      gallery: Array.isArray(product.gallery) ? product.gallery.map(img => img.startsWith('/') ? img.substring(1) : img) : []
+    }));
+    
+    res.json(transformedProducts);
   });
 
   app.get("/api/cart", async (_req, res) => {
