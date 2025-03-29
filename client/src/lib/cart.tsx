@@ -1,7 +1,6 @@
 import { createContext, useContext, useReducer, ReactNode } from "react";
 import { Product, CartItem } from "@shared/schema";
 import { apiRequest, queryClient } from "./queryClient";
-import { staticApiRequest, staticQueryClient, useStaticData } from "./staticClient";
 
 interface CartState {
   items: (CartItem & { product: Product })[];
@@ -73,101 +72,36 @@ function calculateTotal(items: CartItem[]): number {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
-  // Get the appropriate query client based on the deployment type
-  const client = useStaticData ? staticQueryClient : queryClient;
 
   const addToCart = async (product: Product, quantity: number) => {
-    if (useStaticData) {
-      // Use static API for static deployments
-      try {
-        const response = await staticApiRequest("POST", "api/cart", {
-          productId: product.id,
-          quantity
-        });
-        if (response && response.json) {
-          const item = await response.json();
-          if (item) {
-            dispatch({ type: "ADD_ITEM", payload: item });
-            staticQueryClient.invalidateQueries({ queryKey: ["api/cart"] });
-          }
-        }
-      } catch (error) {
-        console.error("Error adding to cart:", error);
-      }
-    } else {
-      // Use server API for non-static deployments
-      try {
-        const response = await apiRequest("POST", "api/cart", {
-          productId: product.id,
-          quantity
-        });
-        const item = await response.json();
-        dispatch({ type: "ADD_ITEM", payload: item });
-        queryClient.invalidateQueries({ queryKey: ["api/cart"] });
-      } catch (error) {
-        console.error("Error adding to cart:", error);
-      }
-    }
+    const response = await apiRequest("POST", "/api/cart", {
+      productId: product.id,
+      quantity
+    });
+    const item = await response.json();
+    dispatch({ type: "ADD_ITEM", payload: item });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const updateQuantity = async (itemId: number, quantity: number) => {
-    if (useStaticData) {
-      // Use static API for static deployments
-      try {
-        const response = await staticApiRequest("PATCH", `api/cart/${itemId}`, {
-          quantity
-        });
-        if (response && response.json) {
-          const item = await response.json();
-          if (item) {
-            dispatch({ type: "UPDATE_ITEM", payload: item });
-            staticQueryClient.invalidateQueries({ queryKey: ["api/cart"] });
-          }
-        }
-      } catch (error) {
-        console.error("Error updating cart:", error);
-      }
-    } else {
-      // Use server API for non-static deployments
-      try {
-        const response = await apiRequest("PATCH", `api/cart/${itemId}`, {
-          quantity
-        });
-        const item = await response.json();
-        dispatch({ type: "UPDATE_ITEM", payload: item });
-        queryClient.invalidateQueries({ queryKey: ["api/cart"] });
-      } catch (error) {
-        console.error("Error updating cart:", error);
-      }
-    }
+    const response = await apiRequest("PATCH", `/api/cart/${itemId}`, {
+      quantity
+    });
+    const item = await response.json();
+    dispatch({ type: "UPDATE_ITEM", payload: item });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const removeFromCart = async (itemId: number) => {
-    if (useStaticData) {
-      // Use static API for static deployments
-      await staticApiRequest("DELETE", `api/cart/${itemId}`);
-      dispatch({ type: "REMOVE_ITEM", payload: itemId });
-      staticQueryClient.invalidateQueries({ queryKey: ["api/cart"] });
-    } else {
-      // Use server API for non-static deployments
-      await apiRequest("DELETE", `api/cart/${itemId}`);
-      dispatch({ type: "REMOVE_ITEM", payload: itemId });
-      queryClient.invalidateQueries({ queryKey: ["api/cart"] });
-    }
+    await apiRequest("DELETE", `/api/cart/${itemId}`);
+    dispatch({ type: "REMOVE_ITEM", payload: itemId });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   const clearCart = async () => {
-    if (useStaticData) {
-      // Use static API for static deployments
-      await staticApiRequest("DELETE", "api/cart");
-      dispatch({ type: "CLEAR_CART" });
-      staticQueryClient.invalidateQueries({ queryKey: ["api/cart"] });
-    } else {
-      // Use server API for non-static deployments
-      await apiRequest("DELETE", "api/cart");
-      dispatch({ type: "CLEAR_CART" });
-      queryClient.invalidateQueries({ queryKey: ["api/cart"] });
-    }
+    await apiRequest("DELETE", "/api/cart");
+    dispatch({ type: "CLEAR_CART" });
+    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
   };
 
   return (

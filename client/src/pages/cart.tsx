@@ -9,11 +9,11 @@ import { Link } from "wouter";
 
 export default function CartPage() {
   const { data: products, isLoading: productsLoading } = useQuery<Product[]>({
-    queryKey: ["api/products"]
+    queryKey: ["/api/products"]
   });
 
   const { data: cartItems, isLoading: cartLoading } = useQuery<CartItem[]>({
-    queryKey: ["api/cart"]
+    queryKey: ["/api/cart"]
   });
 
   const { updateQuantity, removeFromCart } = useCart();
@@ -61,7 +61,7 @@ export default function CartPage() {
             {(!items || items.length === 0) ? (
               <div className="text-center py-8">
                 <p className="text-muted-foreground mb-4">Your cart is empty</p>
-                <Link href="./">
+                <Link href="/">
                   <Button>Continue Shopping</Button>
                 </Link>
               </div>
@@ -73,7 +73,7 @@ export default function CartPage() {
                       key={item.id}
                       className="flex gap-4 border-b py-4 transition-all duration-300 ease-in-out hover:bg-accent/5"
                     >
-                      <Link href={`./product/${item.product.id}`}>
+                      <Link href={`/product/${item.product.id}`}>
                         <img
                           src={item.product.image}
                           alt={item.product.name}
@@ -81,7 +81,7 @@ export default function CartPage() {
                         />
                       </Link>
                       <div className="flex-1">
-                        <Link href={`./product/${item.product.id}`}>
+                        <Link href={`/product/${item.product.id}`}>
                           <h3 className="font-medium hover:text-primary transition-colors">
                             {item.product.name}
                           </h3>
@@ -121,12 +121,14 @@ export default function CartPage() {
                   ))}
                 </div>
                 <div className="bg-card p-6 rounded-lg h-fit">
-                  
+                  <h2 className="text-lg font-medium mb-4">Order Summary</h2>
                   <div className="flex justify-between mb-2">
-                    
+                    <span>Subtotal</span>
+                    <span>{currency} {total}</span>
                   </div>
                   <div className="flex justify-between mb-4">
-                  
+                    <span>Shipping</span>
+                    <span>Free</span>
                   </div>
                   <div className="border-t pt-4 mb-6">
                     <div className="flex justify-between font-medium">
@@ -134,7 +136,7 @@ export default function CartPage() {
                       <span>{currency} {total}</span>
                     </div>
                   </div>
-                  <Link href="./checkout">
+                  <Link href="/checkout">
                     <Button 
                       className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
                     >

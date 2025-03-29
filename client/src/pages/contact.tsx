@@ -15,7 +15,9 @@ export default function ContactPage() {
           
           <div className="space-y-8 max-w-md mx-auto">
             <div className="space-y-4 text-center">
-              
+              <p className="text-base text-muted-foreground">
+                Our team is here to help with any questions about products, orders, or collaboration opportunities.
+              </p>
               
               <div className="space-y-2 text-muted-foreground">
                 <p>Phone: +375 25 505 97 03</p>
@@ -46,7 +48,7 @@ export default function ContactPage() {
           
           <div className="mt-12 text-center">
             <p className="text-muted-foreground">
-              Если у вас остались вопросы, мы с радостью на них ответим. Просто напишите на WhatsApp или в Instagram.
+              Follow us on social media for the latest updates, new product announcements, and style inspirations.
             </p>
           </div>
         </div>

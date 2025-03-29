@@ -14,11 +14,11 @@ import {
 
 export default function CheckoutPage() {
   const { data: products } = useQuery<Product[]>({
-    queryKey: ["api/products"],
+    queryKey: ["/api/products"],
   });
 
   const { data: cartItems } = useQuery<CartItem[]>({
-    queryKey: ["api/cart"],
+    queryKey: ["/api/cart"],
   });
 
   const items = cartItems?.map((item) => ({

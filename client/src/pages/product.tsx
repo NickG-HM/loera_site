@@ -192,7 +192,7 @@ export default function ProductPage() {
   const { formatPrice } = useCurrency();
 
   const { data: product, isLoading } = useQuery<Product>({
-    queryKey: ["api/products", id]
+    queryKey: [`/api/products/${id}`]
   });
 
   // Add effect to scroll to top when component mounts
@@ -234,7 +234,7 @@ export default function ProductPage() {
         <div className="max-w-5xl mx-auto">
           <div className="mb-4">
             <a 
-              href="./products" 
+              href="/products" 
               className="text-sm text-black font-light hover:text-black/70 flex items-center gap-1 no-underline"
               onClick={(e) => {
                 e.preventDefault();
@@ -242,7 +242,7 @@ export default function ProductPage() {
               }}
             >
               <ChevronLeft className="h-4 w-4" />
-              back
+              &lt; вернутся
             </a>
           </div>
           <div className="grid md:grid-cols-2 gap-8">

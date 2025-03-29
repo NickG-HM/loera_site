@@ -12,7 +12,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Card className="overflow-hidden border-none shadow-none rounded-none">
-      <Link href={`./product/${product.id}`}>
+      <Link href={`/product/${product.id}`}>
         <div className="relative cursor-pointer" style={{ aspectRatio: "5/6.3" }}>
           <img
             src={product.image}
@@ -22,7 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
       <div className="mt-3 space-y-1">
-        <Link href={`./product/${product.id}`}>
+        <Link href={`/product/${product.id}`}>
           <h3 className="text-sm text-foreground/90 hover:text-primary/90 transition-colors line-clamp-1">
             {product.name}
           </h3>
