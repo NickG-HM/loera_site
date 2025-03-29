@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "./lib/cart";
 import { CurrencyProvider } from "./lib/currency";
+import { ImagePreloader } from "@/components/image-preloader";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import ProductPage from "@/pages/product";
@@ -44,6 +45,7 @@ function App() {
         <CartProvider>
           <Router />
           <Toaster />
+          <ImagePreloader />
         </CartProvider>
       </CurrencyProvider>
     </QueryClientProvider>

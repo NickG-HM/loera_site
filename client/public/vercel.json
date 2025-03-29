@@ -1,13 +1,33 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+  "version": 2,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/product/(.*)", "dest": "/product/index.html" },
+    { "src": "/category/(.*)", "dest": "/category/index.html" },
+    { "src": "/search/(.*)", "dest": "/search/index.html" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).(jpg|jpeg|png|gif|webp|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -15,6 +35,5 @@
         }
       ]
     }
-  ],
-  "trailingSlash": false
+  ]
 }

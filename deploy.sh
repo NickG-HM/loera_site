@@ -1,42 +1,41 @@
 #!/bin/bash
+set -e  # Exit on any error
 
-# Clean any previous build
-echo "Cleaning previous builds..."
-rm -rf dist
+# Colors for output
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
-# Build the frontend with static data and relative paths
-echo "Building application with static data and relative paths..."
-VITE_USE_STATIC_DATA=true VITE_BASE=./ npm run build
+echo -e "${BLUE}🚀 Starting LOERA static site deployment...${NC}"
 
-# Create necessary files in the root dist directory for deployment
-echo "Setting up deployment structure..."
-mkdir -p dist
+# 1. Run the static build script
+echo -e "${BLUE}📦 Running static build script...${NC}"
+node static-build.cjs
 
-# Copy the public/index.html content to the dist root for direct access
-if [ -f "dist/public/index.html" ]; then
-  # Copy the entire contents of the public folder to the dist root
-  echo "Copying public assets to dist root for deployment..."
-  cp -r dist/public/* dist/
+# 2. Test the build locally
+echo -e "${BLUE}🧪 Testing the static build...${NC}"
+cd dist
+echo -e "${GREEN}✅ Static build generated in ./dist directory${NC}"
+
+# If we're on Replit, move to correct location for deployment
+if [ -n "$REPL_ID" ]; then
+  echo -e "${BLUE}🔄 Preparing for Replit deployment...${NC}"
   
-  # Fix paths in index.html for mobile compatibility
-  echo "Fixing paths in index.html for mobile compatibility..."
-  sed -i 's|src="/assets/|src="./assets/|g' dist/index.html
-  sed -i 's|href="/assets/|href="./assets/|g' dist/index.html
+  # Create necessary directories
+  mkdir -p /home/runner/${REPL_SLUG}/dist
+
+  # Copy built files to the deployment directory
+  echo -e "${BLUE}📂 Copying built files to deployment location...${NC}"
+  cp -R * /home/runner/${REPL_SLUG}/dist/
   
-  # Create a copy of index.html for all routes to support client-side routing
-  echo "Creating route copies for client-side routing..."
-  mkdir -p dist/product dist/category dist/search
-  cp dist/index.html dist/products.html
-  cp dist/index.html dist/cart.html
-  cp dist/index.html dist/checkout.html
-  cp dist/index.html dist/contact.html
-  cp dist/index.html dist/product/index.html
-  cp dist/index.html dist/category/index.html
-  cp dist/index.html dist/search/index.html
-  
-  # Copy the 200.html (for SPA fallback) and .htaccess for proper routing
-  cp dist/200.html dist/404.html
+  echo -e "${GREEN}✅ Files copied to the correct location for Replit deployment${NC}"
+  echo -e "${GREEN}✅ Your site is ready for deployment!${NC}"
+  echo -e "${BLUE}🌐 Visit the 'Deployments' tab to deploy your site${NC}"
 fi
 
-echo "Deployment preparation complete!"
-echo "You can now use Replit's deployment features to deploy your application."
+echo -e "${GREEN}🎉 Deployment preparation complete!${NC}"
+echo -e "${BLUE}📝 Important notes:${NC}"
+echo -e "  - Static website files are in the ./dist directory"
+echo -e "  - Upload these files to any static hosting service (Vercel, Netlify, GitHub Pages, etc.)"
+echo -e "  - No server or API calls are needed, everything is included in the static files"
