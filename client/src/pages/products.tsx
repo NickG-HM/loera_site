@@ -10,9 +10,9 @@ export default function ProductsPage() {
   const searchQuery = params?.query;
   
   const queryKey = category 
-    ? [`api/products/category/${category}`]
+    ? ["api/products", "category", category]
     : searchQuery 
-    ? [`api/products/search/${searchQuery}`]
+    ? ["api/products", "search", searchQuery]
     : ["api/products"];
   
   const { data: products, isLoading } = useQuery<Product[]>({

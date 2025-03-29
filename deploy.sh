@@ -4,9 +4,9 @@
 echo "Cleaning previous builds..."
 rm -rf dist
 
-# Build the frontend and backend with relative paths
-echo "Building application with relative paths..."
-VITE_BASE=./ npm run build
+# Build the frontend with static data and relative paths
+echo "Building application with static data and relative paths..."
+VITE_USE_STATIC_DATA=true VITE_BASE=./ npm run build
 
 # Create necessary files in the root dist directory for deployment
 echo "Setting up deployment structure..."

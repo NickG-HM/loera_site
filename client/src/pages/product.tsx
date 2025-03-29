@@ -192,7 +192,7 @@ export default function ProductPage() {
   const { formatPrice } = useCurrency();
 
   const { data: product, isLoading } = useQuery<Product>({
-    queryKey: [`api/products/${id}`]
+    queryKey: ["api/products", id]
   });
 
   // Add effect to scroll to top when component mounts
