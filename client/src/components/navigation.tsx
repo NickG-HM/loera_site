@@ -135,7 +135,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Bags
+                  Сумки
                 </Button>
               </Link>
               <Link href="/category/cosmetic bags">
@@ -144,7 +144,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Cosmetic Bags
+                  Косметички
                 </Button>
               </Link>
               <Link href="/contact">
@@ -153,12 +153,12 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Contact Us
+                  Контакты
                 </Button>
               </Link>
 
               <div className="pt-2 border-t mt-2">
-                <h3 className="text-xs font-medium mb-2">Currency</h3>
+                <h3 className="text-xs font-medium mb-2"></h3>
                 <div className="grid grid-cols-2 gap-1">
                   {["BYN", "RUB"].map((curr) => (
                     <Button

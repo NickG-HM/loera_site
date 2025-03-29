@@ -51,5 +51,25 @@ export const fixedPrices: ProductPrices = {
   9: {
     BYN: "85",
     RUB: "3000"
-  }
+  },
+  // Shopper village
+  10: {
+    BYN: "85",
+    RUB: "3000"
+  },
+  // Bag Carnival Stripes
+  11: {
+    BYN: "95",
+    RUB: "3100"
+  },
+  // Crossbody Black
+  12: {
+    BYN: "300",
+    RUB: "9100"
+  },
+  // Striper shopper
+  13: {
+    BYN: "250",
+    RUB: "7200"
+  },
 };
