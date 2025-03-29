@@ -27,7 +27,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
         </Link>
-        <p className="text-sm text-foreground/90">{formatPrice(product.price)}</p>
+        <p className="text-sm text-foreground/90">{formatPrice(product.id.toString())}</p>
       </div>
     </Card>
   );

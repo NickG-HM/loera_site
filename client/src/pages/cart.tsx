@@ -3,6 +3,7 @@ import { Product, CartItem } from "@shared/schema";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
+import { useCurrency } from "@/lib/currency";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -16,6 +17,7 @@ export default function CartPage() {
   });
 
   const { updateQuantity, removeFromCart } = useCart();
+  const { formatPrice, currency, getFixedPrice } = useCurrency();
 
   if (productsLoading || cartLoading) {
     return (
@@ -38,8 +40,9 @@ export default function CartPage() {
     product: products?.find(p => p.id === item.productId)!
   }));
 
+  // Calculate total using fixed prices based on selected currency
   const total = items?.reduce(
-    (sum, item) => sum + Number(item.product.price) * item.quantity,
+    (sum, item) => sum + Number(getFixedPrice(item.product.id)) * item.quantity,
     0
   );
 
@@ -84,7 +87,7 @@ export default function CartPage() {
                           </h3>
                         </Link>
                         <p className="text-muted-foreground text-sm">
-                          ${item.product.price}
+                          {formatPrice(item.product.id.toString())}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <Button
@@ -121,7 +124,7 @@ export default function CartPage() {
                   <h2 className="text-lg font-medium mb-4">Order Summary</h2>
                   <div className="flex justify-between mb-2">
                     <span>Subtotal</span>
-                    <span>${total?.toFixed(2)}</span>
+                    <span>{currency} {total}</span>
                   </div>
                   <div className="flex justify-between mb-4">
                     <span>Shipping</span>
@@ -130,7 +133,7 @@ export default function CartPage() {
                   <div className="border-t pt-4 mb-6">
                     <div className="flex justify-between font-medium">
                       <span>Total</span>
-                      <span>${total?.toFixed(2)}</span>
+                      <span>{currency} {total}</span>
                     </div>
                   </div>
                   <Link href="/checkout">

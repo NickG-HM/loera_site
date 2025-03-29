@@ -235,14 +235,14 @@ export default function ProductPage() {
           <div className="mb-4">
             <a 
               href="/products" 
-              className="text-sm text-black font-normal hover:text-black/80 flex items-center gap-1 no-underline"
+              className="text-sm text-black font-light hover:text-black/70 flex items-center gap-1 no-underline"
               onClick={(e) => {
                 e.preventDefault();
                 window.history.back();
               }}
             >
               <ChevronLeft className="h-4 w-4" />
-              назад
+              &lt; вернутся
             </a>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
@@ -250,7 +250,7 @@ export default function ProductPage() {
 
             <div className="flex flex-col">
               <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-              <p className="text-xl font-bold mb-4">{formatPrice(product.price)}</p>
+              <p className="text-xl font-bold mb-4">{formatPrice(product.id.toString())}</p>
               <p className="text-muted-foreground mb-6 whitespace-pre-line">{product.description}</p>
 
               <div className="flex items-center gap-4 mb-6">

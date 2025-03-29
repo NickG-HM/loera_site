@@ -1,32 +1,41 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { fixedPrices } from "./prices";
 
-type Currency = "USD" | "BYN" | "RUB";
+// Change type to only support BYN and RUB
+type Currency = "BYN" | "RUB";
 
 interface CurrencyContextType {
   currency: Currency;
   setCurrency: (currency: Currency) => void;
-  formatPrice: (priceUSD: string) => string;
+  formatPrice: (productId: string) => string;
+  getFixedPrice: (productId: number) => string;
 }
 
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
-const EXCHANGE_RATES = {
-  USD: 1,
-  BYN: 3.2,
-  RUB: 90,
-};
-
 export function CurrencyProvider({ children }: { children: ReactNode }) {
-  const [currency, setCurrency] = useState<Currency>("USD");
+  // Set default currency to BYN
+  const [currency, setCurrency] = useState<Currency>("BYN");
 
-  const formatPrice = (priceUSD: string) => {
-    const value = parseFloat(priceUSD) * EXCHANGE_RATES[currency];
-    // Remove decimal places by rounding to nearest integer
-    return `${currency} ${Math.round(value)}`;
+  // Format the price based on product ID and selected currency
+  const formatPrice = (productId: string) => {
+    const id = parseInt(productId, 10);
+    if (fixedPrices[id] && fixedPrices[id][currency]) {
+      return `${currency} ${fixedPrices[id][currency]}`;
+    }
+    return `${currency} 0`; // Fallback
+  };
+
+  // Get the fixed price for a product in the current currency
+  const getFixedPrice = (productId: number) => {
+    if (fixedPrices[productId] && fixedPrices[productId][currency]) {
+      return fixedPrices[productId][currency];
+    }
+    return "0"; // Fallback
   };
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency, formatPrice }}>
+    <CurrencyContext.Provider value={{ currency, setCurrency, formatPrice, getFixedPrice }}>
       {children}
     </CurrencyContext.Provider>
   );

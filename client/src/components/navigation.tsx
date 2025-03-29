@@ -109,15 +109,20 @@ export function Navigation({ logoClassName }: NavigationProps) {
             </div>
 
             <div className="space-y-2">
-              <Link href="/#about">
+              <a href="/#about">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    if (location === "/") {
+                      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                 >
                   About Us
                 </Button>
-              </Link>
+              </a>
               <Link href="/category/bags">
                 <Button
                   variant="ghost"
@@ -148,14 +153,14 @@ export function Navigation({ logoClassName }: NavigationProps) {
 
               <div className="pt-2 border-t mt-2">
                 <h3 className="text-xs font-medium mb-2">Currency</h3>
-                <div className="grid grid-cols-3 gap-1">
-                  {["USD", "BYN", "RUB"].map((curr) => (
+                <div className="grid grid-cols-2 gap-1">
+                  {["BYN", "RUB"].map((curr) => (
                     <Button
                       key={curr}
                       size="sm"
                       variant={currency === curr ? "default" : "outline"}
                       onClick={() => {
-                        setCurrency(curr as "USD" | "BYN" | "RUB");
+                        setCurrency(curr as "BYN" | "RUB");
                         setIsMenuOpen(false);
                       }}
                     >
