@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -13,20 +13,24 @@ import CheckoutPage from "@/pages/checkout";
 import ContactPage from "@/pages/contact";
 
 function Router() {
+  const base = import.meta.env.PROD ? "/loera_site" : "";
+  
   return (
-    <div className="min-h-screen transition-opacity duration-500 ease-in-out">
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/products" component={ProductsPage} />
-        <Route path="/product/:id" component={ProductPage} />
-        <Route path="/cart" component={CartPage} />
-        <Route path="/checkout" component={CheckoutPage} />
-        <Route path="/contact" component={ContactPage} />
-        <Route path="/category/:category" component={ProductsPage} />
-        <Route path="/search/:query" component={ProductsPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </div>
+    <WouterRouter base={base}>
+      <div className="min-h-screen transition-opacity duration-500 ease-in-out">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/products" component={ProductsPage} />
+          <Route path="/product/:id" component={ProductPage} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/checkout" component={CheckoutPage} />
+          <Route path="/contact" component={ContactPage} />
+          <Route path="/category/:category" component={ProductsPage} />
+          <Route path="/search/:query" component={ProductsPage} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </WouterRouter>
   );
 }
 
