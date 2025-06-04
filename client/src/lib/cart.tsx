@@ -1,119 +1,160 @@
-import { createContext, useContext, useReducer, ReactNode } from "react";
-import { Product, CartItem } from "@shared/schema";
-import { apiRequest, queryClient } from "./queryClient";
+import React, { createContext, useContext, ReactNode } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { CartItem, InsertCartItem } from "@shared/schema";
 
-interface CartState {
-  items: (CartItem & { product: Product })[];
-  total: number;
-}
-
-type CartAction =
-  | { type: "SET_CART"; payload: CartItem[] }
-  | { type: "ADD_ITEM"; payload: CartItem }
-  | { type: "UPDATE_ITEM"; payload: CartItem }
-  | { type: "REMOVE_ITEM"; payload: number }
-  | { type: "CLEAR_CART" };
-
-interface CartContextType extends CartState {
-  addToCart: (product: Product, quantity: number) => Promise<void>;
-  updateQuantity: (itemId: number, quantity: number) => Promise<void>;
-  removeFromCart: (itemId: number) => Promise<void>;
-  clearCart: () => Promise<void>;
+interface CartContextType {
+  addToCart: (item: InsertCartItem) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  removeFromCart: (id: number) => void;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-function cartReducer(state: CartState, action: CartAction): CartState {
-  switch (action.type) {
-    case "SET_CART":
-      return {
-        ...state,
-        items: action.payload.map(item => ({
-          ...item,
-          product: {} as Product
-        })),
-        total: calculateTotal(action.payload)
-      };
-    case "ADD_ITEM":
-      return {
-        ...state,
-        items: [...state.items, { ...action.payload, product: {} as Product }],
-        total: calculateTotal([...state.items, action.payload])
-      };
-    case "UPDATE_ITEM":
-      return {
-        ...state,
-        items: state.items.map(item =>
-          item.id === action.payload.id ? { ...item, ...action.payload } : item
-        ),
-        total: calculateTotal(state.items.map(item =>
-          item.id === action.payload.id ? action.payload : item
-        ))
-      };
-    case "REMOVE_ITEM":
-      return {
-        ...state,
-        items: state.items.filter(item => item.id !== action.payload),
-        total: calculateTotal(state.items.filter(item => item.id !== action.payload))
-      };
-    case "CLEAR_CART":
-      return {
-        items: [],
-        total: 0
-      };
-    default:
-      return state;
-  }
-}
+// Local storage functions for static mode
+const getLocalCart = (): CartItem[] => {
+  if (typeof window === 'undefined') return [];
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
+};
 
-function calculateTotal(items: CartItem[]): number {
-  return items.reduce((sum, item) => sum + Number(item.quantity), 0);
-}
+const setLocalCart = (items: CartItem[]) => {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem('cart', JSON.stringify(items));
+};
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
+  const queryClient = useQueryClient();
 
-  const addToCart = async (product: Product, quantity: number) => {
-    const response = await apiRequest("POST", "/api/cart", {
-      productId: product.id,
-      quantity
-    });
-    const item = await response.json();
-    dispatch({ type: "ADD_ITEM", payload: item });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+  // Use local storage in production, API in development
+  const { data: cartItems = [] } = useQuery<CartItem[]>({
+    queryKey: ["/api/cart"],
+    queryFn: () => {
+      if (import.meta.env.PROD) {
+        return Promise.resolve(getLocalCart());
+      } else {
+        return fetch("/api/cart").then(res => res.json());
+      }
+    }
+  });
+
+  const addToCartMutation = useMutation({
+    mutationFn: async (item: InsertCartItem) => {
+      if (import.meta.env.PROD) {
+        // Local storage implementation
+        const currentCart = getLocalCart();
+        const existingItem = currentCart.find(cartItem => cartItem.productId === item.productId);
+        
+        let newCart: CartItem[];
+        if (existingItem) {
+          newCart = currentCart.map(cartItem =>
+            cartItem.productId === item.productId
+              ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+              : cartItem
+          );
+        } else {
+          const newItem: CartItem = {
+            id: Date.now(), // Simple ID generation for static mode
+            productId: item.productId,
+            quantity: item.quantity
+          };
+          newCart = [...currentCart, newItem];
+        }
+        
+        setLocalCart(newCart);
+        return newCart[newCart.length - 1];
+      } else {
+        // API implementation
+        const response = await fetch("/api/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item),
+        });
+        return response.json();
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    },
+  });
+
+  const updateQuantityMutation = useMutation({
+    mutationFn: async ({ id, quantity }: { id: number; quantity: number }) => {
+      if (import.meta.env.PROD) {
+        // Local storage implementation
+        const currentCart = getLocalCart();
+        const newCart = currentCart.map(item =>
+          item.id === id ? { ...item, quantity } : item
+        );
+        setLocalCart(newCart);
+        return newCart.find(item => item.id === id);
+      } else {
+        // API implementation
+        const response = await fetch(`/api/cart/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ quantity }),
+        });
+        return response.json();
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    },
+  });
+
+  const removeFromCartMutation = useMutation({
+    mutationFn: async (id: number) => {
+      if (import.meta.env.PROD) {
+        // Local storage implementation
+        const currentCart = getLocalCart();
+        const newCart = currentCart.filter(item => item.id !== id);
+        setLocalCart(newCart);
+        return;
+      } else {
+        // API implementation
+        await fetch(`/api/cart/${id}`, { method: "DELETE" });
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    },
+  });
+
+  const clearCartMutation = useMutation({
+    mutationFn: async () => {
+      if (import.meta.env.PROD) {
+        // Local storage implementation
+        setLocalCart([]);
+        return;
+      } else {
+        // API implementation
+        await fetch("/api/cart", { method: "DELETE" });
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+    },
+  });
+
+  const addToCart = (item: InsertCartItem) => {
+    addToCartMutation.mutate(item);
   };
 
-  const updateQuantity = async (itemId: number, quantity: number) => {
-    const response = await apiRequest("PATCH", `/api/cart/${itemId}`, {
-      quantity
-    });
-    const item = await response.json();
-    dispatch({ type: "UPDATE_ITEM", payload: item });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+  const updateQuantity = (id: number, quantity: number) => {
+    updateQuantityMutation.mutate({ id, quantity });
   };
 
-  const removeFromCart = async (itemId: number) => {
-    await apiRequest("DELETE", `/api/cart/${itemId}`);
-    dispatch({ type: "REMOVE_ITEM", payload: itemId });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+  const removeFromCart = (id: number) => {
+    removeFromCartMutation.mutate(id);
   };
 
-  const clearCart = async () => {
-    await apiRequest("DELETE", "/api/cart");
-    dispatch({ type: "CLEAR_CART" });
-    queryClient.invalidateQueries({ queryKey: ["/api/cart"] });
+  const clearCart = () => {
+    clearCartMutation.mutate();
   };
 
   return (
-    <CartContext.Provider
-      value={{
-        ...state,
-        addToCart,
-        updateQuantity,
-        removeFromCart,
-        clearCart
-      }}
-    >
+    <CartContext.Provider value={{ addToCart, updateQuantity, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

@@ -3,6 +3,7 @@ import { Product } from "@shared/schema";
 import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
 import { useParams } from "wouter";
+import { getStaticProducts, getStaticProductsByCategory, searchStaticProducts } from "@/lib/staticData";
 
 export default function ProductsPage() {
   const params = useParams();
@@ -14,9 +15,31 @@ export default function ProductsPage() {
     : searchQuery 
     ? [`/api/products/search/${searchQuery}`]
     : ["/api/products"];
+    
+  // Use static data in production (GitHub Pages), API in development
+  const queryFn = () => {
+    if (import.meta.env.PROD) {
+      if (category) {
+        return getStaticProductsByCategory(category);
+      } else if (searchQuery) {
+        return searchStaticProducts(searchQuery);
+      } else {
+        return getStaticProducts();
+      }
+    } else {
+      // Development - use API
+      const endpoint = category 
+        ? `/api/products/category/${category}`
+        : searchQuery 
+        ? `/api/products/search/${searchQuery}`
+        : "/api/products";
+      return fetch(endpoint).then(res => res.json());
+    }
+  };
   
   const { data: products, isLoading } = useQuery<Product[]>({
-    queryKey: queryKey
+    queryKey: queryKey,
+    queryFn: queryFn
   });
   
   // Set page title based on current view

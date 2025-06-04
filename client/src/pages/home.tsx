@@ -6,6 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
 export default function Home() {
+  // Use correct image path for GitHub Pages
+  const mainImagePath = import.meta.env.PROD 
+    ? "/loera_site/images/main_page.png"
+    : "/images/main_page.png";
+
   return (
     <div className="min-h-screen pb-8">
       <Navigation />
@@ -13,7 +18,7 @@ export default function Home() {
       <div className="pt-20 relative">
         <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
           <img
-            src="/images/main_page.png"
+            src={mainImagePath}
             alt="LOERA"
             className="w-full h-full object-cover"
           />
