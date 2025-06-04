@@ -5,17 +5,39 @@ import { Link, useLocation } from "wouter";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { CartItem } from "@shared/schema";
 
 interface NavigationProps {
   logoClassName?: string;
 }
 
+// Helper function for local storage cart
+const getLocalCart = (): CartItem[] => {
+  if (typeof window === 'undefined') return [];
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
+};
+
 export function Navigation({ logoClassName }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { total } = useCart();
   const { currency, setCurrency } = useCurrency();
+
+  // Get cart items to calculate total
+  const { data: cartItems = [] } = useQuery<CartItem[]>({
+    queryKey: ["/api/cart"],
+    queryFn: () => {
+      if (import.meta.env.PROD) {
+        return Promise.resolve(getLocalCart());
+      } else {
+        return fetch("/api/cart").then(res => res.json());
+      }
+    }
+  });
+
+  const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -32,11 +54,9 @@ export function Navigation({ logoClassName }: NavigationProps) {
 
           <div className="flex-1 flex justify-center">
             <Link href="/">
-              <img 
-                src="/Logo_LOERA_final.png" 
-                alt="LOERA"
-                className={logoClassName || "h-8"}
-              />
+              <div className={logoClassName || "h-10 flex items-center text-foreground hover:opacity-80 transition-opacity"}>
+                <span className="text-2xl font-light tracking-widest font-serif">LOÉRA</span>
+              </div>
             </Link>
           </div>
 
