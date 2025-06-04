@@ -54,9 +54,35 @@ export function Navigation({ logoClassName }: NavigationProps) {
 
           <div className="flex-1 flex justify-center">
             <Link href="/">
-              <div className={logoClassName || "h-10 flex items-center text-foreground hover:opacity-80 transition-opacity"}>
-                <span className="text-2xl font-light tracking-widest font-serif">LOÉRA</span>
-              </div>
+              <svg 
+                width="140" 
+                height="50" 
+                viewBox="0 0 140 50" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                className={logoClassName || "h-10 w-auto text-foreground hover:opacity-80 transition-opacity"}
+              >
+                {/* Background circle for better visibility */}
+                <circle cx="70" cy="25" r="22" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
+                
+                {/* Main logo text - using system fonts that are guaranteed to work */}
+                <text 
+                  x="70" 
+                  y="32" 
+                  textAnchor="middle" 
+                  fontFamily="Georgia, Times, serif" 
+                  fontSize="22" 
+                  fontWeight="300" 
+                  letterSpacing="3px" 
+                  fill="currentColor"
+                  opacity="0.9"
+                >
+                  LOÉRA
+                </text>
+                
+                {/* Decorative line under the text */}
+                <line x1="45" y1="37" x2="95" y2="37" stroke="currentColor" strokeWidth="0.5" opacity="0.6"/>
+              </svg>
             </Link>
           </div>
 
