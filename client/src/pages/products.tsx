@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Product } from "@shared/schema";
 import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
+import { BackButton } from "@/components/back-button";
 import { useParams } from "wouter";
 import { getStaticProducts, getStaticProductsByCategory, searchStaticProducts } from "@/lib/staticData";
 
@@ -57,7 +58,8 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen">
       <Navigation logoClassName="h-12 transform scale-130" />
-      <div className="container mx-auto px-4 pt-36 max-w-4xl">
+      <BackButton />
+      <div className="container mx-auto px-4 pt-40 max-w-4xl">
         <h1 className="text-2xl tracking-wider text-center mb-4 font-light">{pageTitle}</h1>
         <p className="text-sm text-center mb-10 text-muted-foreground font-light">
           ({products?.length || 0} items)

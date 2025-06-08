@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Product, CartItem } from "@shared/schema";
 import { Navigation } from "@/components/navigation";
+import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
@@ -49,7 +50,8 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
       <Navigation />
-      <div className="container mx-auto px-4 pt-20">
+      <BackButton />
+      <div className="container mx-auto px-4 pt-32">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
         <div className="max-w-2xl mx-auto space-y-6">

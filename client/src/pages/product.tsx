@@ -3,6 +3,7 @@ import { Product } from "@shared/schema";
 import { useParams } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
+import { BackButton } from "@/components/back-button";
 import { useCart } from "@/lib/cart";
 import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
@@ -71,7 +72,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
     <div className="space-y-4 overflow-hidden">
       {/* Main Product Image Carousel */}
       <div className="relative overflow-hidden rounded-lg will-change-transform" ref={mainCarouselRef}>
-        <div className="flex aspect-[5/7]"> {/* This line is changed */}
+        <div className="flex aspect-[5/7]">
           {galleryImages.map((img, i) => (
             <div
               key={i}
@@ -139,28 +140,26 @@ function ImageGallery({ product }: ImageGalleryProps) {
         </div>
       </div>
 
-      {/* Thumbnail Navigation - Hidden on mobile, visible on tablet+ */}
+      {/* Image Gallery Grid - Always visible */}
       {galleryImages.length > 1 && (
-        <div className="hidden sm:block overflow-hidden" ref={thumbnailCarouselRef}>
-          <div className="flex space-x-2">
-            {galleryImages.map((img, i) => (
-              <button
-                key={i}
-                className={`flex-[0_0_20%] min-w-0 aspect-square border-2 rounded transition-all ${
-                  i === selectedIndex
-                    ? "border-primary opacity-100"
-                    : "border-transparent opacity-60 hover:opacity-80"
-                }`}
-                onClick={() => scrollTo(i)}
-              >
-                <img
-                  src={img}
-                  alt={`${product.name} thumbnail ${i + 1}`}
-                  className="w-full h-full object-cover rounded"
-                />
-              </button>
-            ))}
-          </div>
+        <div className="grid grid-cols-4 gap-2">
+          {galleryImages.map((img, i) => (
+            <button
+              key={i}
+              className={`aspect-square border-2 rounded-lg transition-all overflow-hidden ${
+                i === selectedIndex
+                  ? "border-primary ring-2 ring-primary/20"
+                  : "border-gray-200 hover:border-gray-300"
+              }`}
+              onClick={() => scrollTo(i)}
+            >
+              <img
+                src={img}
+                alt={`${product.name} thumbnail ${i + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
         </div>
       )}
 
@@ -217,7 +216,8 @@ export default function ProductPage() {
     return (
       <div className="min-h-screen">
         <Navigation />
-        <div className="container mx-auto px-4 pt-20">
+        <BackButton />
+        <div className="container mx-auto px-4 pt-32">
           <div className="animate-pulse">
             <div className="bg-muted aspect-square rounded-lg mb-4" />
             <div className="bg-muted h-8 w-1/2 rounded mb-4" />
@@ -233,7 +233,8 @@ export default function ProductPage() {
     return (
       <div className="min-h-screen">
         <Navigation />
-        <div className="container mx-auto px-4 pt-20">
+        <BackButton />
+        <div className="container mx-auto px-4 pt-32">
           <h1 className="text-2xl font-bold">Product not found</h1>
         </div>
       </div>
@@ -250,7 +251,8 @@ export default function ProductPage() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-4 pt-20">
+      <BackButton />
+      <div className="container mx-auto px-4 pt-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Product Images */}
           <div className="order-1">
