@@ -85,9 +85,9 @@ export const baseProducts = [
     name: "Косметичка Striped «small»",
     description: "NOOO DATA",
     price: "NOOO DATA",
-    image: "striped_cosmetics_small_main.jpeg",
+    image: "striped_cosmectics_small_main.jpeg",
     category: "cosmetic bags",
-    gallery: ["striped_cosmetics_small_1.jpeg", "striped_cosmetics_small_2.jpeg"]
+    gallery: ["striped_cosmectics_small_1.jpeg", "striped_cosmectics_small_2.jpeg"]
   },
   {
     name: "Fluffy Hug Black",

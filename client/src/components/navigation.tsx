@@ -131,6 +131,16 @@ export function Navigation({ logoClassName }: NavigationProps) {
             </div>
 
             <div className="space-y-2">
+              <Link href="/">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm font-light"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Главная
+                </Button>
+              </Link>
+              
               <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
@@ -149,26 +159,45 @@ export function Navigation({ logoClassName }: NavigationProps) {
                     }
                   }}
                 >
-                  About Us
+                  О нас
                 </Button>
-              <Link href="/category/bags">
+
+              <div className="space-y-1">
+                <div className="text-sm font-medium text-muted-foreground px-2 py-1">
+                  Каталог
+                </div>
+                <div className="bg-muted/30 rounded-md p-2 space-y-1">
+                  <Link href="/category/bags">
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-sm font-light"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Сумки
+                    </Button>
+                  </Link>
+                  <Link href="/category/cosmetic bags">
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-sm font-light"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Косметички
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              <Link href="/delivery">
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-sm font-light"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Сумки
+                  Доставка
                 </Button>
               </Link>
-              <Link href="/category/cosmetic bags">
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-sm font-light"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Косметички
-                </Button>
-              </Link>
+
               <Link href="/contact">
                 <Button
                   variant="ghost"

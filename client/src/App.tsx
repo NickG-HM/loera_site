@@ -11,6 +11,7 @@ import ProductsPage from "@/pages/products";
 import CartPage from "@/pages/cart";
 import CheckoutPage from "@/pages/checkout";
 import ContactPage from "@/pages/contact";
+import DeliveryPage from "@/pages/delivery";
 
 function Router() {
   const base = import.meta.env.PROD ? "/loera_site" : "";
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/cart" component={CartPage} />
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/contact" component={ContactPage} />
+          <Route path="/delivery" component={DeliveryPage} />
           <Route path="/category/:category" component={ProductsPage} />
           <Route path="/search/:query" component={ProductsPage} />
           <Route component={NotFound} />
