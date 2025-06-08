@@ -43,7 +43,11 @@ function ImageGallery({ product }: ImageGalleryProps) {
 
   const scrollTo = useCallback(
     (index: number) => {
-      if (mainCarouselApi) mainCarouselApi.scrollTo(index);
+      if (mainCarouselApi) {
+        mainCarouselApi.scrollTo(index);
+        // Immediately update selectedIndex for instant visual feedback
+        setSelectedIndex(index);
+      }
     },
     [mainCarouselApi]
   );
