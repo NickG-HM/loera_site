@@ -12,7 +12,7 @@ export default function Home() {
     : "/images/main_page.jpeg";
 
   return (
-    <div className="min-h-screen pb-8">
+    <div className="min-h-screen pb-20">
       <Navigation />
 
       <div className="pt-20 relative">

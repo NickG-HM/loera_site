@@ -57,7 +57,7 @@ export default function CartPage() {
         <div 
           className="absolute inset-y-0 right-0 w-full md:w-[600px] bg-background shadow-lg transform transition-transform duration-500 ease-in-out"
         >
-          <div className="container mx-auto px-4 pt-32 h-full overflow-auto">
+          <div className="container mx-auto px-4 pt-44 pb-12 h-full overflow-auto">
             <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
             {(!items || items.length === 0) ? (

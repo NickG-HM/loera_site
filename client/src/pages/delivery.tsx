@@ -6,7 +6,7 @@ export default function DeliveryPage() {
     <div className="min-h-screen">
       <Navigation />
       <BackButton />
-      <div className="container mx-auto px-4 pt-40">
+              <div className="container mx-auto px-4 pt-44 pb-12">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl font-light mb-10 text-center">Доставка</h1>
           

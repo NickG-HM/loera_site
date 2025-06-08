@@ -144,26 +144,28 @@ function ImageGallery({ product }: ImageGalleryProps) {
         </div>
       </div>
 
-      {/* Image Gallery Grid - Always visible */}
+      {/* Image Gallery - Centered scrollable row for all */}
       {galleryImages.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
-          {galleryImages.map((img, i) => (
-            <button
-              key={i}
-              className={`aspect-square border-2 rounded-lg transition-all overflow-hidden ${
-                i === selectedIndex
-                  ? "border-primary ring-2 ring-primary/20"
-                  : "border-gray-200 hover:border-gray-300"
-              }`}
-              onClick={() => scrollTo(i)}
-            >
-              <img
-                src={img}
-                alt={`${product.name} thumbnail ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
+        <div className="flex justify-center">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide max-w-full">
+            {galleryImages.map((img, i) => (
+              <button
+                key={i}
+                className={`aspect-square border-2 rounded-lg transition-all overflow-hidden flex-shrink-0 w-20 ${
+                  i === selectedIndex
+                    ? "border-primary ring-2 ring-primary/20"
+                    : "border-gray-200 hover:border-gray-300"
+                }`}
+                onClick={() => scrollTo(i)}
+              >
+                <img
+                  src={img}
+                  alt={`${product.name} thumbnail ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
@@ -221,7 +223,7 @@ export default function ProductPage() {
       <div className="min-h-screen">
         <Navigation />
         <BackButton />
-        <div className="container mx-auto px-4 pt-32">
+        <div className="container mx-auto px-4 pt-44 pb-32">
           <div className="animate-pulse">
             <div className="bg-muted aspect-square rounded-lg mb-4" />
             <div className="bg-muted h-8 w-1/2 rounded mb-4" />
@@ -238,7 +240,7 @@ export default function ProductPage() {
       <div className="min-h-screen">
         <Navigation />
         <BackButton />
-        <div className="container mx-auto px-4 pt-32">
+        <div className="container mx-auto px-4 pt-44 pb-32">
           <h1 className="text-2xl font-bold">Product not found</h1>
         </div>
       </div>
@@ -256,7 +258,7 @@ export default function ProductPage() {
     <div className="min-h-screen">
       <Navigation />
       <BackButton />
-      <div className="container mx-auto px-4 pt-32">
+      <div className="container mx-auto px-4 pt-44 pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Product Images */}
           <div className="order-1">
@@ -273,7 +275,6 @@ export default function ProductPage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Description</h3>
               <div className="text-muted-foreground whitespace-pre-line">
                 {product.description}
               </div>

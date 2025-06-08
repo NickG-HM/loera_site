@@ -51,7 +51,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
       <Navigation />
       <BackButton />
-      <div className="container mx-auto px-4 pt-32">
+              <div className="container mx-auto px-4 pt-44 pb-12">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
         <div className="max-w-2xl mx-auto space-y-6">

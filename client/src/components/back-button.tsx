@@ -22,7 +22,7 @@ export function BackButton() {
   return (
     <Button
       variant="ghost"
-      className="absolute top-5 left-4 z-40 bg-transparent hover:bg-white/10 text-foreground backdrop-blur-sm"
+      className="fixed top-[122px] left-4 z-40 bg-transparent hover:bg-white/10 text-foreground backdrop-blur-sm"
       onClick={handleBack}
     >
       <ChevronLeft className="h-4 w-4 mr-1" />

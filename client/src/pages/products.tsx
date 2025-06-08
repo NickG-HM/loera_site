@@ -59,7 +59,7 @@ export default function ProductsPage() {
     <div className="min-h-screen">
       <Navigation logoClassName="h-12 transform scale-130" />
       <BackButton />
-      <div className="container mx-auto px-4 pt-40 max-w-4xl">
+              <div className="container mx-auto px-4 pt-44 pb-12 max-w-4xl">
         <h1 className="text-2xl tracking-wider text-center mb-4 font-light">{pageTitle}</h1>
         <p className="text-sm text-center mb-10 text-muted-foreground font-light">
           ({products?.length || 0} items)
