@@ -8,8 +8,8 @@ import { Link } from "wouter";
 export default function Home() {
   // Use correct image path for GitHub Pages
   const mainImagePath = import.meta.env.PROD 
-    ? "/loera_site/images/main_page.png"
-    : "/images/main_page.png";
+    ? "/loera_site/images/main_page.jpeg"
+    : "/images/main_page.jpeg";
 
   return (
     <div className="min-h-screen pb-8">
