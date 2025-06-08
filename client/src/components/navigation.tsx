@@ -22,6 +22,7 @@ const getLocalCart = (): CartItem[] => {
 export function Navigation({ logoClassName }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { currency, setCurrency } = useCurrency();
 
@@ -163,29 +164,35 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 </Button>
 
               <div className="space-y-1">
-                <div className="text-sm font-medium text-muted-foreground px-2 py-1">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-sm font-light"
+                  onClick={() => setIsCatalogOpen(!isCatalogOpen)}
+                >
                   Каталог
-                </div>
-                <div className="bg-muted/30 rounded-md p-2 space-y-1">
-                  <Link href="/category/bags">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start text-sm font-light"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Сумки
-                    </Button>
-                  </Link>
-                  <Link href="/category/cosmetic bags">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start text-sm font-light"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Косметички
-                    </Button>
-                  </Link>
-                </div>
+                </Button>
+                {isCatalogOpen && (
+                  <div className="bg-muted/30 rounded-md p-2 space-y-1 ml-4">
+                    <Link href="/category/bags">
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-sm font-light"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Сумки
+                      </Button>
+                    </Link>
+                    <Link href="/category/cosmetic bags">
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-sm font-light"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Косметички
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </div>
 
               <Link href="/delivery">
