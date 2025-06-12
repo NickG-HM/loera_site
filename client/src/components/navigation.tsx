@@ -3,7 +3,6 @@ import { Menu, ShoppingCart, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Link, useLocation } from "wouter";
 import { useCart } from "@/lib/cart";
-import { useCurrency } from "@/lib/currency";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { CartItem } from "@shared/schema";
@@ -12,19 +11,20 @@ interface NavigationProps {
   logoClassName?: string;
 }
 
-// Helper function for local storage cart
-const getLocalCart = (): CartItem[] => {
-  if (typeof window === 'undefined') return [];
-  const cart = localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : [];
-};
+function getLocalCart(): CartItem[] {
+  try {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  } catch {
+    return [];
+  }
+}
 
 export function Navigation({ logoClassName }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { currency, setCurrency } = useCurrency();
 
   // Get cart items to calculate total
   const { data: cartItems = [] } = useQuery<CartItem[]>({
@@ -214,25 +214,6 @@ export function Navigation({ logoClassName }: NavigationProps) {
                   Контакты
                 </Button>
               </Link>
-
-              <div className="pt-2 border-t mt-2">
-                <h3 className="text-xs font-medium mb-2"></h3>
-                <div className="grid grid-cols-2 gap-1">
-                  {["BYN", "RUB"].map((curr) => (
-                    <Button
-                      key={curr}
-                      size="sm"
-                      variant={currency === curr ? "default" : "outline"}
-                      onClick={() => {
-                        setCurrency(curr as "BYN" | "RUB");
-                        setIsMenuOpen(false);
-                      }}
-                    >
-                      {curr}
-                    </Button>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>

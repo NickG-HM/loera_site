@@ -44,39 +44,43 @@ export default function ProductsPage() {
   });
   
   // Set page title based on current view
-  let pageTitle = "COLLECTION";
+  let pageTitle = "СУМКИ";
   if (category) {
     pageTitle = category === "bags" 
-      ? "BAGS" 
+      ? "СУМКИ" 
       : category === "cosmetic bags" 
-      ? "COSMETIC BAGS" 
+      ? "КОСМЕТИЧКИ" 
       : category.toUpperCase();
   } else if (searchQuery) {
-    pageTitle = `SEARCH: ${searchQuery}`;
+    pageTitle = `ПОИСК: ${searchQuery}`;
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation logoClassName="h-12 transform scale-130" />
       <BackButton />
-              <div className="container mx-auto px-4 pt-44 pb-12 max-w-4xl">
-        <h1 className="text-2xl tracking-wider text-center mb-4 font-light">{pageTitle}</h1>
-        <p className="text-sm text-center mb-10 text-muted-foreground font-light">
-          ({products?.length || 0} items)
-        </p>
+      <div className="container mx-auto px-6 pt-[265px] pb-16 max-w-md">
+        <div className="text-center mb-12">
+          <h1 className="text-xl font-normal tracking-[0.2em] text-gray-900 mb-3">
+            {pageTitle}
+          </h1>
+          <p className="text-sm text-gray-500 font-light">
+            ({products?.length || 0} Items)
+          </p>
+        </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 gap-x-6 gap-y-12">
+          <div className="grid grid-cols-2 gap-6">
             {[...Array(8)].map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-muted aspect-[3/4] mb-4 rounded-none" />
-                <div className="bg-muted h-4 w-3/4 mb-3 rounded-none" />
-                <div className="bg-muted h-4 w-1/2 rounded-none" />
+                <div className="bg-gray-200 aspect-[3/4] mb-4" />
+                <div className="bg-gray-200 h-4 w-3/4 mb-2" />
+                <div className="bg-gray-200 h-3 w-1/2" />
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-x-6 gap-y-12">
+          <div className="grid grid-cols-2 gap-6">
             {products?.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

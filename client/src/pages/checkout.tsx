@@ -4,7 +4,6 @@ import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { useCurrency } from "@/lib/currency";
 import { Instagram } from "lucide-react";
 import {
   Card,
@@ -27,93 +26,104 @@ export default function CheckoutPage() {
     product: products?.find((p) => p.id === item.productId)!,
   }));
 
-  const total = items?.reduce(
-    (sum, item) => sum + Number(item.product.price) * item.quantity,
+  const totalBYN = items?.reduce(
+    (sum, item) => sum + Number(item.product.priceBYN) * item.quantity,
     0
   );
 
-  const formatCartDetails = () => {
-    if (!items) return "";
-    const itemDetails = items.map(item => 
-      `${item.product.name} (x ${item.quantity})`
-    ).join(", ");
-    return `Здравствуйте! Как я могу купить ${itemDetails}?`;
-  };
+  const totalRUB = items?.reduce(
+    (sum, item) => sum + Number(item.product.priceRUB) * item.quantity,
+    0
+  );
 
-  const whatsappLink = `https://api.whatsapp.com/send/?phone=375255059703&text=${encodeURIComponent(formatCartDetails())}&type=phone_number&app_absent=0`;
   const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
 
-  if (!items || items.length === 0) {
-    return null;
-  }
+  const handleInstagramOrder = () => {
+    const orderDetails = items?.map(item => 
+      `${item.product.name} - Количество: ${item.quantity} - BYN ${Number(item.product.priceBYN) * item.quantity} / RUB ${Number(item.product.priceRUB) * item.quantity}`
+    ).join('\n');
+    
+    const message = `Здравствуйте! Я хочу оформить заказ:\n\n${orderDetails}\n\nИтого: BYN ${totalBYN} / RUB ${totalRUB}`;
+    
+    window.open(`${instagramLink}`, '_blank');
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
+    <div className="min-h-screen">
       <Navigation />
       <BackButton />
-              <div className="container mx-auto px-4 pt-44 pb-12">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
-
-        <div className="max-w-2xl mx-auto space-y-6">
-          <Card className="transform transition-all duration-500 ease-in-out hover:shadow-lg">
-            <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {items.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex justify-between py-2 border-b last:border-0"
-                >
-                  <div>
-                    <p className="font-medium">{item.product.name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      Quantity: {item.quantity}
+      <div className="container mx-auto px-4 pt-44 pb-12">
+        <h1 className="text-3xl font-bold mb-8">Оформление заказа</h1>
+        
+        <div className="grid lg:grid-cols-2 gap-8">
+          <div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Сумма заказа</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {items?.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex justify-between items-center py-2 border-b last:border-b-0"
+                  >
+                    <div className="flex gap-3">
+                      <img
+                        src={item.product.image}
+                        alt={item.product.name}
+                        className="w-12 h-12 object-cover rounded"
+                      />
+                      <div>
+                        <p className="font-medium text-sm">{item.product.name}</p>
+                        <p className="text-xs text-muted-foreground">
+                          Количество: {item.quantity}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="font-medium">
+                      BYN {(Number(item.product.priceBYN) * item.quantity)} / RUB {(Number(item.product.priceRUB) * item.quantity)}
                     </p>
                   </div>
-                  <p className="font-medium">
-                    ${(Number(item.product.price) * item.quantity).toFixed(2)}
-                  </p>
+                ))}
+                <div className="mt-4 pt-4 border-t">
+                  <div className="flex justify-between font-bold text-lg">
+                    <span>Итого:</span>
+                    <span>BYN {totalBYN} / RUB {totalRUB}</span>
+                  </div>
                 </div>
-              ))}
-              <div className="flex justify-between pt-4 font-bold">
-                <p>Total</p>
-                <p>${total?.toFixed(2)}</p>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
 
-          <div className="space-y-4">
-            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              <Button 
-                className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]" 
-                size="lg"
-              >
-                Proceed to Checkout via WhatsApp
-              </Button>
-            </a>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-gray-50 px-2 text-muted-foreground">
-                  Or
-                </span>
-              </div>
-            </div>
-
-            <a href={instagramLink} target="_blank" rel="noopener noreferrer">
-              <Button 
-                variant="outline" 
-                className="w-full transform transition-all duration-500 ease-in-out hover:scale-[1.02] active:scale-[0.98]" 
-                size="lg"
-              >
-                <Instagram className="mr-2 h-4 w-4" />
-                Contact Us on Instagram
-              </Button>
-            </a>
+          <div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Завершить заказ</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground">
+                  Чтобы завершить заказ, пожалуйста, свяжитесь с нами через Instagram с деталями вашего заказа.
+                </p>
+                
+                <Button 
+                  onClick={handleInstagramOrder}
+                  className="w-full flex items-center gap-2"
+                >
+                  <Instagram className="h-5 w-5" />
+                  Заказать через Instagram
+                </Button>
+                
+                <div className="text-sm text-muted-foreground">
+                  <p>Мы ответим на ваше сообщение с:</p>
+                  <ul className="list-disc list-inside mt-2 space-y-1">
+                    <li>Подтверждением заказа</li>
+                    <li>Деталями оплаты</li>
+                    <li>Информацией о доставке</li>
+                    <li>Ориентировочным временем доставки</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

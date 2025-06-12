@@ -37,7 +37,6 @@ export default function Home() {
 
         <div id="about" className="container mx-auto px-4 py-16 scroll-mt-24">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl mb-6 text-center font-ravenholm text-gray-700">ABOUT US</h1>
             <p className="text-base text-muted-foreground mb-8 text-left">
               Привет! Я Лиза, а это мой бренд сумочек и аксессуаров.  
               <br />
@@ -47,7 +46,7 @@ export default function Home() {
             <p className="text-base text-muted-foreground mb-8 text-left">
               В моём гардеробе постоянно были вещи, созданные мной: сумки, аксессуары, переделанные старые вещи.  
               <br />
-              Желание создавать «для себя» постепенно переросло в желание создавать для друзей и знакомых, а позже — в бренд LOÉRA, который означает «оно было», отсылая к бесконечности самовыражения.  
+              Желание создавать «для себя» постепенно переросло в желание создавать для друзей и знакомых, а позже в бренд LOÉRA, который означает «оно было», отсылая к бесконечности самовыражения.  
             </p>
 
             <p className="text-base text-muted-foreground mb-8 text-left">
@@ -55,7 +54,7 @@ export default function Home() {
             </p>
 
             <p className="text-base text-muted-foreground mb-8 text-left">
-              LOÉRA — это про уникальность и элегантность. За каждой сумочкой стоят часы кропотливого ручного труда: от разработки лекал до ровных строчек и финальной сборки.  
+              LOÉRA, это про уникальность и элегантность. За каждой сумочкой стоят часы кропотливого ручного труда: от разработки лекал до ровных строчек и финальной сборки.  
             </p>
 
             <p className="text-base text-muted-foreground mb-8 text-left">

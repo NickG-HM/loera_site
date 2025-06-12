@@ -1,34 +1,32 @@
-import { Card } from "@/components/ui/card";
 import { Product } from "@shared/schema";
 import { Link } from "wouter";
-import { useCurrency } from "@/lib/currency";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { formatPrice } = useCurrency();
-
   return (
-    <Card className="overflow-hidden border-none shadow-none rounded-none">
+    <div className="group">
       <Link href={`/product/${product.id}`}>
-        <div className="relative cursor-pointer" style={{ aspectRatio: "5/6.3" }}>
+        <div className="relative cursor-pointer mb-4" style={{ aspectRatio: "3/4" }}>
           <img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-full rounded-none"
+            className="object-cover w-full h-full transition-opacity duration-300 group-hover:opacity-90"
           />
         </div>
       </Link>
-      <div className="mt-3 space-y-1">
+      <div className="text-center space-y-2">
         <Link href={`/product/${product.id}`}>
-          <h3 className="text-sm text-foreground/90 hover:text-primary/90 transition-colors line-clamp-1">
+          <h3 className="text-sm font-normal text-gray-900 leading-tight hover:text-gray-600 transition-colors cursor-pointer">
             {product.name}
           </h3>
         </Link>
-        <p className="text-sm text-foreground/90">{formatPrice(product.id.toString())}</p>
+        <p className="text-sm text-gray-900 font-light">
+          {product.priceBYN} BYN / {product.priceRUB} RUB
+        </p>
       </div>
-    </Card>
+    </div>
   );
 }

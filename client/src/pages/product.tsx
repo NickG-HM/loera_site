@@ -7,7 +7,6 @@ import { BackButton } from "@/components/back-button";
 import { useCart } from "@/lib/cart";
 import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
-import { useCurrency } from "@/lib/currency";
 import useEmblaCarousel from 'embla-carousel-react';
 import { getStaticProduct } from "@/lib/staticData";
 
@@ -197,7 +196,6 @@ export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-  const { formatPrice } = useCurrency();
 
   // Use static data in production, API in development
   const queryFn = () => {
@@ -270,7 +268,7 @@ export default function ProductPage() {
             <div>
               <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
               <p className="text-2xl font-semibold text-primary">
-                {formatPrice(product.id.toString())}
+                BYN {product.priceBYN} / RUB {product.priceRUB}
               </p>
             </div>
 

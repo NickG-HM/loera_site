@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, numeric } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -6,7 +6,8 @@ export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  price: numeric("price").notNull(),
+  priceBYN: text("price_byn").notNull(),
+  priceRUB: text("price_rub").notNull(),
   image: text("image").notNull(),
   category: text("category").notNull(),
   gallery: text("gallery").array().default([]),
@@ -21,7 +22,8 @@ export const cartItems = pgTable("cart_items", {
 export const insertProductSchema = createInsertSchema(products).pick({
   name: true,
   description: true,
-  price: true,
+  priceBYN: true,
+  priceRUB: true,
   image: true,
   category: true,
   gallery: true,

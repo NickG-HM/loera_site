@@ -4,7 +4,6 @@ import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { useCurrency } from "@/lib/currency";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -18,7 +17,6 @@ export default function CartPage() {
   });
 
   const { updateQuantity, removeFromCart } = useCart();
-  const { formatPrice, currency, getFixedPrice } = useCurrency();
 
   if (productsLoading || cartLoading) {
     return (
@@ -41,9 +39,14 @@ export default function CartPage() {
     product: products?.find(p => p.id === item.productId)!
   }));
 
-  // Calculate total using fixed prices based on selected currency
-  const total = items?.reduce(
-    (sum, item) => sum + Number(getFixedPrice(item.product.id)) * item.quantity,
+  // Calculate totals for both currencies
+  const totalBYN = items?.reduce(
+    (sum, item) => sum + Number(item.product.priceBYN) * item.quantity,
+    0
+  );
+
+  const totalRUB = items?.reduce(
+    (sum, item) => sum + Number(item.product.priceRUB) * item.quantity,
     0
   );
 
@@ -58,13 +61,13 @@ export default function CartPage() {
           className="absolute inset-y-0 right-0 w-full md:w-[600px] bg-background shadow-lg transform transition-transform duration-500 ease-in-out"
         >
           <div className="container mx-auto px-4 pt-44 pb-12 h-full overflow-auto">
-            <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+            <h1 className="text-3xl font-bold mb-8">Корзина</h1>
 
             {(!items || items.length === 0) ? (
               <div className="text-center py-8">
-                <p className="text-muted-foreground mb-4">Your cart is empty</p>
+                <p className="text-muted-foreground mb-4">Ваша корзина пуста</p>
                 <Link href="/">
-                  <Button>Continue Shopping</Button>
+                  <Button>Продолжить покупки</Button>
                 </Link>
               </div>
             ) : (
@@ -89,7 +92,7 @@ export default function CartPage() {
                           </h3>
                         </Link>
                         <p className="text-muted-foreground text-sm">
-                          {formatPrice(item.product.id.toString())}
+                          BYN {item.product.priceBYN} / RUB {item.product.priceRUB}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <Button
@@ -123,26 +126,22 @@ export default function CartPage() {
                   ))}
                 </div>
                 <div className="bg-card p-6 rounded-lg h-fit">
-                  <h2 className="text-lg font-medium mb-4">Order Summary</h2>
-                  <div className="flex justify-between mb-2">
-                    <span>Subtotal</span>
-                    <span>{currency} {total}</span>
-                  </div>
+                  <h2 className="text-lg font-medium mb-4">Сумма заказа</h2>
                   <div className="flex justify-between mb-4">
-                    <span>Shipping</span>
-                    <span>Free</span>
+                    <span>Подытог</span>
+                    <span>BYN {totalBYN} / RUB {totalRUB}</span>
                   </div>
                   <div className="border-t pt-4 mb-6">
                     <div className="flex justify-between font-medium">
-                      <span>Total</span>
-                      <span>{currency} {total}</span>
+                      <span>Итого</span>
+                      <span>BYN {totalBYN} / RUB {totalRUB}</span>
                     </div>
                   </div>
                   <Link href="/checkout">
                     <Button 
                       className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      Proceed to Checkout
+                      Оформить заказ
                     </Button>
                   </Link>
                 </div>
