@@ -56,7 +56,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
           <div className="flex-1 flex justify-center">
             <Link href="/">
               <img 
-                src={import.meta.env.PROD ? "/loera_site/Logo_LOERA_final.png" : "/Logo_LOERA_final.png"} 
+                src="/Logo_LOERA_final.png" 
                 alt="LOERA"
                 className={logoClassName || "h-10 w-auto hover:opacity-80 transition-opacity"}
               />

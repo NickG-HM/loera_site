@@ -14,34 +14,34 @@ export default function ContactPage() {
       {/* Perfect centering container */}
       <div className="flex justify-center items-center min-h-screen pt-20 pb-12 px-4">
         <div className="w-full max-w-md text-center space-y-8">
-          <h1 className="text-3xl font-light mb-10">Контакты</h1>
+          <h1 className="text-3xl font-light mb-10 text-center">Контакты</h1>
           
           <div className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-lg mb-6">
+            <div className="space-y-4 text-center">
+              <p className="text-lg mb-6 text-center">
                 Если у вас есть вопросы,<br />просто напишите нам.
                 <br />
                 Мы с радостью на них ответим!
               </p>
               
-              <div className="space-y-2">
-                <p>+375 25 505 97 03</p>
-                <p>Minsk, Belarus</p>
+              <div className="space-y-2 text-center">
+                <p className="text-center">+375 25 505 97 03</p>
+                <p className="text-center">Minsk, Belarus</p>
               </div>
             </div>
             
-            <div className="flex flex-col space-y-4 pt-6">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="block">
+            <div className="flex flex-col space-y-4 pt-6 items-center">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="block w-full">
                 <Button 
-                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-green-500 hover:bg-green-600 text-white border-0"
+                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-green-500 hover:bg-green-600 text-white border-0 text-center"
                 >
                   Заказать WhatsApp
                 </Button>
               </a>
               
-              <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="block">
+              <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="block w-full">
                 <Button 
-                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white border-0"
+                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white border-0 text-center"
                 >
                   Заказать Instagram
                 </Button>
