@@ -139,8 +139,7 @@ export default function CartPage() {
                   </div>
                   <Link href="/checkout">
                     <Button 
-                      className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98] text-white"
-                      style={{ backgroundColor: '#ec4899' }}
+                      className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
                     >
                       Оформить заказ
                     </Button>

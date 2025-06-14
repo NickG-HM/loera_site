@@ -59,7 +59,7 @@ export const baseProducts = [
     priceRUB: "8200",
     image: "crossbody-black_main.jpeg",
     category: "bags",
-    gallery: [ "crossbody-black_2.jpeg", "crossbody-black_1.jpg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
+    gallery: [ "crossbody-black_2.jpeg", "crossbody-black_3.jpeg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
   },
   {
     CatalogueName: "Косметичка «big»",
