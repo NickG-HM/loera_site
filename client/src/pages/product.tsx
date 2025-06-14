@@ -323,7 +323,8 @@ export default function ProductPage() {
 
             {/* Add to Cart Button */}
             <Button 
-              className="w-full py-6 text-lg font-semibold"
+              className="w-full py-6 text-lg font-semibold text-white border-0"
+              style={{ backgroundColor: '#ec4899' }}
               onClick={handleAddToCart}
             >
               Добавить в корзину

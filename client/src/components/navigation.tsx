@@ -88,7 +88,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
             >
               <ShoppingCart className="h-6 w-6 text-black" />
               {total > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
+                <span className="absolute -top-1 -right-1 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center transform transition-transform duration-300 hover:scale-110" style={{ backgroundColor: '#ec4899' }}>
                   {total}
                 </span>
               )}
