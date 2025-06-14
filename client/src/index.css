@@ -310,3 +310,19 @@ button[class*="embla"] {
 .aspect-square img {
   border-radius: 0 !important;
 }
+/* Custom centering utilities */
+.center-content {
+  @apply flex justify-center items-center;
+}
+
+.center-page {
+  @apply min-h-screen flex justify-center items-center px-4;
+}
+
+.center-text {
+  @apply text-center;
+}
+
+.center-container {
+  @apply container mx-auto px-4;
+}

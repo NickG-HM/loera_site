@@ -7,15 +7,17 @@ export default function ContactPage() {
   const whatsappLink = "https://api.whatsapp.com/send/?phone=375255059703&type=phone_number&app_absent=0";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <Navigation />
       <BackButton />
-      <div className="container mx-auto px-4 pt-44 pb-12 flex justify-center">
-        <div className="w-full max-w-md">
-          <h1 className="text-3xl font-light mb-10 text-center">Контакты</h1>
+      
+      {/* Perfect centering container */}
+      <div className="flex justify-center items-center min-h-screen pt-20 pb-12 px-4">
+        <div className="w-full max-w-md text-center space-y-8">
+          <h1 className="text-3xl font-light mb-10">Контакты</h1>
           
-          <div className="space-y-8">
-            <div className="space-y-4 text-center">
+          <div className="space-y-6">
+            <div className="space-y-4">
               <p className="text-lg mb-6">
                 Если у вас есть вопросы,<br />просто напишите нам.
                 <br />
