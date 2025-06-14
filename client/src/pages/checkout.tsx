@@ -117,7 +117,8 @@ export default function CheckoutPage() {
                 <div className="space-y-3">
                   <Button 
                     onClick={handleWhatsAppOrder}
-                    className="w-full flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white border-0"
+                    className="w-full flex items-center gap-2 text-white border-0"
+                    style={{ backgroundColor: '#ec4899' }}
                   >
                     <MessageCircle className="h-5 w-5" />
                     Заказать через WhatsApp
@@ -125,7 +126,8 @@ export default function CheckoutPage() {
                   
                   <Button 
                     onClick={handleInstagramOrder}
-                    className="w-full flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white border-0"
+                    className="w-full flex items-center gap-2 text-white border-0"
+                    style={{ backgroundColor: '#ec4899' }}
                   >
                     <Instagram className="h-5 w-5" />
                     Заказать через Instagram

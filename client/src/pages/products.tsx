@@ -50,7 +50,7 @@ export default function ProductsPage() {
   });
   
   // Set page title based on current view
-  let pageTitle = "СУМКИ";
+  let pageTitle = "ВСЯ КОЛЛЕКЦИЯ";
   if (category) {
     pageTitle = category === "bags" 
       ? "СУМКИ" 
