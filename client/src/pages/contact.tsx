@@ -49,7 +49,7 @@ export default function ContactPage() {
                   style={{ backgroundColor: '#ec4899' }}
                 >
                   <MessageCircle className="h-5 w-5" />
-                  Заказать через WhatsApp
+                  Написать через WhatsApp
                 </Button>
                 
                 <Button 
@@ -58,7 +58,7 @@ export default function ContactPage() {
                   style={{ backgroundColor: '#ec4899' }}
                 >
                   <Instagram className="h-5 w-5" />
-                  Заказать через Instagram
+                  Написать через Instagram
                 </Button>
               </div>
               
