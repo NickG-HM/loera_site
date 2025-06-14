@@ -12,9 +12,9 @@ export default function ContactPage() {
       <BackButton />
       
       {/* Perfect centering container - accounting for fixed navigation */}
-      <div className="flex justify-center items-center" style={{ minHeight: 'calc(100vh - 112px)', marginTop: '112px' }}>
-        <div className="w-full max-w-md mx-auto px-4">
-          <div className="text-center space-y-8">
+      <div className="flex justify-center items-center w-full" style={{ minHeight: 'calc(100vh - 112px)', marginTop: '112px' }}>
+        <div className="w-full max-w-md mx-auto px-4 flex justify-center">
+          <div className="text-center space-y-8 w-full flex flex-col items-center">
             <h1 className="text-3xl font-light mb-10">Контакты</h1>
             
             <div className="space-y-6">
