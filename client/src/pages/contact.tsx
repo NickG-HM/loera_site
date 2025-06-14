@@ -29,11 +29,17 @@ export default function ContactPage() {
         <div className="max-w-md mx-auto">
           <Card className="bg-transparent border-transparent shadow-none">
             <CardHeader>
-              <CardTitle className="text-center">Завершить заказ</CardTitle>
+              <CardTitle className="text-center">Контакты</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground text-center">
-                Чтобы завершить заказ, пожалуйста, свяжитесь с нами через Instagram или WhatsApp с деталями вашего заказа.
+                Если у вас есть вопросы, просто напишите нам. Мы с радостью на них ответим!
+              </p>
+              <p className="text-muted-foreground text-center">
+              +375 25 505 97 03
+              </p>
+              <p className="text-muted-foreground text-center">
+              Minsk, Belarus
               </p>
               
               <div className="space-y-3">
@@ -56,15 +62,7 @@ export default function ContactPage() {
                 </Button>
               </div>
               
-              <div className="text-sm text-muted-foreground text-center">
-                <p>Мы ответим на ваше сообщение с:</p>
-                <ul className="list-disc list-inside mt-2 space-y-1 text-left inline-block">
-                  <li>Подтверждением заказа</li>
-                  <li>Деталями оплаты</li>
-                  <li>Информацией о доставке</li>
-                  <li>Ориентировочным временем доставки</li>
-                </ul>
-              </div>
+              
             </CardContent>
           </Card>
         </div>
