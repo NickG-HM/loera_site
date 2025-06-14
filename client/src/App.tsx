@@ -13,7 +13,7 @@ import ContactPage from "@/pages/contact";
 import DeliveryPage from "@/pages/delivery";
 
 function Router() {
-  const base = import.meta.env.PROD ? "/loera_site" : "";
+  const base = "";
   
   return (
     <WouterRouter base={base}>
