@@ -9,7 +9,7 @@ export const baseProducts = [
     priceRUB: "8200",
     image: "crossbody_leo_main.jpg",
     category: "bags",
-    gallery: ["crossbody_leo_1.jpg", "crossbody_leo_2.jpg", "crossbody_leo_3.jpeg", "crossbody_leo_4.jpeg", "crossbody_leo_5.jpeg", "crossbody_leo_6.jpeg", "crossbody_leo_7.jpg", "crossbody_leo_8.jpg"]
+    gallery: ["crossbody_leo_2.jpg", "crossbody_leo_3.jpeg", "crossbody_leo_4.jpeg", "crossbody_leo_5.jpeg", "crossbody_leo_6.jpeg", "crossbody_leo_7.jpg", "crossbody_leo_8.jpg"]
   },
   {
     CatalogueName: "Косметичка «small»",
@@ -19,7 +19,7 @@ export const baseProducts = [
     priceRUB: "2600",
     image: "polka_dot_cosmetics_small_main.jpeg",
     category: "cosmetic bags",
-    gallery: ["polka_dot_cosmetics_small_1.jpeg", "polka_dot_cosmetics_small_3.jpeg", "polka_dot_cosmetics_small_4.jpeg"]
+    gallery: [ "polka_dot_cosmetics_small_3.jpeg", "polka_dot_cosmetics_small_4.jpeg"]
   },
   {
     CatalogueName: "Fluffy Hug Candy Pink",
@@ -29,7 +29,7 @@ export const baseProducts = [
     priceRUB: "7200",
     image: "fluffy-hug-candy-pink_main.jpg",
     category: "bags",
-    gallery: ["fluffy-hug-candy-pink_1.jpg", "fluffy-hug-candy-pink_2.jpg", "fluffy-hug-candy-pink_3.jpg"]
+    gallery: [ "fluffy-hug-candy-pink_2.jpg", "fluffy-hug-candy-pink_3.jpg"]
   },
   {
     CatalogueName: "Striped Shopper",
@@ -39,7 +39,7 @@ export const baseProducts = [
     priceRUB: "5600",
     image: "striped_shopper_main.jpeg",
     category: "bags",
-    gallery: ["striped_shopper_1.jpeg", "striped_shopper_2.jpeg"]
+    gallery: [ "striped_shopper_2.jpeg"]
   },
   {
     CatalogueName: "Carnival Stripes",
@@ -59,7 +59,7 @@ export const baseProducts = [
     priceRUB: "8200",
     image: "crossbody-black_main.jpeg",
     category: "bags",
-    gallery: ["crossbody-black_1.jpg", "crossbody-black_2.jpeg", "crossbody-black_3.jpeg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
+    gallery: [ "crossbody-black_2.jpeg", "crossbody-black_3.jpeg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
   },
   {
     CatalogueName: "Косметичка «big»",
@@ -69,7 +69,7 @@ export const baseProducts = [
     priceRUB: "4100",
     image: "polka_dot_cosmectics_big_main.jpeg",
     category: "cosmetic bags",
-    gallery: ["polka_dot_cosmectics_big_1.jpeg", "polka_dot_cosmectics_big_2.jpeg"]
+    gallery: [ "polka_dot_cosmectics_big_2.jpeg"]
   },
   {
     CatalogueName: "Shopper Polka dot",
@@ -79,7 +79,7 @@ export const baseProducts = [
     priceRUB: "6900",
     image: "polka_dot_bag_main.jpeg",
     category: "bags",
-    gallery: ["polka_dot_bag_1.jpeg", "polka_dot_bag_2.jpeg"]
+    gallery: [ "polka_dot_bag_2.jpeg"]
   },
   {
     CatalogueName: "Shopper Village",
@@ -89,7 +89,7 @@ export const baseProducts = [
     priceRUB: "8000",
     image: "shopper_village_main.jpeg",
     category: "bags",
-    gallery: ["shopper_village_1.jpeg", "shopper_village_2.jpeg", "shopper_village_3.jpeg"]
+    gallery: [ "shopper_village_2.jpeg", "shopper_village_3.jpeg"]
   },
   {
     CatalogueName: "Crossbody Milk",
@@ -99,7 +99,7 @@ export const baseProducts = [
     priceRUB: "8200",
     image: "crossbody-milk_main.jpg",
     category: "bags",
-    gallery: ["crossbody-milk_1.jpg", "crossbody-milk_2.jpg", "crossbody-milk_3.jpg"]
+    gallery: ["crossbody-milk_1.jpg", "crossbody-milk_3.jpg"]
   },
   {
     CatalogueName: "Косметичка «small»",
@@ -109,7 +109,7 @@ export const baseProducts = [
     priceRUB: "2600",
     image: "striped_cosmectics_small_main.jpeg",
     category: "cosmetic bags",
-    gallery: ["striped_cosmectics_small_1.jpeg", "striped_cosmectics_small_2.jpeg", "striped_cosmectics_small_3.jpeg"]
+    gallery: [ "striped_cosmectics_small_2.jpeg", "striped_cosmectics_small_3.jpeg"]
   },
   {
     CatalogueName: "Fluffy Hug Black",
@@ -119,7 +119,7 @@ export const baseProducts = [
     priceRUB: "7200",
     image: "fluffy-hug-black_main.jpeg",
     category: "bags",
-    gallery: ["fluffy-hug-black_1.jpeg", "fluffy-hug-black_2.jpeg", "fluffy-hug-black_3.jpeg"]
+    gallery: ["fluffy-hug-black_1.jpeg", "fluffy-hug-black_3.jpeg"]
   },
   {
     CatalogueName: "Fluffy Hug Forest Green",
@@ -129,7 +129,7 @@ export const baseProducts = [
     priceRUB: "7200",
     image: "fluffy-forest-green_main.jpg",
     category: "bags",
-    gallery: ["fluffy-forest-green_1.jpg", "fluffy-forest-green_2.jpg", "fluffy-forest-green_3.jpg", "fluffy-forest-green_4.jpg", "fluffy-forest-green_5.jpg"]
+    gallery: ["fluffy-forest-green_1.jpg", "fluffy-forest-green_2.jpg", "fluffy-forest-green_4.jpg", "fluffy-forest-green_5.jpg"]
   },
   {
     CatalogueName: "Fluffy Hug Leo",
@@ -139,7 +139,7 @@ export const baseProducts = [
     priceRUB: "7200",
     image: "fluffy-hug-leo_main.jpg",
     category: "bags",
-    gallery: ["fluffy-hug-leo_1.jpg", "fluffy-hug-leo_2.jpg", "fluffy-hug-leo_3.jpg", "fluffy-hug-leo_4.jpg", "fluffy-hug-leo_5.jpeg"]
+    gallery: [ "fluffy-hug-leo_2.jpg", "fluffy-hug-leo_3.jpg", "fluffy-hug-leo_4.jpg", "fluffy-hug-leo_5.jpeg"]
   }
 ];
 
@@ -155,7 +155,7 @@ export function createProducts(imageBasePath: string = "/images/"): Product[] {
 
 // For static deployment (GitHub Pages)
 export function createStaticProducts(): Product[] {
-  return createProducts("/loera_site/images/");
+  return createProducts("/images/");
 }
 
 // For server deployment

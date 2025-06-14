@@ -11,9 +11,7 @@ export default function Home() {
   const [imageError, setImageError] = useState(false);
   
   // Use correct image path for GitHub Pages
-  const mainImagePath = import.meta.env.PROD 
-    ? "/loera_site/images/main_page.jpeg"
-    : "/images/main_page.jpeg";
+  const mainImagePath = "/images/main_page.jpeg";
 
   // Preload the main image
   useEffect(() => {
