@@ -67,7 +67,12 @@ export default function CartPage() {
               <div className="text-center py-8">
                 <p className="text-muted-foreground mb-4">Ваша корзина пуста</p>
                 <Link href="/">
-                  <Button>Продолжить покупки</Button>
+                  <Button 
+                    className="text-white"
+                    style={{ backgroundColor: '#ec4899' }}
+                  >
+                    Продолжить покупки
+                  </Button>
                 </Link>
               </div>
             ) : (
@@ -139,7 +144,8 @@ export default function CartPage() {
                   </div>
                   <Link href="/checkout">
                     <Button 
-                      className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                      className="w-full transition-transform hover:scale-[1.02] active:scale-[0.98] text-white"
+                      style={{ backgroundColor: '#ec4899' }}
                     >
                       Оформить заказ
                     </Button>
