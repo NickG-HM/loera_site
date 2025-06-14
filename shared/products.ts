@@ -39,7 +39,7 @@ export const baseProducts = [
     priceRUB: "5600",
     image: "striped_shopper_main.jpeg",
     category: "bags",
-    gallery: [ "striped_shopper_2.jpeg"]
+    gallery: [ "striped_shopper_1.jpeg"]
   },
   {
     CatalogueName: "Carnival Stripes",
@@ -59,7 +59,7 @@ export const baseProducts = [
     priceRUB: "8200",
     image: "crossbody-black_main.jpeg",
     category: "bags",
-    gallery: [ "crossbody-black_2.jpeg", "crossbody-black_3.jpeg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
+    gallery: [ "crossbody-black_2.jpeg", "crossbody-black_1.jpg", "crossbody-black_4.jpg", "crossbody-black_5.jpg"]
   },
   {
     CatalogueName: "Косметичка «big»",
@@ -79,7 +79,7 @@ export const baseProducts = [
     priceRUB: "6900",
     image: "polka_dot_bag_main.jpeg",
     category: "bags",
-    gallery: [ "polka_dot_bag_2.jpeg"]
+    gallery: [ "polka_dot_bag_1.jpeg"]
   },
   {
     CatalogueName: "Shopper Village",
@@ -89,7 +89,7 @@ export const baseProducts = [
     priceRUB: "8000",
     image: "shopper_village_main.jpeg",
     category: "bags",
-    gallery: [ "shopper_village_2.jpeg", "shopper_village_3.jpeg"]
+    gallery: [ "shopper_village_2.jpeg", "shopper_village_1.jpeg"]
   },
   {
     CatalogueName: "Crossbody Milk",
