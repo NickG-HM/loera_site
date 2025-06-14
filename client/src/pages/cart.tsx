@@ -22,7 +22,7 @@ export default function CartPage() {
     return (
       <div className="min-h-screen">
         <Navigation />
-        <div className="container mx-auto px-4 pt-20">
+        <div className="container mx-auto px-4 pt-60">
           <div className="animate-pulse">
             <div className="bg-muted h-8 w-1/4 rounded mb-8" />
             {[...Array(3)].map((_, i) => (
@@ -60,7 +60,7 @@ export default function CartPage() {
         <div 
           className="absolute inset-y-0 right-0 w-full md:w-[600px] bg-background shadow-lg transform transition-transform duration-500 ease-in-out"
         >
-          <div className="container mx-auto px-4 pt-44 pb-12 h-full overflow-auto">
+          <div className="container mx-auto px-4 pt-60 pb-12 h-full overflow-auto">
             <h1 className="text-3xl font-bold mb-8">Корзина</h1>
 
             {(!items || items.length === 0) ? (
@@ -81,14 +81,14 @@ export default function CartPage() {
                       <Link href={`/product/${item.product.id}`}>
                         <img
                           src={item.product.image}
-                          alt={item.product.name}
+                          alt={item.product.ProductName}
                           className="w-24 h-24 object-cover rounded transform transition-transform duration-300 hover:scale-105"
                         />
                       </Link>
                       <div className="flex-1">
                         <Link href={`/product/${item.product.id}`}>
                           <h3 className="font-medium hover:text-primary transition-colors">
-                            {item.product.name}
+                            {item.product.ProductName}
                           </h3>
                         </Link>
                         <p className="text-muted-foreground text-sm">

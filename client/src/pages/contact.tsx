@@ -17,12 +17,12 @@ export default function ContactPage() {
           <div className="space-y-8 max-w-md mx-auto">
             <div className="space-y-4 text-center">
               <p className="text-lg mb-6">
-                Если у вас есть вопросы, просто напишите нам.
+                Если у вас есть вопросы,<br />просто напишите нам.
                 <br />
                 Мы с радостью на них ответим!
               </p>
               
-              <div className="space-y-2 text-muted-foreground">
+              <div className="space-y-2">
                 <p>+375 25 505 97 03</p>
                 <p>Minsk, Belarus</p>
               </div>
@@ -31,8 +31,7 @@ export default function ContactPage() {
             <div className="flex flex-col space-y-4 pt-6">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <Button 
-                  variant="outline"
-                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-green-500 hover:bg-green-600 text-white border-0"
                 >
                   Заказать WhatsApp
                 </Button>
@@ -40,8 +39,7 @@ export default function ContactPage() {
               
               <a href={instagramLink} target="_blank" rel="noopener noreferrer">
                 <Button 
-                  variant="outline"
-                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white border-0"
                 >
                   Заказать Instagram
                 </Button>

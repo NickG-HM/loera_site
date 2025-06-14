@@ -47,7 +47,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="menu-button md:hidden text-black hover:bg-transparent"
             onClick={() => setIsMenuOpen(true)}
           >
             <Menu className="h-6 w-6" />
@@ -83,10 +83,10 @@ export function Navigation({ logoClassName }: NavigationProps) {
             <Button 
               variant="ghost" 
               size="icon"
-              className="relative transform transition-transform duration-300 hover:scale-110 active:scale-95"
+              className="menu-button relative text-black hover:bg-transparent transform transition-transform duration-300 hover:scale-110 active:scale-95"
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingCart className="h-6 w-6" />
+              <ShoppingCart className="h-6 w-6 text-black" />
               {total > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center transform transition-transform duration-300 hover:scale-110">
                   {total}
@@ -112,39 +112,43 @@ export function Navigation({ logoClassName }: NavigationProps) {
         }`}
         onClick={() => setIsMenuOpen(false)}
       >
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
         <div 
-          className={`fixed top-0 left-0 z-50 w-64 h-auto bg-background shadow-lg transition-transform duration-500 ease-in-out transform ${
+          className={`fixed top-0 left-0 z-50 w-64 h-auto bg-white shadow-lg transition-transform duration-500 ease-in-out transform ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={e => e.stopPropagation()}
         >
-          <div className="p-4">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Menu</h2>
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-lg font-semibold text-black">Menu</h2>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(false)}
+                className="menu-button text-black hover:bg-transparent"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4 text-black" />
               </Button>
             </div>
 
-            <div className="space-y-2">
-              <Link href="/">
+            <div className="menu-container space-y-0">
+              <div className="mb-6">
+                <Link href="/">
+                  <Button
+                    variant="ghost"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Главная
+                  </Button>
+                </Link>
+              </div>
+              
+              <div className="mb-6">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm font-light"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Главная
-                </Button>
-              </Link>
-              
-              <Button
-                  variant="ghost"
-                  className="w-full justify-start text-sm font-light"
+                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
                   onClick={() => {
                     setIsMenuOpen(false);
                     // If we're on the home page, scroll to the about section
@@ -162,21 +166,23 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 >
                   О нас
                 </Button>
+              </div>
 
-              <div className="space-y-1">
+              <div className="mb-6">
                 <Button
                   variant="ghost"
-                  className="w-full justify-start text-sm font-light"
+                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
                   onClick={() => setIsCatalogOpen(!isCatalogOpen)}
                 >
                   Каталог
                 </Button>
+                
                 {isCatalogOpen && (
-                  <div className="bg-muted/30 rounded-md p-2 space-y-1 ml-4">
+                  <div className="mt-3 space-y-3">
                     <Link href="/category/bags">
                       <Button
                         variant="ghost"
-                        className="w-full justify-start text-sm font-light"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black pl-8"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Сумки
@@ -185,7 +191,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                     <Link href="/category/cosmetic bags">
                       <Button
                         variant="ghost"
-                        className="w-full justify-start text-sm font-light"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black pl-8"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Косметички
@@ -195,25 +201,29 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 )}
               </div>
 
-              <Link href="/delivery">
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-sm font-light"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Доставка
-                </Button>
-              </Link>
+              <div className="mb-6">
+                <Link href="/delivery">
+                  <Button
+                    variant="ghost"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Доставка
+                  </Button>
+                </Link>
+              </div>
 
-              <Link href="/contact">
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-sm font-light"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Контакты
-                </Button>
-              </Link>
+              <div className="mb-0">
+                <Link href="/contact">
+                  <Button
+                    variant="ghost"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Контакты
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

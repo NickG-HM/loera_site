@@ -53,7 +53,8 @@ export class MemStorage implements IStorage {
     const lowercaseQuery = query.toLowerCase();
     return Array.from(this.products.values()).filter(
       product =>
-        product.name.toLowerCase().includes(lowercaseQuery) ||
+        product.CatalogueName.toLowerCase().includes(lowercaseQuery) ||
+        product.ProductName.toLowerCase().includes(lowercaseQuery) ||
         product.description.toLowerCase().includes(lowercaseQuery)
     );
   }

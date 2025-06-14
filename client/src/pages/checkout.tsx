@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { Instagram } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -37,15 +37,24 @@ export default function CheckoutPage() {
   );
 
   const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
+  const whatsappLink = "https://api.whatsapp.com/send/?phone=375255059703&type=phone_number&app_absent=0";
 
-  const handleInstagramOrder = () => {
+  const createOrderMessage = () => {
     const orderDetails = items?.map(item => 
-      `${item.product.name} - Количество: ${item.quantity} - BYN ${Number(item.product.priceBYN) * item.quantity} / RUB ${Number(item.product.priceRUB) * item.quantity}`
+      `${item.product.ProductName} - Количество: ${item.quantity} - BYN ${Number(item.product.priceBYN) * item.quantity} / RUB ${Number(item.product.priceRUB) * item.quantity}`
     ).join('\n');
     
-    const message = `Здравствуйте! Я хочу оформить заказ:\n\n${orderDetails}\n\nИтого: BYN ${totalBYN} / RUB ${totalRUB}`;
-    
+    return `Здравствуйте! Я хочу оформить заказ:\n\n${orderDetails}\n\nИтого: BYN ${totalBYN} / RUB ${totalRUB}`;
+  };
+
+  const handleInstagramOrder = () => {
     window.open(`${instagramLink}`, '_blank');
+  };
+
+  const handleWhatsAppOrder = () => {
+    const message = createOrderMessage();
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`${whatsappLink}&text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -70,11 +79,11 @@ export default function CheckoutPage() {
                     <div className="flex gap-3">
                       <img
                         src={item.product.image}
-                        alt={item.product.name}
+                        alt={item.product.ProductName}
                         className="w-12 h-12 object-cover rounded"
                       />
                       <div>
-                        <p className="font-medium text-sm">{item.product.name}</p>
+                        <p className="font-medium text-sm">{item.product.ProductName}</p>
                         <p className="text-xs text-muted-foreground">
                           Количество: {item.quantity}
                         </p>
@@ -102,16 +111,26 @@ export default function CheckoutPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">
-                  Чтобы завершить заказ, пожалуйста, свяжитесь с нами через Instagram с деталями вашего заказа.
+                  Чтобы завершить заказ, пожалуйста, свяжитесь с нами через Instagram или WhatsApp с деталями вашего заказа.
                 </p>
                 
-                <Button 
-                  onClick={handleInstagramOrder}
-                  className="w-full flex items-center gap-2"
-                >
-                  <Instagram className="h-5 w-5" />
-                  Заказать через Instagram
-                </Button>
+                <div className="space-y-3">
+                  <Button 
+                    onClick={handleWhatsAppOrder}
+                    className="w-full flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white border-0"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                    Заказать через WhatsApp
+                  </Button>
+                  
+                  <Button 
+                    onClick={handleInstagramOrder}
+                    className="w-full flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 text-white border-0"
+                  >
+                    <Instagram className="h-5 w-5" />
+                    Заказать через Instagram
+                  </Button>
+                </div>
                 
                 <div className="text-sm text-muted-foreground">
                   <p>Мы ответим на ваше сообщение с:</p>

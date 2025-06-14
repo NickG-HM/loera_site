@@ -1,17 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
   font-family: 'Ravenholm';
-  src: url('/fonts/Ravenholm Demo.otf') format('opentype');
+  src: url('/fonts/Ravenholm.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+/* Force remove all grey backgrounds from menu buttons */
+.menu-button {
+  background-color: transparent !important;
+}
+
+.menu-button:hover {
+  background-color: transparent !important;
+}
+
+/* Image optimization */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  border-radius: 0 !important; /* Force sharp 90-degree corners */
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* WebP support detection */
+.webp img {
+  image-rendering: auto;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Hide scrollbar for image galleries */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions for images */
+.image-fade-in {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Optimize carousel performance */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  will-change: transform;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+/* Remove rounded corners from all image containers */
+.rounded-lg img,
+.rounded img,
+[class*="rounded"] img {
+  border-radius: 0 !important;
+}
+
 .font-ravenholm {
-  font-family: 'Ravenholm', sans-serif;
+  font-family: 'Ravenholm', serif;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 @layer base {
@@ -33,4 +180,133 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Menu spacing overrides - Ensure perfectly uniform spacing */
+.menu-container > * {
+  margin-bottom: 1.5rem !important; /* 24px - equivalent to space-y-6 */
+}
+
+.menu-container > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.menu-subcategory {
+  margin-top: 0.75rem !important; /* 12px */
+  margin-bottom: 0 !important;
+}
+
+/* Menu button overrides to remove all grey backgrounds */
+.menu-button {
+  background-color: transparent !important;
+}
+
+.menu-button:hover {
+  background-color: transparent !important;
+}
+
+/* Image optimizations */
+img {
+  border-radius: 0 !important;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Lazy loading optimizations */
+img[loading="lazy"] {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* GPU acceleration for smooth scrolling */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Gallery thumbnail optimizations */
+.gallery-thumbnail {
+  transition: transform 0.2s ease-in-out;
+  will-change: transform;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Gallery thumbnail fixes - Remove rounded corners and grey backgrounds */
+.embla__slide img,
+.gallery-thumbnail,
+.product-gallery img,
+[data-gallery] img,
+.thumbnail img {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Remove any button styling from gallery thumbnails */
+.embla__slide button,
+.gallery-thumbnail button,
+.product-gallery button,
+[data-gallery] button {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Ensure no hover effects add grey backgrounds */
+.embla__slide:hover,
+.gallery-thumbnail:hover,
+.product-gallery button:hover,
+[data-gallery] button:hover {
+  background-color: transparent !important;
+}
+
+/* Remove focus outlines that might appear rounded */
+.embla__slide:focus,
+.gallery-thumbnail:focus,
+.product-gallery button:focus,
+[data-gallery] button:focus {
+  outline: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Specific fixes for common gallery patterns */
+.w-20, .w-24, .w-16, .w-12 {
+  border-radius: 0 !important;
+}
+
+.w-20 img, .w-24 img, .w-16 img, .w-12 img {
+  border-radius: 0 !important;
+}
+
+/* Override any component library defaults */
+button[class*="gallery"],
+button[class*="thumbnail"],
+button[class*="embla"] {
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+/* Fix aspect-square elements */
+.aspect-square {
+  border-radius: 0 !important;
+}
+
+.aspect-square img {
+  border-radius: 0 !important;
 }

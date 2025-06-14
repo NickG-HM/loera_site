@@ -4,12 +4,18 @@ import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { useParams } from "wouter";
+import { useEffect } from "react";
 import { getStaticProducts, getStaticProductsByCategory, searchStaticProducts } from "@/lib/staticData";
 
 export default function ProductsPage() {
   const params = useParams();
   const category = params?.category;
   const searchQuery = params?.query;
+  
+  // Prevent autoscroll by scrolling to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const queryKey = category 
     ? [`/api/products/category/${category}`]
@@ -57,9 +63,9 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation logoClassName="h-12 transform scale-130" />
+      <Navigation />
       <BackButton />
-      <div className="container mx-auto px-6 pt-[265px] pb-16 max-w-md">
+      <div className="container mx-auto px-6 pt-60 pb-16 max-w-md">
         <div className="text-center mb-12">
           <h1 className="text-xl font-normal tracking-[0.2em] text-gray-900 mb-3">
             {pageTitle}

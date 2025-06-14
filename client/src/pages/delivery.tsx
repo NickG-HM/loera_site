@@ -18,20 +18,20 @@ export default function DeliveryPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-xl font-medium">Отправляем Почтой, СДЭК</h2>
-              <p className="text-muted-foreground">
-                Сроки доставки; почта 2 недели, СДЭК 3-5 дней.
+              <h2 className="text-xl font-medium">В РФ отправляем Почтой, CDEK</h2>
+              <p className="text-lg mb-6">
+                Сроки доставки: Почта 2 недели, CDEK 3-5 дней.
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-lg mb-6">
                 Стоимость доставки в РФ от 450 до 600 рублей.
               </p>
-              <p className="text-muted-foreground">
+              <p className="text-lg mb-6">
                 Точная стоимость зависит от адреса получателя.
               </p>
             </div>
 
-            <div className="space-y-4 pt-6">
-              <p className="text-muted-foreground">
+            <div>
+              <p className="text-lg mb-6">
                 Также есть международная доставка в большинство стран. Стоимость рассчитывается индивидуально.
               </p>
             </div>

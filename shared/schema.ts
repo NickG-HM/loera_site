@@ -4,7 +4,8 @@ import { z } from "zod";
 
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
-  name: text("name").notNull(),
+  CatalogueName: text("catalogue_name").notNull(),
+  ProductName: text("product_name").notNull(),
   description: text("description").notNull(),
   priceBYN: text("price_byn").notNull(),
   priceRUB: text("price_rub").notNull(),
@@ -20,7 +21,8 @@ export const cartItems = pgTable("cart_items", {
 });
 
 export const insertProductSchema = createInsertSchema(products).pick({
-  name: true,
+  CatalogueName: true,
+  ProductName: true,
   description: true,
   priceBYN: true,
   priceRUB: true,

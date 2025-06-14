@@ -4,12 +4,24 @@ import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  
   // Use correct image path for GitHub Pages
   const mainImagePath = import.meta.env.PROD 
     ? "/loera_site/images/main_page.jpeg"
     : "/images/main_page.jpeg";
+
+  // Preload the main image
+  useEffect(() => {
+    const img = new Image();
+    img.src = mainImagePath;
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => setImageError(true);
+  }, [mainImagePath]);
 
   return (
     <div className="min-h-screen pb-20">
@@ -17,10 +29,29 @@ export default function Home() {
 
       <div className="pt-20 relative">
         <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
+          {/* Loading placeholder */}
+          {!imageLoaded && !imageError && (
+            <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
+              <div className="w-16 h-16 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+            </div>
+          )}
+          
+          {/* Error placeholder */}
+          {imageError && (
+            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+              <div className="text-gray-400 text-xl">Image unavailable</div>
+            </div>
+          )}
+          
           <img
             src={mainImagePath}
             alt="LOERA"
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover transition-opacity duration-500 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            loading="eager"
+            decoding="async"
+            sizes="100vw"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <Link href="/products">
