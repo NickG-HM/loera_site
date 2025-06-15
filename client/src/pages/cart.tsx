@@ -6,10 +6,18 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "wouter";
+import { getStaticProducts } from "@/lib/staticData";
 
 export default function CartPage() {
   const { data: products, isLoading: productsLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products"]
+    queryKey: ["/api/products"],
+    queryFn: () => {
+      if (import.meta.env.PROD) {
+        return getStaticProducts();
+      } else {
+        return fetch("/api/products").then(res => res.json());
+      }
+    }
   });
 
   const { data: cartItems, isLoading: cartLoading } = useQuery<CartItem[]>({
@@ -34,10 +42,10 @@ export default function CartPage() {
     );
   }
 
-  const items = cartItems?.map(item => ({
-    ...item,
-    product: products?.find(p => p.id === item.productId)!
-  }));
+  const items = cartItems?.map(item => {
+    const product = products?.find(p => p.id === item.productId);
+    return product ? { ...item, product } : null;
+  }).filter((item): item is NonNullable<typeof item> => item !== null) || [];
 
   // Calculate totals for both currencies
   const totalBYN = items?.reduce(

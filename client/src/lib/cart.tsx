@@ -14,8 +14,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 // Local storage functions for static mode
 const getLocalCart = (): CartItem[] => {
   if (typeof window === 'undefined') return [];
-  const cart = localStorage.getItem('cart');
-  return cart ? JSON.parse(cart) : [];
+  try {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  } catch {
+    // If there's an error parsing localStorage data, clear it and return empty array
+    localStorage.removeItem('cart');
+    return [];
+  }
 };
 
 const setLocalCart = (items: CartItem[]) => {
