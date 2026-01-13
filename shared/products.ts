@@ -1,5 +1,6 @@
 import { Product } from "./schema";
 
+// Products data
 export const baseProducts = [
   {
     CatalogueName: "Bow-Bag Kletka",
