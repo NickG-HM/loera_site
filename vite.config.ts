@@ -131,18 +131,16 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
         manualChunks(id: string) {
           // Vendor chunks
           if (id.includes('node_modules')) {
-            // React, React DOM, and React Query - must be together
-            // React Query depends on React, so they need to be in the same chunk
-            if (id.includes('react') || id.includes('react-dom') || id.includes('@tanstack/react-query')) {
+            // React and all React-dependent libraries must be together
+            // This includes React, React DOM, React Query, and any library that imports React
+            if (
+              id.includes('react') || 
+              id.includes('react-dom') || 
+              id.includes('@tanstack/react-query') ||
+              id.includes('@radix-ui') ||
+              id.includes('wouter')
+            ) {
               return 'vendor-react';
-            }
-            // Router
-            if (id.includes('wouter')) {
-              return 'vendor-router';
-            }
-            // Radix UI components
-            if (id.includes('@radix-ui')) {
-              return 'vendor-ui';
             }
             // Other large dependencies
             if (id.includes('framer-motion') || id.includes('embla-carousel')) {
