@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 
 export default function ContactPage() {
-  const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
+  const instagramLink = "https://www.instagram.com/loera.brand/";
   const telegramUsername = "elizz_16";
 
   const handleInstagramOrder = () => {

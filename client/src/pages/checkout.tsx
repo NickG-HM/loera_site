@@ -46,7 +46,7 @@ export default function CheckoutPage() {
     0
   );
 
-  const instagramUsername = "elizz_16"; // Instagram username
+  const instagramLink = "https://www.instagram.com/loera.brand/";
   const telegramUsername = "elizz_16";
 
   const createOrderMessage = () => {
@@ -66,19 +66,18 @@ export default function CheckoutPage() {
   const handleInstagramOrder = () => {
     const message = createOrderMessage();
     // Instagram doesn't support pre-filled messages via URL like Telegram
-    // Best approach: Copy message to clipboard and open Instagram DM to the user
+    // Best approach: Copy message to clipboard and open Instagram profile
     navigator.clipboard.writeText(message).then(() => {
       toast({
         title: "Сообщение скопировано",
         description: "Текст заказа скопирован. Откроется Instagram - просто вставьте сообщение (Ctrl+V / Cmd+V).",
       });
-      // Open Instagram DM directly to the user
-      // Note: Instagram doesn't support pre-filled text, so user needs to paste
-      window.open(`https://www.instagram.com/direct/t/${instagramUsername}/`, '_blank');
+      // Open Instagram profile - user can then click Message button
+      window.open(instagramLink, '_blank');
     }).catch(() => {
       // Fallback if clipboard API fails - show message in alert
       alert(`Пожалуйста, скопируйте этот текст и отправьте в Instagram:\n\n${message}`);
-      window.open(`https://www.instagram.com/direct/t/${instagramUsername}/`, '_blank');
+      window.open(instagramLink, '_blank');
     });
   };
 
