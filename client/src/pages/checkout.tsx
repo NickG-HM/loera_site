@@ -146,7 +146,7 @@ export default function CheckoutPage() {
                   <Button 
                     onClick={handleTelegramOrder}
                     className="w-full flex items-center gap-2 text-white border-0"
-                    style={{ backgroundColor: '#0088cc' }}
+                    style={{ backgroundColor: '#000000' }}
                   >
                     <Send className="h-5 w-5" />
                     Заказать через Telegram
