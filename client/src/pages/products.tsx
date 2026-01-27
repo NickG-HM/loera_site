@@ -4,8 +4,10 @@ import { ProductCard } from "@/components/product-card";
 import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { useParams } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { getStaticProducts, getStaticProductsByCategory, searchStaticProducts } from "@/lib/staticData";
+import { FixedSizeGrid as Grid } from "react-window";
+import { ProductCardSkeleton } from "@/components/loading-spinner";
 
 export default function ProductsPage() {
   const params = useParams();
@@ -56,10 +58,22 @@ export default function ProductsPage() {
       ? "СУМКИ" 
       : category === "cosmetic bags" 
       ? "КОСМЕТИЧКИ" 
+      : category === "нижнее белье"
+      ? "НИЖНЕЕ БЕЛЬЕ"
       : category.toUpperCase();
   } else if (searchQuery) {
     pageTitle = `ПОИСК: ${searchQuery}`;
   }
+
+  // Virtualization setup - only use if we have many products
+  const useVirtualization = (products?.length || 0) > 20;
+  const containerWidth = 384; // max-w-md = 384px
+  const columnCount = 2;
+  const columnWidth = (containerWidth - 48) / columnCount; // 48px for padding
+  const rowHeight = 400; // Approximate height per product card
+  const rowCount = useVirtualization && products 
+    ? Math.ceil(products.length / columnCount)
+    : 0;
 
   return (
     <div className="min-h-screen bg-white">
@@ -78,17 +92,40 @@ export default function ProductsPage() {
         {isLoading ? (
           <div className="grid grid-cols-2 gap-6">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 aspect-[3/4] mb-4" />
-                <div className="bg-gray-200 h-4 w-3/4 mb-2" />
-                <div className="bg-gray-200 h-3 w-1/2" />
-              </div>
+              <ProductCardSkeleton key={i} />
             ))}
+          </div>
+        ) : useVirtualization && products ? (
+          <div style={{ height: rowCount * rowHeight, width: containerWidth }}>
+            <Grid
+              columnCount={columnCount}
+              columnWidth={columnWidth}
+              height={rowCount * rowHeight}
+              rowCount={rowCount}
+              rowHeight={rowHeight}
+              width={containerWidth}
+              style={{ overflowX: 'hidden' }}
+            >
+              {({ columnIndex, rowIndex, style }) => {
+                const index = rowIndex * columnCount + columnIndex;
+                const product = products[index];
+                if (!product) return null;
+                return (
+                  <div style={{ ...style, padding: '12px' }}>
+                    <ProductCard product={product} priority={index < 4} />
+                  </div>
+                );
+              }}
+            </Grid>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-6">
-            {products?.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {products?.map((product, index) => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                priority={index < 4} // Prioritize first 4 images (above fold)
+              />
             ))}
           </div>
         )}

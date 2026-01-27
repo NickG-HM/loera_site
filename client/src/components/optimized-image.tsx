@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LoadingSpinner } from "./loading-spinner";
 
 interface OptimizedImageProps {
   src: string;
@@ -23,9 +24,8 @@ export function OptimizedImage({
 }: OptimizedImageProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(src);
 
-  // Generate WebP version path
+  // Generate WebP version path (assumes WebP files exist at build time)
   const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
   const hasWebPVersion = src.match(/\.(jpg|jpeg|png)$/i);
 
@@ -33,37 +33,7 @@ export function OptimizedImage({
     // Reset states when src changes
     setImageLoaded(false);
     setImageError(false);
-    setCurrentSrc(src);
   }, [src]);
-
-  // Check if WebP is supported and if we have a WebP version
-  useEffect(() => {
-    if (!hasWebPVersion) return;
-
-    const checkWebPSupport = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1;
-      canvas.height = 1;
-      return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-    };
-
-    const checkWebPExists = async (webpPath: string) => {
-      try {
-        const response = await fetch(webpPath, { method: 'HEAD' });
-        return response.ok;
-      } catch {
-        return false;
-      }
-    };
-
-    if (checkWebPSupport()) {
-      checkWebPExists(webpSrc).then(exists => {
-        if (exists) {
-          setCurrentSrc(webpSrc);
-        }
-      });
-    }
-  }, [src, webpSrc, hasWebPVersion]);
 
   const handleLoad = () => {
     setImageLoaded(true);
@@ -71,12 +41,6 @@ export function OptimizedImage({
   };
 
   const handleError = () => {
-    // If WebP failed, try original format
-    if (currentSrc === webpSrc && currentSrc !== src) {
-      setCurrentSrc(src);
-      return;
-    }
-    
     setImageError(true);
     onError?.();
   };
@@ -85,18 +49,28 @@ export function OptimizedImage({
   useEffect(() => {
     if (priority || loading === "eager") {
       const img = new Image();
-      img.src = currentSrc;
+      img.src = hasWebPVersion ? webpSrc : src;
       img.onload = handleLoad;
-      img.onerror = handleError;
+      img.onerror = () => {
+        // If WebP fails, try original
+        if (hasWebPVersion) {
+          const fallbackImg = new Image();
+          fallbackImg.src = src;
+          fallbackImg.onload = handleLoad;
+          fallbackImg.onerror = handleError;
+        } else {
+          handleError();
+        }
+      };
     }
-  }, [currentSrc, priority, loading]);
+  }, [src, webpSrc, hasWebPVersion, priority, loading]);
 
   return (
     <div className="relative">
       {/* Loading placeholder */}
       {!imageLoaded && !imageError && (
-        <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+        <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
+          <LoadingSpinner size="md" />
         </div>
       )}
       
@@ -107,18 +81,37 @@ export function OptimizedImage({
         </div>
       )}
       
-      <img
-        src={currentSrc}
-        alt={alt}
-        className={`transition-opacity duration-300 ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        loading={loading}
-        decoding="async"
-        sizes={sizes}
-        onLoad={handleLoad}
-        onError={handleError}
-      />
+      {/* Use picture element for WebP with fallback - more efficient than HEAD requests */}
+      {hasWebPVersion ? (
+        <picture>
+          <source srcSet={webpSrc} type="image/webp" />
+          <img
+            src={src}
+            alt={alt}
+            className={`transition-opacity duration-300 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            } ${className}`}
+            loading={loading}
+            decoding="async"
+            sizes={sizes}
+            onLoad={handleLoad}
+            onError={handleError}
+          />
+        </picture>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          className={`transition-opacity duration-300 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          } ${className}`}
+          loading={loading}
+          decoding="async"
+          sizes={sizes}
+          onLoad={handleLoad}
+          onError={handleError}
+        />
+      )}
     </div>
   );
 } 

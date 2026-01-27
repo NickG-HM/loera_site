@@ -3,10 +3,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { CartItem, InsertCartItem } from "@shared/schema";
 
 interface CartContextType {
+  cartItems: CartItem[];
   addToCart: (item: InsertCartItem) => void;
   updateQuantity: (id: number, quantity: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  isLoading: boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -33,7 +35,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
 
   // Use local storage in production, API in development
-  const { data: cartItems = [] } = useQuery<CartItem[]>({
+  // This is the single source of truth for cart data
+  const { data: cartItems = [], isLoading } = useQuery<CartItem[]>({
     queryKey: ["/api/cart"],
     queryFn: () => {
       if (import.meta.env.PROD) {
@@ -160,7 +163,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <CartContext.Provider value={{ addToCart, updateQuantity, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addToCart, 
+      updateQuantity, 
+      removeFromCart, 
+      clearCart,
+      isLoading 
+    }}>
       {children}
     </CartContext.Provider>
   );

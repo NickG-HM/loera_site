@@ -9,6 +9,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(products);
   });
 
+  app.get("/api/products/all", async (_req, res) => {
+    const products = await storage.getAllProducts();
+    res.json(products);
+  });
+
   app.get("/api/products/:id", async (req, res) => {
     const product = await storage.getProduct(Number(req.params.id));
     if (!product) {

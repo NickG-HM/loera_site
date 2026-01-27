@@ -3,21 +3,10 @@ import { Menu, ShoppingCart, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Link, useLocation } from "wouter";
 import { useCart } from "@/lib/cart";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import type { CartItem } from "@shared/schema";
+import { useState, useMemo, useEffect, useRef } from "react";
 
 interface NavigationProps {
   logoClassName?: string;
-}
-
-function getLocalCart(): CartItem[] {
-  try {
-    const cart = localStorage.getItem('cart');
-    return cart ? JSON.parse(cart) : [];
-  } catch {
-    return [];
-  }
 }
 
 export function Navigation({ logoClassName }: NavigationProps) {
@@ -25,20 +14,38 @@ export function Navigation({ logoClassName }: NavigationProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [location, setLocation] = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Get cart items to calculate total
-  const { data: cartItems = [] } = useQuery<CartItem[]>({
-    queryKey: ["/api/cart"],
-    queryFn: () => {
-      if (import.meta.env.PROD) {
-        return Promise.resolve(getLocalCart());
-      } else {
-        return fetch("/api/cart").then(res => res.json());
-      }
+  // Use cart context instead of duplicate query
+  const { cartItems } = useCart();
+
+  // Calculate total from cart items
+  const total = useMemo(() => {
+    return cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  }, [cartItems]);
+
+  // Debounce search navigation
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  useEffect(() => {
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
     }
-  });
+    
+    debounceTimeoutRef.current = setTimeout(() => {
+      if (searchQuery.trim()) {
+        setLocation(`/search/${encodeURIComponent(searchQuery.trim())}`);
+      } else if (location.startsWith('/search/')) {
+        setLocation('/products');
+      }
+    }, 500);
 
-  const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, [searchQuery, setLocation, location]);
 
   return (
     <>
@@ -47,7 +54,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="menu-button md:hidden text-black hover:bg-transparent"
+            className="menu-button md:hidden text-black hover:bg-transparent bg-transparent"
             onClick={() => setIsMenuOpen(true)}
           >
             <Menu className="h-6 w-6" />
@@ -69,11 +76,9 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <Input
                 placeholder="Search products..."
                 className="pl-9"
+                value={searchQuery}
                 onChange={(e) => {
-                  const query = e.target.value;
-                  if (query) {
-                    setLocation(`/search/${query}`);
-                  }
+                  setSearchQuery(e.target.value);
                 }}
               />
             </div>
@@ -83,7 +88,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
             <Button 
               variant="ghost" 
               size="icon"
-              className="menu-button relative text-black hover:bg-transparent transform transition-transform duration-300 hover:scale-110 active:scale-95"
+              className="menu-button relative text-black hover:bg-transparent bg-transparent transform transition-transform duration-300 hover:scale-110 active:scale-95"
               onClick={() => setIsCartOpen(true)}
             >
               <ShoppingCart className="h-6 w-6 text-black" />
@@ -126,7 +131,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(false)}
-                className="menu-button text-black hover:bg-transparent"
+                className="menu-button text-black hover:bg-transparent bg-transparent"
               >
                 <X className="h-4 w-4 text-black" />
               </Button>
@@ -137,7 +142,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 <Link href="/">
                   <Button
                     variant="ghost"
-                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Главная
@@ -148,7 +153,49 @@ export function Navigation({ logoClassName }: NavigationProps) {
               <div className="mb-6">
                 <Button
                   variant="ghost"
-                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
+                  onClick={() => setIsCatalogOpen(!isCatalogOpen)}
+                >
+                  Каталог
+                </Button>
+                
+                {isCatalogOpen && (
+                  <div className="mt-3 space-y-3">
+                    <Link href="/category/bags">
+                      <Button
+                        variant="ghost"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black pl-8"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Сумки
+                      </Button>
+                    </Link>
+                    <Link href="/category/cosmetic bags">
+                      <Button
+                        variant="ghost"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black pl-8"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Косметички
+                      </Button>
+                    </Link>
+                    <Link href="/category/нижнее белье">
+                      <Button
+                        variant="ghost"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black pl-8"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Нижнее белье
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <div className="mb-6">
+                <Button
+                  variant="ghost"
+                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
                   onClick={() => {
                     setIsMenuOpen(false);
                     // If we're on the home page, scroll to the about section
@@ -169,43 +216,10 @@ export function Navigation({ logoClassName }: NavigationProps) {
               </div>
 
               <div className="mb-6">
-                <Button
-                  variant="ghost"
-                  className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
-                  onClick={() => setIsCatalogOpen(!isCatalogOpen)}
-                >
-                  Каталог
-                </Button>
-                
-                {isCatalogOpen && (
-                  <div className="mt-3 space-y-3">
-                    <Link href="/category/bags">
-                      <Button
-                        variant="ghost"
-                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black pl-8"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Сумки
-                      </Button>
-                    </Link>
-                    <Link href="/category/cosmetic bags">
-                      <Button
-                        variant="ghost"
-                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black pl-8"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Косметички
-                      </Button>
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              <div className="mb-6">
                 <Link href="/delivery">
                   <Button
                     variant="ghost"
-                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Доставка
@@ -217,7 +231,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 <Link href="/contact">
                   <Button
                     variant="ghost"
-                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent hover:text-black"
+                    className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Контакты

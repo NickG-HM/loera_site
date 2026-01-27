@@ -3,6 +3,7 @@ import { createServerProducts } from "@shared/products";
 
 export interface IStorage {
   getProducts(): Promise<Product[]>;
+  getAllProducts(): Promise<Product[]>;
   getProduct(id: number): Promise<Product | undefined>;
   getProductsByCategory(category: string): Promise<Product[]>;
   searchProducts(query: string): Promise<Product[]>;
@@ -36,6 +37,14 @@ export class MemStorage implements IStorage {
   }
 
   async getProducts(): Promise<Product[]> {
+    // Filter out products from "нижнее белье" category (for products page)
+    return Array.from(this.products.values()).filter(
+      product => product.category !== "нижнее белье"
+    );
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    // Return all products including нижнее белье (for cart and checkout)
     return Array.from(this.products.values());
   }
 
@@ -53,9 +62,10 @@ export class MemStorage implements IStorage {
     const lowercaseQuery = query.toLowerCase();
     return Array.from(this.products.values()).filter(
       product =>
-        product.CatalogueName.toLowerCase().includes(lowercaseQuery) ||
+        product.category !== "нижнее белье" &&
+        (product.CatalogueName.toLowerCase().includes(lowercaseQuery) ||
         product.ProductName.toLowerCase().includes(lowercaseQuery) ||
-        product.description.toLowerCase().includes(lowercaseQuery)
+        product.description.toLowerCase().includes(lowercaseQuery))
     );
   }
 

@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
-import { Instagram, MessageCircle } from "lucide-react";
+import { Instagram, Send } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -11,14 +11,14 @@ import {
 
 export default function ContactPage() {
   const instagramLink = "https://www.instagram.com/loera.brand?igsh=MWJxbHA0Y3owbWR0bA==";
-  const whatsappLink = "https://api.whatsapp.com/send/?phone=375255059703&type=phone_number&app_absent=0";
+  const telegramUsername = "elizz_16";
 
   const handleInstagramOrder = () => {
     window.open(`${instagramLink}`, '_blank');
   };
 
-  const handleWhatsAppOrder = () => {
-    window.open(`${whatsappLink}`, '_blank');
+  const handleTelegramOrder = () => {
+    window.open(`https://t.me/${telegramUsername}`, '_blank');
   };
 
   return (
@@ -44,12 +44,12 @@ export default function ContactPage() {
               
               <div className="space-y-3">
                 <Button 
-                  onClick={handleWhatsAppOrder}
+                  onClick={handleTelegramOrder}
                   className="w-full flex items-center gap-2 text-white border-0"
-                  style={{ backgroundColor: '#ec4899' }}
+                  style={{ backgroundColor: '#000000' }}
                 >
-                  <MessageCircle className="h-5 w-5" />
-                  Написать через WhatsApp
+                  <Send className="h-5 w-5" />
+                  Написать через Telegram
                 </Button>
                 
                 <Button 

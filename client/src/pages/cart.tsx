@@ -6,36 +6,34 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { Link } from "wouter";
-import { getStaticProducts } from "@/lib/staticData";
+import { getAllStaticProducts } from "@/lib/staticData";
+import { LoadingSpinner } from "@/components/loading-spinner";
 
 export default function CartPage() {
   const { data: products, isLoading: productsLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products"],
+    queryKey: ["/api/products/all"],
     queryFn: () => {
       if (import.meta.env.PROD) {
-        return getStaticProducts();
+        return getAllStaticProducts();
       } else {
-        return fetch("/api/products").then(res => res.json());
+        return fetch("/api/products/all").then(res => res.json());
       }
     }
   });
 
-  const { data: cartItems, isLoading: cartLoading } = useQuery<CartItem[]>({
-    queryKey: ["/api/cart"]
-  });
-
-  const { updateQuantity, removeFromCart } = useCart();
+  // Use cart from context instead of duplicate query
+  const { cartItems, isLoading: cartLoading, updateQuantity, removeFromCart } = useCart();
 
   if (productsLoading || cartLoading) {
     return (
       <div className="min-h-screen">
         <Navigation />
         <div className="container mx-auto px-4 pt-60">
-          <div className="animate-pulse">
-            <div className="bg-muted h-8 w-1/4 rounded mb-8" />
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-muted h-24 rounded-lg mb-4" />
-            ))}
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <LoadingSpinner size="lg" />
+              <p className="mt-4 text-sm text-gray-500 font-light">Загрузка корзины...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -96,6 +94,9 @@ export default function CartPage() {
                           src={item.product.image}
                           alt={item.product.ProductName}
                           className="w-24 h-24 object-cover rounded transform transition-transform duration-300 hover:scale-105"
+                          loading="lazy"
+                          decoding="async"
+                          fetchPriority="low"
                         />
                       </Link>
                       <div className="flex-1">

@@ -5,6 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
+import { LoadingSpinner } from "@/components/loading-spinner";
 
 export default function Home() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -29,8 +30,8 @@ export default function Home() {
         <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
           {/* Loading placeholder */}
           {!imageLoaded && !imageError && (
-            <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-              <div className="w-16 h-16 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+            <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
+              <LoadingSpinner size="lg" />
             </div>
           )}
           
@@ -49,6 +50,7 @@ export default function Home() {
             }`}
             loading="eager"
             decoding="async"
+            fetchPriority="high"
             sizes="100vw"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">

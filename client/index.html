@@ -9,14 +9,19 @@
     <!-- Resource hints for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Optimized font loading - only load used weights (300, 400, 500) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/Logo_LOERA_final.png" as="image" type="image/png">
-    <link rel="preload" href="/images/main_page.jpeg" as="image" type="image/jpeg">
+    <link rel="preload" href="/Logo_LOERA_final.png" as="image" type="image/png" fetchpriority="high">
+    <link rel="preload" href="/images/main_page.jpeg" as="image" type="image/jpeg" fetchpriority="high">
     
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preconnect for faster image loading -->
+    <link rel="preconnect" href="/images" crossorigin>
     
     <!-- GitHub Pages SPA routing fix -->
     <script type="text/javascript">

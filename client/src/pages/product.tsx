@@ -9,6 +9,7 @@ import { Minus, Plus, ZoomIn, ZoomOut, ChevronLeft, ChevronRight } from "lucide-
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from 'embla-carousel-react';
 import { getStaticProduct } from "@/lib/staticData";
+import { LoadingSpinner } from "@/components/loading-spinner";
 
 interface ImageGalleryProps {
   product: Product;
@@ -93,9 +94,9 @@ function ImageGallery({ product }: ImageGalleryProps) {
             >
               {/* Loading placeholder */}
               {!imageLoadStates[i] && !imageErrorStates[i] && (
-                        <div className="absolute inset-0 bg-transparent animate-pulse flex items-center justify-center">
-          <div className="w-12 h-12 border-3 border-gray-300 border-t-gray-600 animate-spin" style={{ borderRadius: 0 }}></div>
-        </div>
+                <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
+                  <LoadingSpinner size="lg" />
+                </div>
               )}
               
               {/* Error placeholder */}
@@ -113,6 +114,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
                 }`}
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
+                fetchPriority={i === 0 ? "high" : "auto"}
                 onLoad={() => handleImageLoad(i)}
                 onError={() => handleImageError(i)}
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -180,6 +182,7 @@ function ImageGallery({ product }: ImageGalleryProps) {
                   style={{ borderRadius: 0 }}
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   sizes="96px"
                 />
               </button>
@@ -243,11 +246,11 @@ export default function ProductPage() {
         <Navigation />
         <BackButton />
         <div className="container mx-auto px-4 pt-60 pb-32">
-          <div className="animate-pulse">
-            <div className="bg-muted aspect-square rounded-lg mb-4" />
-            <div className="bg-muted h-8 w-1/2 rounded mb-4" />
-            <div className="bg-muted h-4 rounded mb-2" />
-            <div className="bg-muted h-4 w-3/4 rounded" />
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <LoadingSpinner size="lg" />
+              <p className="mt-4 text-sm text-gray-500 font-light">Загрузка товара...</p>
+            </div>
           </div>
         </div>
       </div>

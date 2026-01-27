@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+/* Font loading moved to index.html for better performance */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,16 +11,7 @@
   font-display: swap;
 }
 
-/* Force remove all grey backgrounds from menu buttons */
-.menu-button {
-  background-color: transparent !important;
-}
-
-.menu-button:hover {
-  background-color: transparent !important;
-}
-
-/* Image optimization */
+/* Image optimization - consolidated rules */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
@@ -33,6 +23,7 @@ img {
 /* Lazy loading optimization */
 img[loading="lazy"] {
   content-visibility: auto;
+  will-change: transform;
 }
 
 /* WebP support detection */
@@ -51,15 +42,7 @@ img[loading="lazy"] {
   perspective: 1000px;
 }
 
-/* Hide scrollbar for image galleries */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+/* Hide scrollbar - consolidated in utilities layer below */
 
 /* Smooth transitions for images */
 .image-fade-in {
@@ -196,27 +179,33 @@ button:focus-visible {
   margin-bottom: 0 !important;
 }
 
-/* Menu button overrides to remove all grey backgrounds */
-.menu-button {
+/* Menu button overrides - remove all grey backgrounds */
+.menu-button,
+.menu-button:hover,
+.menu-button:focus,
+.menu-button:active {
   background-color: transparent !important;
+  background: transparent !important;
 }
 
-.menu-button:hover {
+/* Remove grey backgrounds from ghost buttons in navigation */
+nav button[class*="ghost"],
+nav .menu-button {
   background-color: transparent !important;
+  background: transparent !important;
 }
 
-/* Image optimizations */
-img {
-  border-radius: 0 !important;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+nav button[class*="ghost"]:hover,
+nav button[class*="ghost"]:focus,
+nav button[class*="ghost"]:active,
+nav .menu-button:hover,
+nav .menu-button:focus,
+nav .menu-button:active {
+  background-color: transparent !important;
+  background: transparent !important;
 }
 
-/* Lazy loading optimizations */
-img[loading="lazy"] {
-  will-change: transform;
-  transform: translateZ(0);
-}
+/* Menu button overrides - consolidated above */
 
 /* GPU acceleration for smooth scrolling */
 .scroll-smooth {
@@ -309,6 +298,12 @@ button[class*="embla"] {
 
 .aspect-square img {
   border-radius: 0 !important;
+}
+
+/* Ensure loading spinner is always circular */
+.loading-spinner,
+.loading-spinner * {
+  border-radius: 50% !important;
 }
 /* Custom centering utilities */
 .center-content {
