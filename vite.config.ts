@@ -131,22 +131,29 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
         manualChunks(id: string) {
           // Vendor chunks
           if (id.includes('node_modules')) {
-            // React and all React-dependent libraries must be together
-            // This includes React, React DOM, React Query, and any library that imports React
+            // Put ALL React and React-dependent libraries in ONE chunk
+            // This prevents race conditions where React isn't loaded yet
+            // Only exclude server-side or non-React libraries
             if (
-              id.includes('react') || 
-              id.includes('react-dom') || 
-              id.includes('@tanstack/react-query') ||
-              id.includes('@radix-ui') ||
-              id.includes('wouter')
+              !id.includes('express') &&
+              !id.includes('@neondatabase') &&
+              !id.includes('drizzle-orm') &&
+              !id.includes('drizzle-kit') &&
+              !id.includes('esbuild') &&
+              !id.includes('sharp') &&
+              !id.includes('@types/') &&
+              !id.includes('typescript') &&
+              !id.includes('vite') &&
+              !id.includes('rollup') &&
+              !id.includes('postcss') &&
+              !id.includes('autoprefixer') &&
+              !id.includes('tailwindcss') &&
+              !id.includes('@tailwindcss')
             ) {
+              // Everything else goes into vendor-react to ensure React loads first
               return 'vendor-react';
             }
-            // Other large dependencies
-            if (id.includes('framer-motion') || id.includes('embla-carousel')) {
-              return 'vendor-animations';
-            }
-            // All other node_modules
+            // Server-side and build tools go to separate vendor chunk
             return 'vendor';
           }
         },
