@@ -32,7 +32,13 @@ jobs:
         run: npm ci
 
       - name: Build frontend
-        run: npm run build:frontend
+        run: NODE_ENV=production npm run build:frontend
+
+      - name: Copy CNAME to docs
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME docs/CNAME
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
