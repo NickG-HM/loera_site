@@ -34,11 +34,12 @@ jobs:
       - name: Build frontend
         run: NODE_ENV=production npm run build:frontend
 
-      - name: Copy CNAME to docs
+      - name: Copy CNAME and .nojekyll to docs
         run: |
           if [ -f CNAME ]; then
             cp CNAME docs/CNAME
           fi
+          touch docs/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

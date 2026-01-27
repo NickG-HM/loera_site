@@ -131,7 +131,7 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
         manualChunks: (id: string) => {
           // Vendor chunks
           if (id.includes('node_modules')) {
-            // React and React DOM
+            // React and React DOM - must be together
             if (id.includes('react') || id.includes('react-dom')) {
               return 'vendor-react';
             }
@@ -155,6 +155,12 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
             return 'vendor';
           }
         },
+        // Ensure proper module format
+        format: 'es',
+        // Ensure proper asset paths
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
       },
     },
     // Source maps for production debugging (optional - remove if not needed)
