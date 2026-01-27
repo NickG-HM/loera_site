@@ -128,20 +128,17 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
     rollupOptions: {
       output: {
         // Manual chunk splitting for better caching
-        manualChunks: (id: string) => {
+        manualChunks(id: string) {
           // Vendor chunks
           if (id.includes('node_modules')) {
-            // React and React DOM - must be together
-            if (id.includes('react') || id.includes('react-dom')) {
+            // React, React DOM, and React Query - must be together
+            // React Query depends on React, so they need to be in the same chunk
+            if (id.includes('react') || id.includes('react-dom') || id.includes('@tanstack/react-query')) {
               return 'vendor-react';
             }
             // Router
             if (id.includes('wouter')) {
               return 'vendor-router';
-            }
-            // React Query
-            if (id.includes('@tanstack/react-query')) {
-              return 'vendor-query';
             }
             // Radix UI components
             if (id.includes('@radix-ui')) {
@@ -161,6 +158,8 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
         assetFileNames: 'assets/[name]-[hash][extname]',
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
+        // Ensure proper module resolution
+        preserveModules: false,
       },
     },
     // Source maps for production debugging (optional - remove if not needed)
