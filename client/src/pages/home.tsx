@@ -26,33 +26,45 @@ export default function Home() {
     <div className="min-h-screen pb-20">
       <Navigation />
 
-      <div className="pt-20 relative">
-        <div className="relative w-full h-[calc(100vh-80px)] min-h-[450px] overflow-hidden">
-          {/* Loading placeholder */}
-          {!imageLoaded && !imageError && (
-            <div className="absolute inset-0 bg-gray-50 flex items-center justify-center">
-              <LoadingSpinner size="lg" />
-            </div>
-          )}
-          
-          {/* Error placeholder */}
-          {imageError && (
-            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-              <div className="text-gray-400 text-xl">Image unavailable</div>
-            </div>
-          )}
-          
+      <div className="relative" style={{ marginTop: '112px' }}>
+        <div className="relative w-full h-[calc(100vh-112px)] min-h-[450px] overflow-hidden">
+          {/* Main photo - back layer */}
           <img
             src={mainImagePath}
             alt="LOERA"
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="eager"
             decoding="async"
             fetchPriority="high"
             sizes="100vw"
+            style={{ zIndex: 1 }}
           />
+          
+          {/* NEW Banner - front layer, overlaying at the top of main image */}
+          {/* To change font size, modify the text-4xl class below (options: text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, text-3xl, text-4xl, etc.) */}
+          <Link href="/category/нижнее белье">
+            <div className="absolute top-0 left-0 right-0 z-20 bg-white hover:bg-gray-50 transition-colors cursor-pointer flex items-center justify-center text-pink-500 text-3xl font-medium" style={{ height: '1.5cm' }}>
+              NEW: нижнее белье
+            </div>
+          </Link>
+          
+          {/* Loading placeholder - always centered */}
+          {!imageLoaded && !imageError && (
+            <div className="absolute inset-0 bg-gray-50 flex items-center justify-center z-30">
+              <div className="flex flex-col items-center justify-center">
+                <LoadingSpinner size="lg" />
+              </div>
+            </div>
+          )}
+          
+          {/* Error placeholder */}
+          {imageError && (
+            <div className="absolute inset-0 bg-gray-100 flex items-center justify-center z-30">
+              <div className="text-gray-400 text-xl">Image unavailable</div>
+            </div>
+          )}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <Link href="/products">
               <Button 

@@ -161,6 +161,15 @@ export function Navigation({ logoClassName }: NavigationProps) {
                 
                 {isCatalogOpen && (
                   <div className="mt-3 space-y-3">
+                    <Link href="/category/нижнее белье">
+                      <Button
+                        variant="ghost"
+                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black pl-8"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Нижнее белье
+                      </Button>
+                    </Link>
                     <Link href="/category/bags">
                       <Button
                         variant="ghost"
@@ -177,15 +186,6 @@ export function Navigation({ logoClassName }: NavigationProps) {
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Косметички
-                      </Button>
-                    </Link>
-                    <Link href="/category/нижнее белье">
-                      <Button
-                        variant="ghost"
-                        className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black pl-8"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Нижнее белье
                       </Button>
                     </Link>
                   </div>

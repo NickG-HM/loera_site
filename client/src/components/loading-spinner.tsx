@@ -11,8 +11,8 @@ export function LoadingSpinner({ size = "md", className = "" }: LoadingSpinnerPr
   };
 
   return (
-    <div className={`flex items-center justify-center loading-spinner ${className}`}>
-      <div className="relative loading-spinner">
+    <div className={`flex items-center justify-center loading-spinner ${className}`} style={{ position: 'relative' }}>
+      <div className="relative loading-spinner" style={{ margin: '0 auto' }}>
         {/* Outer ring - explicitly circular */}
         <div
           className={`loading-spinner ${sizeClasses[size]} border-gray-200 animate-spin`}

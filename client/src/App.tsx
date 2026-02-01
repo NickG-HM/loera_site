@@ -5,9 +5,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "./lib/cart";
 import { PageLoader } from "@/components/loading-spinner";
+// Import Home directly (not lazy) for faster initial load
+import Home from "@/pages/home";
 
-// Lazy load all pages for code splitting
-const Home = lazy(() => import("@/pages/home"));
+// Lazy load other pages for code splitting
 const ProductPage = lazy(() => import("@/pages/product"));
 const ProductsPage = lazy(() => import("@/pages/products"));
 const CartPage = lazy(() => import("@/pages/cart"));
