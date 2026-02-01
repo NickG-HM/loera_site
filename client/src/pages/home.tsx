@@ -65,7 +65,7 @@ export default function Home() {
               <div className="text-gray-400 text-xl">Image unavailable</div>
             </div>
           )}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
             <Link href="/products">
               <Button 
                 size="lg"
