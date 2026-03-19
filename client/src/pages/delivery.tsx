@@ -13,7 +13,7 @@ export default function DeliveryPage() {
           <div className="space-y-8">
             <div>
               <p className="text-lg mb-6">
-                Бесплатная доставка по Беларуси до пунктов Белпочта, Европочта.
+                Доставка по Беларуси до пунктов Белпочта, Европочта.
               </p>
             </div>
 
