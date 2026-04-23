@@ -262,7 +262,7 @@ Color: Black, Leo, Milk, Brown
 
 Стоимость доставки в РФ от 450 до 600 рублей. Точная стоимость зависит от адреса получателя.
 
-Также есть международная доставка в большинство стран. Стоимость рассчитывается индивидуально`,priceBYN:"170",priceRUB:"4600",image:"nua-black-satin_main.jpg",category:"нижнее белье",gallery:["nua-black-satin_2.jpg","nua-black-satin_3.jpg","nua-black-satin_4.jpg","nua-black-satin_5.jpg","nua-black-satin_6.jpg","nua-black-satin_7.jpg","nua-black-satin_8.jpg","nua-black-satin_9.jpg","nua-black-satin_10.jpg"]},{CatalogueName:"Комплект Nuá Milk Satin",ProductName:"Комплект Nuá Milk Satin",description:`Nuá  — роскошный комплект из шелковистого атласа. Та самая классика, которая всегда будет актуальна. Бра с эффектом пуш-ап, без использования поролоновых подушечек.
+Также есть международная доставка в большинство стран. Стоимость рассчитывается индивидуально`,priceBYN:"190",priceRUB:"5100",image:"nua-black-satin_main.jpg",category:"нижнее белье",gallery:["nua-black-satin_2.jpg","nua-black-satin_3.jpg","nua-black-satin_4.jpg","nua-black-satin_5.jpg","nua-black-satin_6.jpg","nua-black-satin_7.jpg","nua-black-satin_8.jpg","nua-black-satin_9.jpg","nua-black-satin_10.jpg"]},{CatalogueName:"Комплект Nuá Milk Satin",ProductName:"Комплект Nuá Milk Satin",description:`Nuá  — роскошный комплект из шелковистого атласа. Та самая классика, которая всегда будет актуальна. Бра с эффектом пуш-ап, без использования поролоновых подушечек.
 
 Трусики формы галочка обеспечат комфорт и красиво подчеркнут форму ягодиц.
 
@@ -278,7 +278,7 @@ Color: Black, Leo, Milk, Brown
 
 Стоимость доставки в РФ от 450 до 600 рублей. Точная стоимость зависит от адреса получателя.
 
-Также есть международная доставка в большинство стран. Стоимость рассчитывается индивидуально`,priceBYN:"170",priceRUB:"4600",image:"nua-milk-satin_3.jpg",category:"нижнее белье",gallery:["nua-milk-satin_2.jpg","nua-milk-satin_main.jpg","nua-milk-satin_4.jpg","nua-milk-satin_5.jpg","nua-milk-satin_6.jpg","nua-milk-satin_7.jpg","nua-milk-satin_8.jpg","nua-milk-satin_9.jpg"]},{CatalogueName:"Трусики Nuá Black Satin",ProductName:"Трусики Nuá Black Satin",description:`Трусики формы галочка обеспечат комфорт и красиво подчеркнут форму ягодиц.
+Также есть международная доставка в большинство стран. Стоимость рассчитывается индивидуально`,priceBYN:"190",priceRUB:"5100",image:"nua-milk-satin_3.jpg",category:"нижнее белье",gallery:["nua-milk-satin_2.jpg","nua-milk-satin_main.jpg","nua-milk-satin_4.jpg","nua-milk-satin_5.jpg","nua-milk-satin_6.jpg","nua-milk-satin_7.jpg","nua-milk-satin_8.jpg","nua-milk-satin_9.jpg"]},{CatalogueName:"Трусики Nuá Black Satin",ProductName:"Трусики Nuá Black Satin",description:`Трусики формы галочка обеспечат комфорт и красиво подчеркнут форму ягодиц.
 
 Состав: 80% полиэстер, 20% эластин 
 Ластовица трусиков 100% хлопок
