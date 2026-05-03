@@ -65,6 +65,14 @@ export default defineConfig(async ({ mode }): Promise<UserConfig> => ({
             workbox: {
               globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg}"],
               maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MB
+              // SPA: serve precached index.html for navigations (e.g. /products) so the
+              // service worker can respond 200 once active. GitHub Pages still returns HTTP
+              // 404 for the first document request before SW controls the page.
+              navigateFallback: "/index.html",
+              navigateFallbackDenylist: [
+                /^\/api\//,
+                /\/[^/?]+\.[0-9a-z]+$/i,
+              ],
               runtimeCaching: [
                 {
                   urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
