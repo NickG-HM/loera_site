@@ -71,14 +71,6 @@ export function SiteFooter() {
                   Контакты
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="font-medium text-foreground underline underline-offset-2 hover:text-foreground/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  Политика конфиденциальности
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

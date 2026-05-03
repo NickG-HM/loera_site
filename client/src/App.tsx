@@ -17,7 +17,6 @@ const CheckoutPage = lazy(() => import("@/pages/checkout"));
 const ContactsPage = lazy(() => import("@/pages/contacts"));
 const DeliveryPage = lazy(() => import("@/pages/delivery"));
 const OfertaPage = lazy(() => import("@/pages/oferta"));
-const PrivacyPage = lazy(() => import("@/pages/privacy"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 function Router() {
@@ -38,7 +37,6 @@ function Router() {
               <Route path="/contact" component={ContactsPage} />
               <Route path="/delivery" component={DeliveryPage} />
               <Route path="/oferta" component={OfertaPage} />
-              <Route path="/privacy" component={PrivacyPage} />
               <Route path="/category/:category" component={ProductsPage} />
               <Route path="/search/:query" component={ProductsPage} />
               <Route component={NotFound} />
