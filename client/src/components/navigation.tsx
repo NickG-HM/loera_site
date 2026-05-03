@@ -228,7 +228,7 @@ export function Navigation({ logoClassName }: NavigationProps) {
               </div>
 
               <div className="mb-0">
-                <Link href="/contact">
+                <Link href="/contacts">
                   <Button
                     variant="ghost"
                     className="menu-button w-full justify-start text-sm font-normal text-black hover:bg-transparent bg-transparent hover:text-black"
